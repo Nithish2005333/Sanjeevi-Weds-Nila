@@ -231,18 +231,18 @@ export const FooterSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 7. Footer Credit with Dual Lub-Dub Heartbeat Pulse */}
+        {/* 7. Footer Credit with Prominent, Interactive Badge for Nithish */}
         <motion.div
-          className="invitation-footer__credit absolute inset-x-0 bottom-0 z-20"
+          className="invitation-footer__credit absolute inset-x-0 bottom-0 z-20 pb-3 pt-3"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          <p>
-            Crafted with{" "}
+          <div className="flex items-center justify-center flex-wrap gap-1.5 text-[11px] sm:text-xs font-semibold text-[#7A4515] tracking-wider uppercase select-none">
+            <span>Crafted with</span>
             <motion.span
-              className="inline-block"
+              className="inline-flex items-center justify-center"
               animate={
                 shouldReduceMotion
                   ? {}
@@ -258,20 +258,36 @@ export const FooterSection: React.FC = () => {
               }}
             >
               <Heart
-                className="w-3.5 h-3.5 text-[#B83232] fill-[#B83232] inline-block mx-1 -mt-0.5 filter drop-shadow-[0_1px_3px_rgba(184,50,50,0.4)]"
+                className="w-3.5 h-3.5 text-[#B83232] fill-[#B83232] inline-block filter drop-shadow-[0_1px_3px_rgba(184,50,50,0.5)]"
                 aria-hidden="true"
               />
-            </motion.span>{" "}
-            by{" "}
+            </motion.span>
+            <span>by</span>
             <a
               href="https://nithish-portfolio-sigma.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:underline font-bold text-[#570713] transition-colors hover:text-[#8B1A24]"
+              className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#FAF0DC] via-[#F8ECD2] to-[#F5E5C4] hover:from-[#F5E5C4] hover:to-[#EDD5A8] border border-[#C9A46A]/80 hover:border-[#966116] text-[#570713] font-bold tracking-wider shadow-[0_2px_8px_rgba(87,7,19,0.12)] hover:shadow-[0_4px_14px_rgba(87,7,19,0.24)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer ml-0.5"
+              title="Visit Nithish's Developer Portfolio"
             >
-              <strong>Nithish</strong>
+              <span className="font-extrabold text-[#570713] group-hover:text-[#8B1A24] transition-colors drop-shadow-[0_0.5px_0_rgba(255,255,255,0.9)]">
+                NITHISH
+              </span>
+              <svg
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-2.5 h-2.5 text-[#854518] group-hover:text-[#570713] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                aria-hidden="true"
+              >
+                <path d="M3.5 1.5h7v7" />
+                <path d="M10.5 1.5L1.5 10.5" />
+              </svg>
             </a>
-          </p>
+          </div>
         </motion.div>
       </div>
     </footer>
