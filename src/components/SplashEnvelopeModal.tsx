@@ -69,8 +69,8 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
               />
             </motion.picture>
 
-            {/* Top Monogram Logo and Names Block (Moved down slightly with letter-by-letter animation) */}
-            <div className="relative z-10 w-full pt-[134px] sm:pt-[148px] px-6 flex flex-col items-center text-center max-w-sm mx-auto gap-4">
+            {/* Top Monogram Logo and Names Block (Moved down gracefully to frame inside arch portal) */}
+            <div className="relative z-10 w-full pt-[158px] sm:pt-[174px] px-6 flex flex-col items-center text-center max-w-sm mx-auto gap-4">
               {/* Intertwined Gold Monogram Logo */}
               <motion.img
                 initial={{ opacity: 0, y: -18, scale: 0.85, filter: "blur(6px)" }}

@@ -85,8 +85,8 @@ export const ParentsBlessingSection: React.FC = () => {
         loading="eager"
       />
 
-      {/* Styled Content Overlay — Positioned gracefully in open parchment space above the lake and temple */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-start px-6 pt-[22%] sm:pt-[24%] text-center">
+      {/* Styled Content Overlay — Positioned gracefully in open parchment space above the lake and temple (moved down) */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-start px-6 pt-[26%] sm:pt-[28%] text-center">
         <div className="flex flex-col items-center w-full max-w-[320px] sm:max-w-[360px] mx-auto">
           {/* Header Block: With Divine Grace & Blessings of Our Families */}
           <header className="flex flex-col items-center w-full">

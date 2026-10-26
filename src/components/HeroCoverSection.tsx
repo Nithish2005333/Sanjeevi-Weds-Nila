@@ -95,8 +95,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
         <div className="absolute inset-0 bg-gradient-to-b from-[#FBF4E8]/20 via-transparent to-[#FBF4E8]/15 pointer-events-none" />
       </div>
 
-      {/* Header Overlay — Content laid out in open parchment space between golden arch and deities */}
-      <header className="relative z-10 w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center text-center pt-4 sm:pt-7">
+      {/* Header Overlay — Content laid out in open parchment space between golden arch and deities (moved down gracefully) */}
+      <header className="relative z-10 w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center text-center pt-14 sm:pt-18">
         {/* Monogram Logo under Top Golden Arch */}
         <motion.div
           className="flex flex-col items-center mb-2.5 sm:mb-4"

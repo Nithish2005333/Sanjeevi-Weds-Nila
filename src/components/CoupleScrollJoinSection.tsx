@@ -12,29 +12,38 @@ interface FloatingPetal {
   delay: number;
   duration: number;
   size: number;
+  scale: number;
   sway: number;
   rotate: number;
+  flipSpeed: number;
+  shape: "rose" | "lotus";
   variant: "gold" | "yellow" | "pink" | "red";
 }
 
-// 16 rich petals with vibrant wedding floral colors (yellow marigold, gold, blush lotus, and rose red)
+// 22 realistic falling flower petals with varied 3D tumble, natural sways, and depths
 const COUPLE_PETALS: FloatingPetal[] = [
-  { id: 1, left: "5%", delay: 0.2, duration: 9.6, size: 10, sway: 14, rotate: 120, variant: "red" },
-  { id: 2, left: "12%", delay: 3.5, duration: 10.2, size: 11, sway: -15, rotate: -130, variant: "pink" },
-  { id: 3, left: "19%", delay: 1.0, duration: 9.0, size: 12, sway: 16, rotate: 160, variant: "yellow" },
-  { id: 4, left: "26%", delay: 4.8, duration: 11.2, size: 9, sway: -12, rotate: -110, variant: "gold" },
-  { id: 5, left: "33%", delay: 2.2, duration: 9.8, size: 11, sway: 15, rotate: 140, variant: "pink" },
-  { id: 6, left: "40%", delay: 0.6, duration: 10.5, size: 10, sway: -14, rotate: -150, variant: "red" },
-  { id: 7, left: "47%", delay: 4.0, duration: 11.0, size: 12, sway: 13, rotate: 130, variant: "yellow" },
-  { id: 8, left: "54%", delay: 1.8, duration: 9.4, size: 9, sway: -16, rotate: -120, variant: "pink" },
-  { id: 9, left: "61%", delay: 5.2, duration: 10.8, size: 11, sway: 15, rotate: 170, variant: "gold" },
-  { id: 10, left: "68%", delay: 2.9, duration: 9.2, size: 12, sway: -13, rotate: -140, variant: "red" },
-  { id: 11, left: "75%", delay: 0.4, duration: 10.4, size: 10, sway: 16, rotate: 150, variant: "pink" },
-  { id: 12, left: "82%", delay: 3.8, duration: 9.9, size: 11, sway: -15, rotate: -130, variant: "yellow" },
-  { id: 13, left: "89%", delay: 1.5, duration: 10.6, size: 9, sway: 12, rotate: 140, variant: "red" },
-  { id: 14, left: "95%", delay: 4.5, duration: 11.5, size: 10, sway: -14, rotate: -120, variant: "gold" },
-  { id: 15, left: "22%", delay: 6.0, duration: 10.0, size: 10, sway: 14, rotate: 135, variant: "red" },
-  { id: 16, left: "70%", delay: 5.6, duration: 9.5, size: 11, sway: -12, rotate: -145, variant: "pink" },
+  { id: 1, left: "4%", delay: 0.2, duration: 8.8, size: 14, scale: 1.15, sway: 24, rotate: 140, flipSpeed: 1.5, shape: "rose", variant: "red" },
+  { id: 2, left: "10%", delay: 3.2, duration: 9.8, size: 12, scale: 0.95, sway: -22, rotate: -160, flipSpeed: 2.0, shape: "lotus", variant: "pink" },
+  { id: 3, left: "16%", delay: 1.1, duration: 8.4, size: 15, scale: 1.2, sway: 26, rotate: 180, flipSpeed: 1.2, shape: "rose", variant: "yellow" },
+  { id: 4, left: "23%", delay: 4.6, duration: 10.4, size: 11, scale: 0.88, sway: -18, rotate: -130, flipSpeed: 2.2, shape: "lotus", variant: "gold" },
+  { id: 5, left: "29%", delay: 2.0, duration: 9.2, size: 13, scale: 1.05, sway: 22, rotate: 150, flipSpeed: 1.8, shape: "rose", variant: "pink" },
+  { id: 6, left: "36%", delay: 0.5, duration: 9.6, size: 14, scale: 1.1, sway: -25, rotate: -190, flipSpeed: 1.4, shape: "rose", variant: "red" },
+  { id: 7, left: "43%", delay: 3.8, duration: 10.0, size: 12, scale: 0.92, sway: 20, rotate: 140, flipSpeed: 2.1, shape: "lotus", variant: "yellow" },
+  { id: 8, left: "50%", delay: 1.6, duration: 8.9, size: 15, scale: 1.18, sway: -24, rotate: -160, flipSpeed: 1.3, shape: "rose", variant: "pink" },
+  { id: 9, left: "57%", delay: 5.0, duration: 10.2, size: 11, scale: 0.85, sway: 19, rotate: 170, flipSpeed: 2.3, shape: "lotus", variant: "gold" },
+  { id: 10, left: "64%", delay: 2.7, duration: 8.6, size: 14, scale: 1.12, sway: -23, rotate: -150, flipSpeed: 1.6, shape: "rose", variant: "red" },
+  { id: 11, left: "71%", delay: 0.3, duration: 9.5, size: 13, scale: 1.0, sway: 25, rotate: 180, flipSpeed: 1.5, shape: "lotus", variant: "pink" },
+  { id: 12, left: "78%", delay: 3.6, duration: 9.1, size: 12, scale: 0.95, sway: -21, rotate: -140, flipSpeed: 1.9, shape: "rose", variant: "yellow" },
+  { id: 13, left: "85%", delay: 1.4, duration: 9.9, size: 15, scale: 1.22, sway: 26, rotate: 160, flipSpeed: 1.3, shape: "rose", variant: "red" },
+  { id: 14, left: "92%", delay: 4.2, duration: 10.5, size: 11, scale: 0.86, sway: -19, rotate: -130, flipSpeed: 2.4, shape: "lotus", variant: "gold" },
+  { id: 15, left: "97%", delay: 2.4, duration: 9.3, size: 13, scale: 1.05, sway: 22, rotate: 155, flipSpeed: 1.7, shape: "rose", variant: "pink" },
+  { id: 16, left: "14%", delay: 6.2, duration: 9.0, size: 13, scale: 1.05, sway: -22, rotate: -165, flipSpeed: 1.6, shape: "rose", variant: "red" },
+  { id: 17, left: "38%", delay: 5.5, duration: 9.4, size: 14, scale: 1.1, sway: 24, rotate: 175, flipSpeed: 1.4, shape: "lotus", variant: "pink" },
+  { id: 18, left: "62%", delay: 6.8, duration: 8.7, size: 12, scale: 0.94, sway: -20, rotate: -145, flipSpeed: 2.0, shape: "rose", variant: "yellow" },
+  { id: 19, left: "82%", delay: 5.9, duration: 9.7, size: 14, scale: 1.15, sway: 23, rotate: 165, flipSpeed: 1.5, shape: "rose", variant: "red" },
+  { id: 20, left: "48%", delay: 7.2, duration: 9.2, size: 11, scale: 0.9, sway: -21, rotate: -150, flipSpeed: 2.1, shape: "lotus", variant: "gold" },
+  { id: 21, left: "25%", delay: 7.8, duration: 8.9, size: 13, scale: 1.08, sway: 25, rotate: 170, flipSpeed: 1.6, shape: "rose", variant: "pink" },
+  { id: 22, left: "74%", delay: 8.0, duration: 9.6, size: 12, scale: 0.96, sway: -22, rotate: -160, flipSpeed: 1.8, shape: "lotus", variant: "red" },
 ];
 
 const getPetalGradient = (variant: FloatingPetal["variant"]) => {
@@ -50,41 +59,43 @@ const getPetalGradient = (variant: FloatingPetal["variant"]) => {
   }
 };
 
-const getPetalStroke = (variant: FloatingPetal["variant"]) => {
-  switch (variant) {
-    case "pink":
-      return "#BE185D";
-    case "red":
-      return "#4C0519";
-    case "gold":
-      return "#C96D00";
-    default:
-      return "#E5A100";
-  }
-};
-
 const getPetalShadow = (variant: FloatingPetal["variant"]) => {
   switch (variant) {
     case "pink":
-      return "drop-shadow-[0_1px_3px_rgba(219,39,119,0.28)]";
+      return "drop-shadow(0 2.5px 5px rgba(219,39,119,0.32))";
     case "red":
-      return "drop-shadow-[0_1px_3px_rgba(190,18,60,0.32)]";
+      return "drop-shadow(0 2.5px 6px rgba(136,19,55,0.38))";
+    case "gold":
+      return "drop-shadow(0 2.5px 5px rgba(217,119,6,0.3))";
     default:
-      return "drop-shadow-[0_1px_3px_rgba(200,120,20,0.22)]";
+      return "drop-shadow(0 2.5px 5px rgba(202,138,4,0.3))";
   }
 };
 
 const CoupleMarigoldPetal: React.FC<{ petal: FloatingPetal }> = ({ petal }) => (
   <motion.div
     aria-hidden="true"
-    className="pointer-events-none absolute"
-    style={{ left: petal.left }}
-    initial={{ top: "-6%", x: 0, rotate: 0, opacity: 0 }}
+    className="pointer-events-none absolute will-change-transform"
+    style={{
+      left: petal.left,
+      perspective: 700,
+      transformStyle: "preserve-3d",
+    }}
+    initial={{ top: "-8%", x: 0, opacity: 0 }}
     animate={{
-      top: ["-6%", "106%"],
-      x: [0, petal.sway, -petal.sway * 0.7, petal.sway * 0.4, 0],
-      rotate: [0, petal.rotate * 0.5, petal.rotate],
-      opacity: [0, 0.7, 0.75, 0.6, 0],
+      top: ["-8%", "108%"],
+      x: [
+        0,
+        petal.sway,
+        -petal.sway * 0.85,
+        petal.sway * 0.65,
+        -petal.sway * 0.4,
+        0,
+      ],
+      rotateZ: [0, petal.rotate * 0.35, -petal.rotate * 0.25, petal.rotate],
+      rotateX: [0, 180 * petal.flipSpeed, 360 * petal.flipSpeed, 540 * petal.flipSpeed],
+      rotateY: [0, 90 * petal.flipSpeed, 180 * petal.flipSpeed, 270 * petal.flipSpeed, 360 * petal.flipSpeed],
+      opacity: [0, 0.85, 0.95, 0.88, 0],
     }}
     transition={{
       duration: petal.duration,
@@ -94,21 +105,41 @@ const CoupleMarigoldPetal: React.FC<{ petal: FloatingPetal }> = ({ petal }) => (
     }}
   >
     <svg
-      width={petal.size}
-      height={petal.size * 1.35}
-      viewBox="0 0 20 28"
+      width={petal.size * petal.scale}
+      height={petal.size * 1.34 * petal.scale}
+      viewBox="0 0 24 30"
       fill="none"
-      className={`filter ${getPetalShadow(petal.variant)}`}
+      className="overflow-visible"
+      style={{
+        filter: getPetalShadow(petal.variant),
+      }}
     >
+      {/* Natural Curved Petal Body */}
+      {petal.shape === "rose" ? (
+        <path
+          d="M12 2 C7 2.6 2 7.2 2 15 C2 22 6.8 28 12 29 C17.2 28 22 22 22 15 C22 7.2 17 2.6 12 2 Z"
+          fill={getPetalGradient(petal.variant)}
+        />
+      ) : (
+        <path
+          d="M12 1 C7.5 6 1.8 13.5 1.8 19.5 C1.8 24.5 6.2 28.5 12 28.5 C17.8 28.5 22.2 24.5 22.2 19.5 C22.2 13.5 16.5 6 12 1 Z"
+          fill={getPetalGradient(petal.variant)}
+        />
+      )}
+
+      {/* Petal Inner Soft Curve / Vein Light Reflection */}
       <path
-        d="M10 0C4 8 0 16 0 21C0 25.5 4.5 28 10 28C15.5 28 20 25.5 20 21C20 16 16 8 10 0Z"
-        fill={getPetalGradient(petal.variant)}
+        d="M12 4.5 C9.5 9.5 6.5 16 6.5 22"
+        stroke="rgba(255, 255, 255, 0.42)"
+        strokeWidth="0.9"
+        strokeLinecap="round"
       />
+
+      {/* Delicate Outer Edge Sheen */}
       <path
-        d="M10 4C7 10 4 16 4 20C4 23 7 25 10 25"
-        stroke={getPetalStroke(petal.variant)}
-        strokeWidth="0.8"
-        strokeOpacity="0.4"
+        d="M12 2 C16.5 2.6 21.5 7 21.5 15 C21.5 21.5 17 27 12 28.2"
+        stroke="rgba(255, 255, 255, 0.28)"
+        strokeWidth="0.65"
       />
     </svg>
   </motion.div>
@@ -393,13 +424,13 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       />
 
       {/* Header Eyebrow Title with elegant scroll reveal */}
-      <div className="relative z-10 text-center mb-3 mt-2.5 sm:mt-3">
+      <div className="relative z-10 text-center mb-3.5 mt-2.5 sm:mt-3">
         <motion.span
           initial={{ opacity: 0, y: -6, letterSpacing: "0.18em" }}
           whileInView={{ opacity: 1, y: 0, letterSpacing: "0.3em" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] as const }}
-          className="font-sharp-sans text-[10px] sm:text-xs font-bold uppercase text-[#853119] block mb-1"
+          className="font-sharp-sans text-[11.5px] sm:text-[13px] font-bold uppercase text-[#853119] block mb-1"
         >
           Together in Love &amp; Blessings
         </motion.span>
@@ -408,7 +439,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
           whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] as const }}
-          className="font-odstemplik text-2xl sm:text-3xl font-bold text-[#2B120B] tracking-wide"
+          className="font-odstemplik text-[27px] sm:text-[33px] font-bold text-[#2B120B] tracking-wide"
         >
           An Eternal Union
         </motion.h2>
@@ -421,10 +452,10 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         />
       </div>
 
-      {/* Frame Container for Groom & Bride Scroll Join Stage - Scaled down slightly to comfortably fit within mandap pillars */}
+      {/* Frame Container for Groom & Bride Scroll Join Stage - Sized up nicely for comfortable prominence */}
       <div
         ref={stageContainerRef}
-        className="relative w-full max-w-[285px] sm:max-w-[305px] h-[375px] sm:h-[400px] overflow-hidden flex items-center justify-center"
+        className="relative w-full max-w-[305px] sm:max-w-[330px] h-[405px] sm:h-[435px] overflow-hidden flex items-center justify-center"
       >
         {/* White camera flash layer for the morph transition */}
         <div
@@ -535,18 +566,18 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.85, delay: 0.2, ease: "easeOut" }}
-        className="relative z-10 text-center mt-2.5 max-w-[245px] sm:max-w-[270px] px-1"
+        className="relative z-10 text-center mt-3 max-w-[275px] sm:max-w-[305px] px-1"
       >
-        <div className="relative flex flex-col items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-[#FFFDF8]/95 backdrop-blur-md border border-[#C9A46A]/60 shadow-[0_4px_14px_rgba(43,18,11,0.08),inset_0_0_0_1px_rgba(255,255,255,0.85)]">
+        <div className="relative flex flex-col items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-[#FFFDF8]/95 backdrop-blur-md border border-[#C9A46A]/60 shadow-[0_4px_16px_rgba(43,18,11,0.08),inset_0_0_0_1px_rgba(255,255,255,0.85)]">
           {/* Subtle Golden Ornamental Accent at Top */}
-          <div className="flex items-center gap-1.5 mb-1 select-none opacity-85" aria-hidden="true">
-            <span className="w-5 h-[0.8px] bg-gradient-to-r from-transparent to-[#C9A46A]" />
-            <span className="text-[#96672E] text-[7.5px] leading-none">✦</span>
-            <span className="w-5 h-[0.8px] bg-gradient-to-l from-transparent to-[#C9A46A]" />
+          <div className="flex items-center gap-1.5 mb-1.5 select-none opacity-85" aria-hidden="true">
+            <span className="w-6 h-[0.8px] bg-gradient-to-r from-transparent to-[#C9A46A]" />
+            <span className="text-[#96672E] text-[8px] leading-none">✦</span>
+            <span className="w-6 h-[0.8px] bg-gradient-to-l from-transparent to-[#C9A46A]" />
           </div>
 
-          {/* Sized-down, ultra-clear quote in deep royal crimson */}
-          <p className="font-serif italic text-[10.5px] sm:text-[11.5px] font-medium text-[#5A0E18] tracking-wide leading-snug text-center drop-shadow-[0_1px_0_rgba(255,255,255,0.9)]">
+          {/* Sized-up, crystal-clear quote in deep royal crimson */}
+          <p className="font-serif italic text-[12px] sm:text-[13.5px] font-semibold text-[#5A0E18] tracking-wide leading-snug text-center drop-shadow-[0_1px_0_rgba(255,255,255,0.9)]">
             “Two souls with but a single thought,
             <span className="block">two hearts that beat as one.”</span>
           </p>
