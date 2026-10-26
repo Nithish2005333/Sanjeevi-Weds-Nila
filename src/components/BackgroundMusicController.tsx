@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Disc3, VolumeX } from "lucide-react";
+import { Music, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface BackgroundMusicControllerProps {
@@ -57,7 +57,7 @@ export const BackgroundMusicController: React.FC<BackgroundMusicControllerProps>
           onClick={togglePlay}
           aria-label={isPlaying ? "Mute background music" : "Play background music"}
           title={isPlaying ? "Mute music" : "Play music"}
-          className="group relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#350A10]/90 hover:bg-[#4A0E17] border border-[#C9A46A]/80 shadow-[0_4px_20px_rgba(45,6,7,0.45)] backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#C9A46A]/50"
+          className="group relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#350A10]/90 hover:bg-[#4A0E17] border border-[#C9A46A]/80 shadow-[0_4px_20px_rgba(45,6,7,0.45)] backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#C9A46A]/50 cursor-pointer"
         >
           {/* Subtle golden pulse ripple when music is active */}
           {isPlaying && (
@@ -67,14 +67,14 @@ export const BackgroundMusicController: React.FC<BackgroundMusicControllerProps>
             />
           )}
 
-          {/* Smooth Rotating Vinyl Music Disc when playing, previous VolumeX when muted */}
+          {/* Smooth Rotating Music Icon when playing, previous VolumeX when muted */}
           {isPlaying ? (
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
-              className="flex items-center justify-center pointer-events-none"
+              transition={{ duration: 4.2, repeat: Infinity, ease: "linear" }}
+              className="flex items-center justify-center pointer-events-none origin-center"
             >
-              <Disc3 className="w-5 h-5 text-[#FDE9B8] drop-shadow-[0_0_8px_rgba(253,233,184,0.65)]" />
+              <Music className="w-5 h-5 text-[#FDE9B8] drop-shadow-[0_0_6px_rgba(253,233,184,0.6)]" />
             </motion.div>
           ) : (
             <VolumeX className="w-5 h-5 text-[#C9A46A] transition-transform duration-300 group-hover:scale-110" />
