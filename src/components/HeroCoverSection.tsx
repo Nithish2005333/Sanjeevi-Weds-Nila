@@ -563,7 +563,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
               </motion.div>
             </div>
 
-            {/* Right Column: AT 11:30 AM — Mask reveal expanding outward to RIGHT from center */}
+            {/* Right Column: AT 9:15 / 11:30 AM — Mask reveal expanding outward to RIGHT from center */}
             <motion.div
               initial={{
                 clipPath: "inset(-20% 100% -20% 0%)",
@@ -608,7 +608,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                     style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
                     className="w-full text-center font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.14em] text-[#3D0609] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
                   >
-                    AT <span className="font-['Cinzel',Georgia,serif] font-black">{isReception ? "11:30" : "4:30"}</span> AM
+                    AT <span className="font-['Cinzel',Georgia,serif] font-black">{isReception ? "11:30" : "9:15"}</span> AM
                   </motion.span>
                 </AnimatePresence>
               </div>

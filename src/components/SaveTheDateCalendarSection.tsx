@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-// Auspicious Wedding Muhurtham Target: Friday, 20 Nov 2026, 4:30 AM IST
-const WEDDING_TARGET_TIME = new Date("2026-11-20T04:30:00+05:30").getTime();
+// Auspicious Wedding Muhurtham Target: Friday, 20 Nov 2026, 9:15 AM IST
+const WEDDING_TARGET_TIME = new Date("2026-11-20T09:15:00+05:30").getTime();
 
 interface TimeLeft {
   days: number;
