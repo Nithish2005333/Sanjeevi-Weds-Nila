@@ -8,27 +8,29 @@ export const metadata: Metadata = {
     "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png" },
     ],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    shortcut: "/favicon.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: "https://sanjeeviwedsnila.vercel.app",
     siteName: "Sanjeevi & Nila Wedding",
-    title: "Sanjeevi & Nila — Royal Wedding Invitation (திருமண வரவேற்பு அழைப்பிதழ்)",
+    title: "Sanjeevi & Nila — Royal Wedding Invitation",
     description:
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 600,
-        height: 600,
+        url: "/apple-touch-icon.png",
+        width: 180,
+        height: 180,
         alt: "Sanjeevi & Nila Royal Wedding Invitation",
-        type: "image/jpeg",
+        type: "image/png",
       },
     ],
   },
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     title: "Sanjeevi & Nila — Royal Wedding Invitation",
     description:
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
-    images: ["https://sanjeeviwedsnila.vercel.app/og-image.jpg"],
+    images: ["https://sanjeeviwedsnila.vercel.app/apple-touch-icon.png"],
   },
 };
 
@@ -49,19 +51,21 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="image_src" href="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
-        <meta itemProp="image" content="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="/favicon.png" />
+        <link rel="image_src" href="https://sanjeeviwedsnila.vercel.app/apple-touch-icon.png" />
+        <meta itemProp="image" content="https://sanjeeviwedsnila.vercel.app/apple-touch-icon.png" />
         <meta property="og:title" content="Sanjeevi & Nila — Royal Wedding Invitation" />
         <meta
           property="og:description"
           content="With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur."
         />
-        <meta property="og:image" content="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
-        <meta property="og:image:secure_url" content="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="600" />
-        <meta property="og:image:height" content="600" />
+        <meta property="og:image" content="https://sanjeeviwedsnila.vercel.app/apple-touch-icon.png" />
+        <meta property="og:image:secure_url" content="https://sanjeeviwedsnila.vercel.app/apple-touch-icon.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="180" />
+        <meta property="og:image:height" content="180" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sanjeeviwedsnila.vercel.app" />
         <meta property="og:site_name" content="Sanjeevi & Nila Wedding" />
