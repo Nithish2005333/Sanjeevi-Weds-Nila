@@ -9,12 +9,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon-new.png", type: "image/png" },
     ],
-    shortcut: "/favicon.ico",
+    shortcut: "/favicon-new.png",
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/favicon-new.png", sizes: "300x300", type: "image/png" },
     ],
   },
   openGraph: {
@@ -27,20 +26,20 @@ export const metadata: Metadata = {
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
     images: [
       {
-        url: "https://sanjeeviwedsnila.vercel.app/og-image-card.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Sanjeevi & Nila Royal Wedding Invitation",
-        type: "image/jpeg",
+        url: "https://sanjeeviwedsnila.vercel.app/favicon-new.png",
+        width: 300,
+        height: 300,
+        alt: "Sanjeevi & Nila Royal Wedding Monogram",
+        type: "image/png",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Sanjeevi & Nila — Royal Wedding Invitation",
     description:
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
-    images: ["https://sanjeeviwedsnila.vercel.app/og-image-card.jpg"],
+    images: ["https://sanjeeviwedsnila.vercel.app/favicon-new.png"],
   },
 };
 
@@ -52,8 +51,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" prefix="og: http://ogp.me/ns#" suppressHydrationWarning>
       <head>
-        <link rel="image_src" href="https://sanjeeviwedsnila.vercel.app/og-image-card.jpg" />
-        <meta itemProp="image" content="https://sanjeeviwedsnila.vercel.app/og-image-card.jpg" />
+        <link rel="icon" href="https://sanjeeviwedsnila.vercel.app/favicon-new.png" />
+        <link rel="apple-touch-icon" href="https://sanjeeviwedsnila.vercel.app/favicon-new.png" />
+        <link rel="image_src" href="https://sanjeeviwedsnila.vercel.app/favicon-new.png" />
+        <meta itemProp="image" content="https://sanjeeviwedsnila.vercel.app/favicon-new.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
