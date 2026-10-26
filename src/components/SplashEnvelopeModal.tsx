@@ -69,8 +69,8 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
               />
             </motion.picture>
 
-            {/* Top Monogram Logo and Names Block (Moved down gracefully to frame inside arch portal) */}
-            <div className="relative z-10 w-full pt-[158px] sm:pt-[174px] px-6 flex flex-col items-center text-center max-w-sm mx-auto gap-4">
+            {/* Top Monogram Logo and Names Block (Moved down gracefully to frame inside arch portal with increased vertical gap) */}
+            <div className="relative z-10 w-full pt-[172px] sm:pt-[190px] px-6 flex flex-col items-center text-center max-w-sm mx-auto gap-5 sm:gap-6">
               {/* Intertwined Gold Monogram Logo */}
               <motion.img
                 initial={{ opacity: 0, y: -18, scale: 0.85, filter: "blur(6px)" }}
@@ -97,7 +97,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                     : { opacity: 1, y: 0, scale: 1 }
                 }
                 transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
-                className="flex flex-col items-center text-center gap-1.5 sm:gap-2"
+                className="flex flex-col items-center text-center gap-2 sm:gap-3"
               >
                 {/* Groom: Sanjeevi Letter-by-Letter Reveal */}
                 <motion.h1
@@ -152,7 +152,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                 </motion.h1>
 
                 {/* Weds Connector with Flourishing Tapered Line Sweep & Script Stagger Reveal */}
-                <div className="flex items-center justify-center gap-1.5 sm:gap-2 my-1.5 sm:my-2">
+                <div className="flex items-center justify-center gap-2 sm:gap-2.5 my-2.5 sm:my-3.5">
                   {/* Left Line: Tapered fine-to-thick (outer tip fades out, inner side thick next to Weds) */}
                   <motion.div
                     initial={{ scaleX: 0, opacity: 0 }}
@@ -283,22 +283,22 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
               </motion.div>
             </div>
 
-            {/* Bottom Date, Location and TAP TO OPEN INVITATION Button */}
+            {/* Bottom Date, Location and TAP TO OPEN INVITATION Button (enlarged text and button) */}
             <motion.div
               animate={isOpening ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
-              className="relative z-20 mb-8 sm:mb-10 w-full px-6 flex flex-col items-center justify-center space-y-3 text-center"
+              className="relative z-20 mb-8 sm:mb-10 w-full px-6 flex flex-col items-center justify-center space-y-3.5 text-center"
             >
-              <div className="space-y-1">
-                <p className="font-cinzel text-xs sm:text-sm font-bold text-[#FFE8B2] tracking-[0.22em] uppercase drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]">
+              <div className="space-y-1.5">
+                <p className="font-cinzel text-[13px] sm:text-[15px] font-bold text-[#FFE8B2] tracking-[0.24em] uppercase drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]">
                   <span className="font-serif-numbers font-bold">22</span> NOVEMBER <span className="font-serif-numbers font-bold">2026</span>
                 </p>
-                <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[10.5px] sm:text-[11.5px] font-medium text-[#FFFDF7] tracking-wide drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]">
+                <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[11.5px] sm:text-[13px] font-medium text-[#FFFDF7] tracking-wide drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]">
                   Malaiamman Marriage Hall, Dalavapalayam, Karur
                 </p>
               </div>
 
-              {/* Animated Sleek Button (Reduced size, no dot, gentle click invite pulse + shimmer) */}
+              {/* Animated Sleek Button (Enlarged size for effortless tap + shimmer) */}
               <motion.button
                 type="button"
                 onClick={handleOpen}
@@ -306,7 +306,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                   isOpening
                     ? { scale: 0.95, opacity: 0 }
                     : {
-                      scale: [1, 1.028, 1],
+                      scale: [1, 1.025, 1],
                       boxShadow: [
                         "0 4px 18px rgba(0,0,0,0.45), 0 0 0 0 rgba(255,232,178,0.3)",
                         "0 6px 24px rgba(0,0,0,0.6), 0 0 18px 4px rgba(255,215,0,0.5)",
@@ -329,7 +329,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                     "0 6px 28px rgba(0,0,0,0.65), 0 0 22px 5px rgba(255,215,0,0.65)",
                 }}
                 whileTap={{ scale: 0.96 }}
-                className="relative overflow-hidden w-full max-w-[245px] py-2.5 px-4 rounded-3xl bg-[#1A100B]/75 backdrop-blur-md border border-[#FFE8B2]/85 hover:bg-[#1A100B]/85 hover:border-[#FFD700] transition-colors cursor-pointer flex items-center justify-center group select-none"
+                className="relative overflow-hidden w-full max-w-[270px] sm:max-w-[295px] py-3.5 sm:py-4 px-5 sm:px-6 rounded-full bg-[#1A100B]/80 backdrop-blur-md border border-[#FFE8B2]/90 hover:bg-[#1A100B]/90 hover:border-[#FFD700] transition-colors cursor-pointer flex items-center justify-center group select-none shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
               >
                 {/* Subtle light shimmer sweep animation across button */}
                 <motion.div
@@ -346,7 +346,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                   }}
                 />
 
-                <span className="relative z-10 font-serif text-[11px] font-bold tracking-[0.2em] text-[#FFFDF7] uppercase group-hover:text-[#FFD700] transition-colors whitespace-nowrap drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] text-center">
+                <span className="relative z-10 font-serif text-[12px] sm:text-[13px] font-bold tracking-[0.22em] text-[#FFFDF7] uppercase group-hover:text-[#FFD700] transition-colors whitespace-nowrap drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] text-center">
                   TAP TO OPEN INVITATION
                 </span>
               </motion.button>

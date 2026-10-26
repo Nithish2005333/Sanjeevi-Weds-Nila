@@ -45,7 +45,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
           const video = videoRef.current;
           if (!video) return;
           if (entry.isIntersecting) {
-            video.play().catch(() => {});
+            video.play().catch(() => { });
           } else {
             video.pause();
           }
@@ -327,15 +327,15 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
               animate={
                 isVisible
                   ? {
-                      clipPath: "inset(-20% 0% -20% 0%)",
-                      opacity: 1,
-                      x: 0,
-                    }
+                    clipPath: "inset(-20% 0% -20% 0%)",
+                    opacity: 1,
+                    x: 0,
+                  }
                   : {
-                      clipPath: "inset(-20% 0% -20% 100%)",
-                      opacity: 0,
-                      x: 14,
-                    }
+                    clipPath: "inset(-20% 0% -20% 100%)",
+                    opacity: 0,
+                    x: 14,
+                  }
               }
               transition={{
                 duration: 0.75,
@@ -424,15 +424,15 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
               animate={
                 isVisible
                   ? {
-                      clipPath: "inset(-20% 0% -20% 0%)",
-                      opacity: 1,
-                      x: 0,
-                    }
+                    clipPath: "inset(-20% 0% -20% 0%)",
+                    opacity: 1,
+                    x: 0,
+                  }
                   : {
-                      clipPath: "inset(-20% 100% -20% 0%)",
-                      opacity: 0,
-                      x: -14,
-                    }
+                    clipPath: "inset(-20% 100% -20% 0%)",
+                    opacity: 0,
+                    x: -14,
+                  }
               }
               transition={{
                 duration: 0.75,

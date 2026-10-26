@@ -294,43 +294,43 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         },
       });
 
-      // Step A: Slide Groom & Bride in from sides (0s -> 0.85s)
+      // Step A: Faster, snappier slide-in of Groom & Bride from sides (0s -> 0.52s)
       tl.to(
         groomRef.current,
-        { xPercent: 0, opacity: 1, duration: 0.85, ease: "power2.out" },
+        { xPercent: 0, opacity: 1, duration: 0.52, ease: "power2.out" },
         0
       ).to(
         brideRef.current,
-        { xPercent: 0, opacity: 1, duration: 0.85, ease: "power2.out" },
+        { xPercent: 0, opacity: 1, duration: 0.52, ease: "power2.out" },
         0
       );
 
-      // Step B: Morph transition (Groom & Bride fade out, white flash pops, Couple zooms in) (0.85s -> 1.45s)
+      // Step B: Faster morph transition (Groom & Bride fade out, white flash pops, Couple zooms in) (0.52s -> 0.9s)
       tl.to(
         [groomRef.current, brideRef.current],
-        { opacity: 0, duration: 0.4, ease: "power1.inOut" },
-        0.85
+        { opacity: 0, duration: 0.28, ease: "power1.inOut" },
+        0.52
       )
         .to(
           coupleRef.current,
-          { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" },
-          0.85
+          { opacity: 1, scale: 1, duration: 0.38, ease: "back.out(1.25)" },
+          0.52
         )
         .to(
           flashRef.current,
-          { opacity: 0.65, duration: 0.15, ease: "power1.out" },
-          0.85
+          { opacity: 0.6, duration: 0.1, ease: "power1.out" },
+          0.52
         )
         .to(
           flashRef.current,
-          { opacity: 0, duration: 0.35, ease: "power1.in" },
-          1.0
+          { opacity: 0, duration: 0.25, ease: "power1.in" },
+          0.62
         );
 
-      // Trigger golden confetti burst exactly at the joining point (0.85s)
+      // Trigger golden confetti burst exactly at the joining point (0.52s)
       tl.call(() => {
         triggerGoldCrackers();
-      }, [], 0.85);
+      }, [], 0.52);
     };
 
     // Trigger join animation ONLY when the couple image is at least 75% in screen view
@@ -560,26 +560,26 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         </div>
       </div>
 
-      {/* Bottom Auspicious Blessing Tag - Royal Temple Parchment Plaque for Crystal Readability */}
+      {/* Bottom Auspicious Blessing Tag - Royal Temple Parchment Plaque for Crystal Readability (strictly 2 lines) */}
       <motion.div
         initial={{ opacity: 0, y: 10, filter: "blur(2px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.85, delay: 0.2, ease: "easeOut" }}
-        className="relative z-10 text-center mt-3 max-w-[275px] sm:max-w-[305px] px-1"
+        className="relative z-10 text-center mt-3 w-fit max-w-[295px] sm:max-w-xs px-2"
       >
-        <div className="relative flex flex-col items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-[#FFFDF8]/95 backdrop-blur-md border border-[#C9A46A]/60 shadow-[0_4px_16px_rgba(43,18,11,0.08),inset_0_0_0_1px_rgba(255,255,255,0.85)]">
+        <div className="relative flex flex-col items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-[#FFFDF8]/95 backdrop-blur-md border border-[#C9A46A]/60 shadow-[0_4px_16px_rgba(43,18,11,0.08),inset_0_0_0_1px_rgba(255,255,255,0.85)]">
           {/* Subtle Golden Ornamental Accent at Top */}
-          <div className="flex items-center gap-1.5 mb-1.5 select-none opacity-85" aria-hidden="true">
+          <div className="flex items-center gap-1.5 mb-1 select-none opacity-85" aria-hidden="true">
             <span className="w-6 h-[0.8px] bg-gradient-to-r from-transparent to-[#C9A46A]" />
-            <span className="text-[#96672E] text-[8px] leading-none">✦</span>
+            <span className="text-[#96672E] text-[7.5px] leading-none">✦</span>
             <span className="w-6 h-[0.8px] bg-gradient-to-l from-transparent to-[#C9A46A]" />
           </div>
 
-          {/* Sized-up, crystal-clear quote in deep royal crimson */}
-          <p className="font-serif italic text-[12px] sm:text-[13.5px] font-semibold text-[#5A0E18] tracking-wide leading-snug text-center drop-shadow-[0_1px_0_rgba(255,255,255,0.9)]">
-            “Two souls with but a single thought,
-            <span className="block">two hearts that beat as one.”</span>
+          {/* Strictly 2 lines: crystal-clear quote in deep royal crimson */}
+          <p className="font-serif italic text-[11px] min-[360px]:text-[12px] sm:text-[13px] font-semibold text-[#5A0E18] tracking-normal leading-snug text-center drop-shadow-[0_1px_0_rgba(255,255,255,0.9)] select-none">
+            <span className="block whitespace-nowrap">“Two souls with but a single thought,</span>
+            <span className="block whitespace-nowrap mt-0.5">two hearts that beat as one.”</span>
           </p>
         </div>
       </motion.div>
