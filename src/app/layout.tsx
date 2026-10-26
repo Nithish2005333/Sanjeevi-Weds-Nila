@@ -8,12 +8,12 @@ export const metadata: Metadata = {
     "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/icon.png", type: "image/png" },
+      { url: "https://sanjeeviwedsnila.vercel.app/favicon.png", type: "image/png" },
+      { url: "https://sanjeeviwedsnila.vercel.app/icon.png", type: "image/png" },
     ],
-    shortcut: "/favicon.png",
+    shortcut: "https://sanjeeviwedsnila.vercel.app/favicon.png",
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "https://sanjeeviwedsnila.vercel.app/apple-touch-icon.png", sizes: "300x300", type: "image/png" },
     ],
   },
   openGraph: {
@@ -32,6 +32,13 @@ export const metadata: Metadata = {
         alt: "Sanjeevi & Nila Royal Wedding Invitation",
         type: "image/jpeg",
       },
+      {
+        url: "https://sanjeeviwedsnila.vercel.app/favicon.png",
+        width: 300,
+        height: 300,
+        alt: "Sanjeevi & Nila Royal Wedding Monogram",
+        type: "image/png",
+      },
     ],
   },
   twitter: {
@@ -49,11 +56,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" prefix="og: http://ogp.me/ns#" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="shortcut icon" href="/favicon.png" />
+        <link rel="icon" type="image/png" href="https://sanjeeviwedsnila.vercel.app/favicon.png" />
+        <link rel="apple-touch-icon" href="https://sanjeeviwedsnila.vercel.app/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="https://sanjeeviwedsnila.vercel.app/favicon.png" />
         <link rel="image_src" href="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
         <meta itemProp="image" content="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
         <meta property="og:title" content="Sanjeevi & Nila — Royal Wedding Invitation" />
