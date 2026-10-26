@@ -1,10 +1,73 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import confetti from "canvas-confetti";
+
+interface FloatingPetal {
+  id: number;
+  left: string;
+  delay: number;
+  duration: number;
+  size: number;
+  sway: number;
+  rotate: number;
+  variant: "gold" | "yellow";
+}
+
+// Slightly more than footer (8 delicate petals) for atmospheric romance
+const COUPLE_PETALS: FloatingPetal[] = [
+  { id: 1, left: "7%", delay: 0.2, duration: 9.6, size: 10, sway: 14, rotate: 120, variant: "yellow" },
+  { id: 2, left: "20%", delay: 2.8, duration: 10.4, size: 9, sway: -12, rotate: -140, variant: "gold" },
+  { id: 3, left: "34%", delay: 1.2, duration: 9.2, size: 11, sway: 16, rotate: 160, variant: "yellow" },
+  { id: 4, left: "48%", delay: 4.2, duration: 11.0, size: 8, sway: -10, rotate: -120, variant: "gold" },
+  { id: 5, left: "62%", delay: 0.8, duration: 9.8, size: 11, sway: 15, rotate: 150, variant: "yellow" },
+  { id: 6, left: "76%", delay: 3.4, duration: 10.6, size: 9, sway: -13, rotate: -130, variant: "gold" },
+  { id: 7, left: "88%", delay: 2.0, duration: 9.4, size: 10, sway: 12, rotate: 140, variant: "yellow" },
+  { id: 8, left: "95%", delay: 5.0, duration: 11.4, size: 8, sway: -11, rotate: -110, variant: "gold" },
+];
+
+const CoupleMarigoldPetal: React.FC<{ petal: FloatingPetal }> = ({ petal }) => (
+  <motion.div
+    aria-hidden="true"
+    className="pointer-events-none absolute"
+    style={{ left: petal.left }}
+    initial={{ top: "-6%", x: 0, rotate: 0, opacity: 0 }}
+    animate={{
+      top: ["-6%", "106%"],
+      x: [0, petal.sway, -petal.sway * 0.7, petal.sway * 0.4, 0],
+      rotate: [0, petal.rotate * 0.5, petal.rotate],
+      opacity: [0, 0.65, 0.7, 0.55, 0],
+    }}
+    transition={{
+      duration: petal.duration,
+      delay: petal.delay,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+  >
+    <svg
+      width={petal.size}
+      height={petal.size * 1.35}
+      viewBox="0 0 20 28"
+      fill="none"
+      className="filter drop-shadow-[0_1px_3px_rgba(200,120,20,0.22)]"
+    >
+      <path
+        d="M10 0C4 8 0 16 0 21C0 25.5 4.5 28 10 28C15.5 28 20 25.5 20 21C20 16 16 8 10 0Z"
+        fill={petal.variant === "yellow" ? "url(#couple-yellow-marigold-grad)" : "url(#couple-golden-amber-grad)"}
+      />
+      <path
+        d="M10 4C7 10 4 16 4 20C4 23 7 25 10 25"
+        stroke={petal.variant === "yellow" ? "#E5A100" : "#C96D00"}
+        strokeWidth="0.8"
+        strokeOpacity="0.4"
+      />
+    </svg>
+  </motion.div>
+);
 
 interface GoldPaper {
   id: number;
@@ -25,6 +88,7 @@ interface CoupleScrollJoinSectionProps {
 export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = ({
   onJoinComplete,
 }) => {
+  const shouldReduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
   const stageContainerRef = useRef<HTMLDivElement>(null);
   const groomRef = useRef<HTMLDivElement>(null);
@@ -225,6 +289,33 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       className="relative flex flex-col items-center justify-center min-h-screen w-full bg-[#FAF6F0] overflow-hidden select-none px-4 pt-16 sm:pt-20 pb-8"
       aria-label="Sanjeevi and Nila Couple Section"
     >
+      {/* Shared SVG Gradients for Couple Section Petals */}
+      <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
+        <defs>
+          <linearGradient id="couple-yellow-marigold-grad" x1="10" y1="0" x2="10" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FFF275" />
+            <stop offset="0.35" stopColor="#FFD54F" />
+            <stop offset="0.75" stopColor="#FFB300" />
+            <stop offset="1" stopColor="#F57C00" />
+          </linearGradient>
+          <linearGradient id="couple-golden-amber-grad" x1="10" y1="0" x2="10" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FFE082" />
+            <stop offset="0.4" stopColor="#FFB74D" />
+            <stop offset="0.8" stopColor="#FB8C00" />
+            <stop offset="1" stopColor="#E65100" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* Falling Marigold Petals overlay across entire couple section (8 petals - more than footer) */}
+      {!shouldReduceMotion && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-20" aria-hidden="true">
+          {COUPLE_PETALS.map((petal) => (
+            <CoupleMarigoldPetal key={petal.id} petal={petal} />
+          ))}
+        </div>
+      )}
+
       {/* Traditional Temple Arch Mandapam Backdrop with Hanging Bells & Garlands */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-top opacity-75 pointer-events-none"
@@ -309,16 +400,34 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
             />
           </div>
 
-          {/* Couple Full Overlay Image (Joined Hand-in-Hand) */}
+          {/* Couple Full Overlay Image (Joined Hand-in-Hand with serene floating effect) */}
           <div
             ref={coupleRef}
             className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center"
           >
-            <img
-              src="/couple.webp"
-              alt="Sanjeevi & Nila"
-              className="w-full h-full object-cover object-center filter drop-shadow-[0_6px_24px_rgba(43,18,11,0.3)]"
-            />
+            <motion.div
+              className="w-full h-full flex items-center justify-center"
+              animate={
+                isJoined && !shouldReduceMotion
+                  ? {
+                      y: [-4, 4, -4],
+                      rotate: [-0.3, 0.3, -0.3],
+                      scale: [1, 1.008, 1],
+                    }
+                  : { y: 0, rotate: 0, scale: 1 }
+              }
+              transition={{
+                duration: 4.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <img
+                src="/couple.webp"
+                alt="Sanjeevi & Nila"
+                className="w-full h-full object-cover object-center filter drop-shadow-[0_6px_24px_rgba(43,18,11,0.3)]"
+              />
+            </motion.div>
           </div>
         </div>
 
