@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
     images: [
       {
-        url: "https://sanjeeviwedsnila.vercel.app/og-image.jpg",
+        url: "https://sanjeeviwedsnila.vercel.app/og-image-card.jpg",
         width: 1200,
         height: 630,
         alt: "Sanjeevi & Nila Royal Wedding Invitation",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Sanjeevi & Nila — Royal Wedding Invitation",
     description:
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
-    images: ["https://sanjeeviwedsnila.vercel.app/og-image.jpg"],
+    images: ["https://sanjeeviwedsnila.vercel.app/og-image-card.jpg"],
   },
 };
 
@@ -52,8 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" prefix="og: http://ogp.me/ns#" suppressHydrationWarning>
       <head>
-        <link rel="image_src" href="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
-        <meta itemProp="image" content="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
+        <link rel="image_src" href="https://sanjeeviwedsnila.vercel.app/og-image-card.jpg" />
+        <meta itemProp="image" content="https://sanjeeviwedsnila.vercel.app/og-image-card.jpg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
