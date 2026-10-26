@@ -17,29 +17,83 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
   const [isReception, setIsReception] = useState(false);
   const [scrolledAway, setScrolledAway] = useState(false);
 
-  // Hide side indicator when user scrolls down
+  // Hide side indicator when user scrolls down into subsequent sections
   useEffect(() => {
     const handleScroll = () => {
-      setScrolledAway(window.scrollY > 60);
+      setScrolledAway(window.scrollY > 280);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // After hero entrance animations finish (~2.9s), automatically scroll down a little
-  // so guests naturally understand that the next section is available below
+  // After hero entrance animations finish (~2.8s), smoothly glide down to the Family Section
+  // If the user takes over at any moment (touch, wheel, click, key), it stops instantly
   useEffect(() => {
     if (!isVisible) return;
-    const autoScrollTimer = setTimeout(() => {
-      if (window.scrollY < 40) {
-        window.scrollBy({
-          top: 130,
-          behavior: "smooth",
-        });
-      }
-    }, 2900);
 
-    return () => clearTimeout(autoScrollTimer);
+    let isCancelled = false;
+    let animationFrameId: number;
+
+    const stopAutoScroll = () => {
+      if (!isCancelled) {
+        isCancelled = true;
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+
+    // User takeover events: any touch, wheel, key, or pointer interaction cancels auto-scroll immediately
+    window.addEventListener("wheel", stopAutoScroll, { passive: true });
+    window.addEventListener("touchstart", stopAutoScroll, { passive: true });
+    window.addEventListener("touchmove", stopAutoScroll, { passive: true });
+    window.addEventListener("pointerdown", stopAutoScroll, { passive: true });
+    window.addEventListener("keydown", stopAutoScroll, { passive: true });
+
+    // Wait until hero entrance animations finish and settle (~2.8s)
+    const startTimer = setTimeout(() => {
+      if (isCancelled || window.scrollY > 50) return;
+
+      const targetEl = document.getElementById("parents");
+      if (!targetEl) return;
+
+      const targetY = targetEl.getBoundingClientRect().top + window.scrollY;
+      const startY = window.scrollY;
+      const distance = targetY - startY;
+
+      // 1.8s duration for a gentle, cinematic glide into the family section
+      const duration = 1800;
+      let startTime: number | null = null;
+
+      // Smooth easeInOutCubic curve (slow start, smooth glide, gentle stop)
+      const easeInOutCubic = (t: number) =>
+        t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+
+      const step = (currentTime: number) => {
+        if (isCancelled) return;
+
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = easeInOutCubic(progress);
+
+        window.scrollTo(0, startY + distance * easeProgress);
+
+        if (progress < 1) {
+          animationFrameId = requestAnimationFrame(step);
+        }
+      };
+
+      animationFrameId = requestAnimationFrame(step);
+    }, 2800);
+
+    return () => {
+      clearTimeout(startTimer);
+      stopAutoScroll();
+      window.removeEventListener("wheel", stopAutoScroll);
+      window.removeEventListener("touchstart", stopAutoScroll);
+      window.removeEventListener("touchmove", stopAutoScroll);
+      window.removeEventListener("pointerdown", stopAutoScroll);
+      window.removeEventListener("keydown", stopAutoScroll);
+    };
   }, [isVisible]);
 
   // Background video starts playing ONLY AFTER the hero section is opened / revealed

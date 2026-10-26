@@ -21,13 +21,33 @@ export const CelebrationScene: React.FC = () => {
       // 1. Accessibility: prefers-reduced-motion
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(
-          ".wedding-heading, .reception-heading, .drop-cap-letter, .event-title-rest, .lotus-divider-flower, .lotus-divider-line, .wedding-hands-art, .reception-illustration, .venue-map-card, .wedding-welcome, .reception-welcome",
+          ".wedding-heading, .reception-heading, .drop-cap-letter, .event-title-rest, .lotus-divider-flower, .lotus-divider-line, .wedding-hands-art, .reception-illustration, .venue-map-card, .wedding-welcome, .reception-welcome, [data-celebration-vine]",
           { y: 0, x: 0, scale: 1, rotate: 0, scaleX: 1, opacity: 1, clipPath: "none", filter: "none" }
         );
       });
 
       // 2. Coordinated GSAP reveals on actual existing elements (no content stays hidden)
       mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Continuous Lotus Vine: Mask Reveal Animation from Bottom to Top
+        gsap.fromTo(
+          "[data-celebration-vine]",
+          {
+            clipPath: "inset(100% 0% 0% 0%)",
+            opacity: 0.35,
+          },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            opacity: 1,
+            duration: 1.85,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ".celebration-scene",
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+
         // A. Wedding Section Elements
         const weddingTl = gsap.timeline({
           scrollTrigger: {
@@ -256,8 +276,9 @@ export const CelebrationScene: React.FC = () => {
           className="h-full w-auto max-w-none object-contain object-right"
           style={{
             aspectRatio: "724 / 2172",
+            willChange: "clip-path",
           }}
-          loading="lazy"
+          loading="eager"
         />
       </div>
 
