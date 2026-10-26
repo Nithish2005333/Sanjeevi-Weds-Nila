@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" prefix="og: http://ogp.me/ns#" suppressHydrationWarning>
+    <html lang="en" prefix="og: http://ogp.me/ns#" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" href="https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png" />
         <link rel="shortcut icon" href="https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png" />

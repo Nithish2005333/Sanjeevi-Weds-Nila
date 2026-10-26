@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { ScrollHandLottie } from "./ScrollHandLottie";
 
 interface HeroCoverSectionProps {
   isVisible?: boolean;
@@ -15,84 +17,142 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
 
   // Toggle between Wedding (Nov 20, Friday) and Reception (Nov 22, Sunday)
   const [isReception, setIsReception] = useState(false);
-  const [scrolledAway, setScrolledAway] = useState(false);
 
-  // Hide side indicator when user scrolls down into subsequent sections
+  // States to track auto-scroll lifecycle and provide a scroll indication when stopped
+  const [mounted, setMounted] = useState(false);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+  const [autoScrollStopped, setAutoScrollStopped] = useState(false);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
+  const [isAtBottom, setIsAtBottom] = useState(false);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolledAway(window.scrollY > 280);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    setMounted(true);
   }, []);
 
-  // After hero entrance animations finish (~2.8s), smoothly glide down to the Family Section
-  // If the user takes over at any moment (touch, wheel, click, key), it stops instantly
+  // Track user manual scrolling activity and bottom-of-page detection
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
+    const handleScrollActivity = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      setIsAtBottom(window.scrollY >= maxScroll - 90);
+
+      // If user scrolls manually while auto-scroll is not running, hide the indicator during active swipes
+      if (!isAutoScrolling) {
+        setIsUserScrolling(true);
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          setIsUserScrolling(false);
+        }, 650);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollActivity, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScrollActivity);
+      clearTimeout(scrollTimeout);
+    };
+  }, [isAutoScrolling]);
+
+  // Once hero entrance animations finish, smoothly scroll from top to bottom
+  // If the user touches or interacts with the screen at any moment, it stops immediately and hands over full manual control
   useEffect(() => {
     if (!isVisible) return;
 
     let isCancelled = false;
     let animationFrameId: number;
+    let lastTime: number | null = null;
+    let startTime: number | null = null;
+    let currentScrollY = window.scrollY;
 
     const stopAutoScroll = () => {
       if (!isCancelled) {
         isCancelled = true;
         cancelAnimationFrame(animationFrameId);
+        setIsAutoScrolling(false);
+        setAutoScrollStopped(true);
       }
     };
 
-    // User takeover events: any touch, wheel, key, or pointer interaction cancels auto-scroll immediately
-    window.addEventListener("wheel", stopAutoScroll, { passive: true });
-    window.addEventListener("touchstart", stopAutoScroll, { passive: true });
-    window.addEventListener("touchmove", stopAutoScroll, { passive: true });
-    window.addEventListener("pointerdown", stopAutoScroll, { passive: true });
-    window.addEventListener("keydown", stopAutoScroll, { passive: true });
+    // User takeover events: only real user interactions (touch, drag, wheel, mouse click, keys) stop auto-scroll
+    // Using capture: true ensures immediate responsiveness
+    const eventOptions: AddEventListenerOptions = { capture: true, passive: true };
+    const cancelEvents = [
+      "wheel",
+      "touchstart",
+      "touchmove",
+      "mousedown",
+      "keydown",
+    ] as const;
 
-    // Wait until hero entrance animations finish and settle (~2.8s)
+    cancelEvents.forEach((event) => {
+      window.addEventListener(event, stopAutoScroll, eventOptions);
+    });
+
+    // Wait until hero entrance animations finish settling (~3.2s) before beginning the slow cinematic scroll
     const startTimer = setTimeout(() => {
-      if (isCancelled || window.scrollY > 50) return;
+      if (isCancelled) return;
 
-      const targetEl = document.getElementById("parents");
-      if (!targetEl) return;
+      currentScrollY = window.scrollY;
+      setIsAutoScrolling(true);
+      const targetSpeed = 130; // Brisk, energetic, and smooth auto-scroll pace (~130px/sec)
+      const rampUpDuration = 1.2; // 1.2s soft ease-in start
 
-      const targetY = targetEl.getBoundingClientRect().top + window.scrollY;
-      const startY = window.scrollY;
-      const distance = targetY - startY;
-
-      // 1.8s duration for a gentle, cinematic glide into the family section
-      const duration = 1800;
-      let startTime: number | null = null;
-
-      // Smooth easeInOutCubic curve (slow start, smooth glide, gentle stop)
-      const easeInOutCubic = (t: number) =>
-        t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+      // Ensure instant scroll updates so browser doesn't fight RAF
+      if (typeof document !== "undefined") {
+        document.documentElement.style.scrollBehavior = "auto";
+        document.body.style.scrollBehavior = "auto";
+      }
 
       const step = (currentTime: number) => {
         if (isCancelled) return;
 
-        if (startTime === null) startTime = currentTime;
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeProgress = easeInOutCubic(progress);
-
-        window.scrollTo(0, startY + distance * easeProgress);
-
-        if (progress < 1) {
+        if (startTime === null) {
+          startTime = currentTime;
+          lastTime = currentTime;
           animationFrameId = requestAnimationFrame(step);
+          return;
         }
+
+        // Cap deltaTime to 50ms (0.05s) to prevent any frame drops from causing large jumps/lag
+        const deltaTime = Math.min((currentTime - (lastTime ?? currentTime)) / 1000, 0.05);
+        lastTime = currentTime;
+
+        // Quadratic ease-in ramp over 2.5s: starts ultra-softly (0.5px/s -> 22px/s) with zero sudden jerk
+        const elapsed = (currentTime - startTime) / 1000;
+        const linearRamp = Math.min(elapsed / rampUpDuration, 1);
+        const easeRamp = linearRamp * linearRamp;
+        const currentSpeed = targetSpeed * easeRamp;
+
+        currentScrollY += currentSpeed * deltaTime;
+
+        // Calculate dynamic full page height so it seamlessly scrolls through all sections to the end
+        const scrollHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.body.scrollHeight
+        );
+        const maxScroll = scrollHeight - window.innerHeight;
+
+        // Only stop when it reaches the true bottom of the full website
+        if (maxScroll > 2000 && currentScrollY >= maxScroll - 4) {
+          window.scrollTo({ top: maxScroll, behavior: "instant" as ScrollBehavior });
+          stopAutoScroll();
+          return;
+        }
+
+        window.scrollTo({ top: currentScrollY, behavior: "instant" as ScrollBehavior });
+        animationFrameId = requestAnimationFrame(step);
       };
 
       animationFrameId = requestAnimationFrame(step);
-    }, 2800);
+    }, 3200);
 
     return () => {
       clearTimeout(startTimer);
       stopAutoScroll();
-      window.removeEventListener("wheel", stopAutoScroll);
-      window.removeEventListener("touchstart", stopAutoScroll);
-      window.removeEventListener("touchmove", stopAutoScroll);
-      window.removeEventListener("pointerdown", stopAutoScroll);
-      window.removeEventListener("keydown", stopAutoScroll);
+      cancelEvents.forEach((event) => {
+        window.removeEventListener(event, stopAutoScroll, eventOptions);
+      });
     };
   }, [isVisible]);
 
@@ -154,6 +214,15 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
       if (interval) clearInterval(interval);
     };
   }, [isVisible]);
+
+  const showScrollIndicator =
+    mounted &&
+    isVisible &&
+    autoScrollStopped &&
+    !isAutoScrolling &&
+    !isAtBottom &&
+    !isUserScrolling;
+
   return (
     <section
       ref={sectionRef}
@@ -553,80 +622,51 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
             </motion.div>
           </div>
 
-          {/* Year: 2 0 2 6 with generous vertical spacing */}
+          {/* Year: 2 0 2 6 */}
           <motion.div
-            className="w-full flex justify-center text-center mt-3 sm:mt-4.5"
-            initial={{ opacity: 0, y: 10, letterSpacing: "0.3em", filter: "blur(3px)" }}
+            className="w-full flex items-center justify-center mt-3 sm:mt-4.5"
+            initial={{ opacity: 0, y: 10, filter: "blur(3px)" }}
             animate={
               isVisible
-                ? { opacity: 1, y: 0, letterSpacing: "0.45em", filter: "blur(0px)" }
-                : { opacity: 0, y: 10, letterSpacing: "0.3em", filter: "blur(3px)" }
+                ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                : { opacity: 0, y: 10, filter: "blur(3px)" }
             }
             transition={{ duration: 0.65, delay: 1.95, ease: "easeOut" }}
           >
-            <p className="font-['Cinzel',Georgia,serif] text-[14px] sm:text-[17px] font-extrabold text-[#4A0710] [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+            <p className="font-['Cinzel',Georgia,serif] text-[14px] sm:text-[17px] font-extrabold text-[#4A0710] tracking-[0.45em] [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
               2 0 2 6
             </p>
           </motion.div>
         </div>
       </header>
 
-      {/* Simple Side Scroll & Hand Indication (cleanly placed on the side, no card) */}
-      <motion.div
-        initial={{ opacity: 0, x: 12 }}
-        animate={
-          isVisible && !scrolledAway
-            ? { opacity: 1, x: 0 }
-            : { opacity: 0, x: 12 }
-        }
-        transition={{ duration: 0.7, delay: 2.6, ease: "easeOut" }}
-        className="absolute right-2.5 sm:right-4 bottom-14 sm:bottom-20 z-20 flex flex-col items-center cursor-pointer select-none"
-        onClick={() => {
-          document.getElementById("parents")?.scrollIntoView({ behavior: "smooth" });
-        }}
-        aria-label="Scroll down to view full invitation"
-      >
-        <div className="flex flex-col items-center gap-1">
-          {/* Animated Hand Gesture: swiping up on the side */}
-          <div className="relative w-7 h-7 flex items-center justify-center">
-            <motion.div
-              animate={{
-                y: [6, -8, -8],
-                opacity: [0, 1, 0],
-                scale: [0.92, 1.05, 0.92],
-              }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="flex flex-col items-center"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-5 h-5 text-[#70161E] drop-shadow-[0_1.5px_2.5px_rgba(255,255,255,0.95)]"
+
+
+      {/* Floating scroll indication when user stops scrolling — clean frameless hand animation with simple scroll text */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {showScrollIndicator && (
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                onClick={() => {
+                  window.scrollBy({ top: 380, behavior: "smooth" });
+                }}
+                aria-label="Scroll down to continue reading invitation"
+                className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 cursor-pointer select-none group pointer-events-auto transition-transform hover:scale-105 active:scale-95"
               >
-                <path d="M12.5 2a1.5 1.5 0 0 0-1.5 1.5v8.2a1.8 1.8 0 0 0-.8-.2 1.8 1.8 0 0 0-1.7 1.2l-.7 2.1a2 2 0 0 0 .5 2.1l3.2 3.2c.8.8 1.8 1.2 2.8 1.2h2.2c2.2 0 4-1.8 4-4v-4.5a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0-1 .4v-.9a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0-.5.1V3.5A1.5 1.5 0 0 0 12.5 2z" />
-              </svg>
-            </motion.div>
-          </div>
-
-          {/* Simple downward chevron arrow */}
-          <motion.span
-            animate={{ y: [0, 3, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-            className="text-[#966116] text-[12px] leading-none font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]"
-          >
-            ↓
-          </motion.span>
-
-          {/* Subtle vertical text */}
-          <span className="[writing-mode:vertical-rl] text-[8.5px] font-bold font-['Cinzel',Georgia,serif] tracking-[0.2em] uppercase text-[#570713]/80 drop-shadow-[0_1px_1px_rgba(255,255,255,0.95)]">
-            Scroll
-          </span>
-        </div>
-      </motion.div>
+                <ScrollHandLottie className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center drop-shadow-[0_1.5px_3px_rgba(255,255,255,0.95)]" />
+                <span className="font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13px] font-extrabold tracking-[0.22em] uppercase text-[#4A0710] drop-shadow-[0_1px_3px_rgba(255,255,255,0.95)] transition-colors group-hover:text-[#6E0E18]">
+                  Scroll
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </section>
   );
 };

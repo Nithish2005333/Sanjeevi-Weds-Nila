@@ -282,74 +282,184 @@ export const SaveTheDateCalendarSection: React.FC = () => {
         </motion.div>
       </section>
 
-      {/* Countdown Timer: Placed AFTER the calendar card with matching ivory paper background, NO horizontal border */}
+      {/* Countdown Timer: Placed AFTER the calendar card with matching ivory paper background, NO cards, pure frameless typography */}
       <motion.div
-        className="relative z-10 w-full pt-4 pb-3 sm:pt-5 sm:pb-4 px-3 bg-[#FFF7E6] flex flex-col items-center justify-center text-center select-none"
+        className="relative z-10 w-full pt-4 pb-3 sm:pt-5 sm:pb-4 px-3 bg-[#FFF7E6] flex flex-col items-center justify-center text-center select-none overflow-hidden"
         style={{
           backgroundImage: "url('/images/invitation-events/ivory-paper.webp')",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "top center",
         }}
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+        initial={{ opacity: 0, y: 22, filter: "blur(5px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Subtle Eyebrow */}
-        <span className="font-['Cinzel',Georgia,serif] text-[9px] sm:text-[10.5px] font-bold tracking-[0.22em] text-[#570713]/85 uppercase mb-2 [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
-          Countdown to Celebration
-        </span>
+        {/* Subtle Eyebrow with golden ornament lines */}
+        <motion.div
+          initial={{ opacity: 0, y: -10, letterSpacing: "0.12em" }}
+          whileInView={{ opacity: 1, y: 0, letterSpacing: "0.26em" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center justify-center gap-2 mb-2.5 sm:mb-3"
+        >
+          <motion.span
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 0.8 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            style={{ transformOrigin: "right center" }}
+            className="w-5 sm:w-8 h-[1px] bg-gradient-to-r from-transparent to-[#C9A46A]"
+            aria-hidden="true"
+          />
+          <span className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.26em] text-[#570713]/90 uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+            Countdown to Celebration
+          </span>
+          <motion.span
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 0.8 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            style={{ transformOrigin: "left center" }}
+            className="w-5 sm:w-8 h-[1px] bg-gradient-to-l from-transparent to-[#C9A46A]"
+            aria-hidden="true"
+          />
+        </motion.div>
 
-        {/* 4 Timer Units with straight line separators */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4 w-full max-w-xs sm:max-w-sm">
+        {/* 4 Timer Units: Frameless, pure royal typography with staggered 3D cascade reveal */}
+        <div className="flex items-center justify-center gap-2 sm:gap-4 w-full max-w-xs sm:max-w-sm [perspective:800px]">
           {/* Days */}
           <div className="flex flex-col items-center flex-1">
-            <span className="font-['Cinzel',Georgia,serif] text-[22px] sm:text-[26px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]">
+            <motion.span
+              initial={{ opacity: 0, y: 24, rotateX: -60, scale: 0.8, filter: "blur(3px)" }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.75, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="inline-block font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]"
+            >
               {mounted ? formatNumber(timeLeft.days) : "--"}
-            </span>
-            <span className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1">
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 8, letterSpacing: "0.08em" }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.16em" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.24, ease: "easeOut" }}
+              className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1"
+            >
               Days
-            </span>
+            </motion.span>
           </div>
 
-          {/* Straight line separator */}
-          <span className="w-[1px] h-7 sm:h-8 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center opacity-75" aria-hidden="true" />
+          {/* Straight line separator with glowing scale expansion */}
+          <motion.span
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 0.85 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: "center" }}
+            className="w-[1.5px] h-8 sm:h-9 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
+            aria-hidden="true"
+          />
 
           {/* Hours */}
           <div className="flex flex-col items-center flex-1">
-            <span className="font-['Cinzel',Georgia,serif] text-[22px] sm:text-[26px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]">
+            <motion.span
+              initial={{ opacity: 0, y: 24, rotateX: -60, scale: 0.8, filter: "blur(3px)" }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.75, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="inline-block font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]"
+            >
               {mounted ? formatNumber(timeLeft.hours) : "--"}
-            </span>
-            <span className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1">
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 8, letterSpacing: "0.08em" }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.16em" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.32, ease: "easeOut" }}
+              className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1"
+            >
               Hours
-            </span>
+            </motion.span>
           </div>
 
-          {/* Straight line separator */}
-          <span className="w-[1px] h-7 sm:h-8 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center opacity-75" aria-hidden="true" />
+          {/* Straight line separator with glowing scale expansion */}
+          <motion.span
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 0.85 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: "center" }}
+            className="w-[1.5px] h-8 sm:h-9 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
+            aria-hidden="true"
+          />
 
           {/* Minutes */}
           <div className="flex flex-col items-center flex-1">
-            <span className="font-['Cinzel',Georgia,serif] text-[22px] sm:text-[26px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]">
+            <motion.span
+              initial={{ opacity: 0, y: 24, rotateX: -60, scale: 0.8, filter: "blur(3px)" }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.75, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="inline-block font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]"
+            >
               {mounted ? formatNumber(timeLeft.minutes) : "--"}
-            </span>
-            <span className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1">
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 8, letterSpacing: "0.08em" }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.16em" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.42, ease: "easeOut" }}
+              className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1"
+            >
               Minutes
-            </span>
+            </motion.span>
           </div>
 
-          {/* Straight line separator */}
-          <span className="w-[1px] h-7 sm:h-8 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center opacity-75" aria-hidden="true" />
+          {/* Straight line separator with glowing scale expansion */}
+          <motion.span
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 0.85 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: "center" }}
+            className="w-[1.5px] h-8 sm:h-9 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
+            aria-hidden="true"
+          />
 
-          {/* Seconds */}
+          {/* Seconds (Active live pulse) */}
           <div className="flex flex-col items-center flex-1">
-            <span className="font-['Cinzel',Georgia,serif] text-[22px] sm:text-[26px] font-black text-[#B85038] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]">
-              {mounted ? formatNumber(timeLeft.seconds) : "--"}
-            </span>
-            <span className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1">
+            <motion.span
+              initial={{ opacity: 0, y: 24, rotateX: -60, scale: 0.8, filter: "blur(3px)" }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.75, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="inline-block font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-black text-[#B85038] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]"
+            >
+              <motion.span
+                key={timeLeft.seconds}
+                initial={{ scale: 1.1, opacity: 0.8 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
+                className="inline-block"
+              >
+                {mounted ? formatNumber(timeLeft.seconds) : "--"}
+              </motion.span>
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 8, letterSpacing: "0.08em" }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.16em" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.5, ease: "easeOut" }}
+              className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1"
+            >
               Seconds
-            </span>
+            </motion.span>
           </div>
         </div>
       </motion.div>

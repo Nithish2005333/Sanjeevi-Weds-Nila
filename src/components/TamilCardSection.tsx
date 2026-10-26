@@ -23,7 +23,7 @@ const GroomDetails: React.FC = () => (
 
     {/* Groom's Name and Degree on Same Line */}
     <h3 className="font-tamil font-bold text-[#4A0207] text-2xl sm:text-[26px] tracking-wide leading-tight mt-1 drop-shadow-2xs">
-      S. சஞ்சீவி, <span className="font-sans font-bold text-sm sm:text-base text-[#854D0E] tracking-wider ml-1">D.I.C.E.</span>
+      S. சஞ்சீவி, <span className="font-sans font-bold text-sm sm:text-base text-[#854D0E] tracking-wider ml-1">D.ICE</span>
     </h3>
 
     {/* Center Decorative Divider */}
