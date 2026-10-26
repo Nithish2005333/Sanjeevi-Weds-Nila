@@ -15,6 +15,32 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
 
   // Toggle between Wedding (Nov 20, Friday) and Reception (Nov 22, Sunday)
   const [isReception, setIsReception] = useState(false);
+  const [scrolledAway, setScrolledAway] = useState(false);
+
+  // Hide side indicator when user scrolls down
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolledAway(window.scrollY > 60);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // After hero entrance animations finish (~2.9s), automatically scroll down a little
+  // so guests naturally understand that the next section is available below
+  useEffect(() => {
+    if (!isVisible) return;
+    const autoScrollTimer = setTimeout(() => {
+      if (window.scrollY < 40) {
+        window.scrollBy({
+          top: 130,
+          behavior: "smooth",
+        });
+      }
+    }, 2900);
+
+    return () => clearTimeout(autoScrollTimer);
+  }, [isVisible]);
 
   // Background video starts playing ONLY AFTER the hero section is opened / revealed
   useEffect(() => {
@@ -491,40 +517,27 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
         </div>
       </header>
 
-      {/* Animated Hand Scroll Indicator for Users Unaware of Scrolling */}
+      {/* Simple Side Scroll & Hand Indication (cleanly placed on the side, no card) */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, x: 12 }}
         animate={
-          isVisible
-            ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: 16 }
+          isVisible && !scrolledAway
+            ? { opacity: 1, x: 0 }
+            : { opacity: 0, x: 12 }
         }
-        transition={{ duration: 0.8, delay: 2.5, ease: "easeOut" }}
-        className="absolute bottom-5 sm:bottom-7 inset-x-0 z-20 flex flex-col items-center justify-center cursor-pointer select-none"
+        transition={{ duration: 0.7, delay: 2.6, ease: "easeOut" }}
+        className="absolute right-2.5 sm:right-4 bottom-14 sm:bottom-20 z-20 flex flex-col items-center cursor-pointer select-none"
         onClick={() => {
           document.getElementById("parents")?.scrollIntoView({ behavior: "smooth" });
         }}
         aria-label="Scroll down to view full invitation"
       >
-        <div className="flex flex-col items-center gap-1 group">
-          {/* Animated Hand Gesture: touching and swiping up */}
-          <div className="relative w-8 h-8 flex items-center justify-center">
-            {/* Soft pulsing aura behind hand */}
+        <div className="flex flex-col items-center gap-1">
+          {/* Animated Hand Gesture: swiping up on the side */}
+          <div className="relative w-7 h-7 flex items-center justify-center">
             <motion.div
               animate={{
-                scale: [0.85, 1.25, 0.85],
-                opacity: [0.25, 0.55, 0.25],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-0 rounded-full bg-[#FFE7B3]/45 blur-[3px] pointer-events-none"
-            />
-            <motion.div
-              animate={{
-                y: [7, -6, -6],
+                y: [6, -8, -8],
                 opacity: [0, 1, 0],
                 scale: [0.92, 1.05, 0.92],
               }}
@@ -538,24 +551,26 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
               <svg
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-5.5 h-5.5 text-[#70161E] drop-shadow-[0_1.5px_3px_rgba(255,255,255,0.9)]"
+                className="w-5 h-5 text-[#70161E] drop-shadow-[0_1.5px_2.5px_rgba(255,255,255,0.95)]"
               >
                 <path d="M12.5 2a1.5 1.5 0 0 0-1.5 1.5v8.2a1.8 1.8 0 0 0-.8-.2 1.8 1.8 0 0 0-1.7 1.2l-.7 2.1a2 2 0 0 0 .5 2.1l3.2 3.2c.8.8 1.8 1.2 2.8 1.2h2.2c2.2 0 4-1.8 4-4v-4.5a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0-1 .4v-.9a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0-.5.1V3.5A1.5 1.5 0 0 0 12.5 2z" />
               </svg>
             </motion.div>
           </div>
 
-          {/* Clear Call to Action Text */}
-          <div className="flex items-center gap-1 text-[10px] sm:text-[11px] font-black font-['Cinzel',Georgia,serif] text-[#570713] tracking-[0.2em] uppercase drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
-            <span>Scroll Down</span>
-            <motion.span
-              animate={{ y: [0, 3, 0] }}
-              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-[#966116] text-[12px] leading-none"
-            >
-              ↓
-            </motion.span>
-          </div>
+          {/* Simple downward chevron arrow */}
+          <motion.span
+            animate={{ y: [0, 3, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+            className="text-[#966116] text-[12px] leading-none font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]"
+          >
+            ↓
+          </motion.span>
+
+          {/* Subtle vertical text */}
+          <span className="[writing-mode:vertical-rl] text-[8.5px] font-bold font-['Cinzel',Georgia,serif] tracking-[0.2em] uppercase text-[#570713]/80 drop-shadow-[0_1px_1px_rgba(255,255,255,0.95)]">
+            Scroll
+          </span>
         </div>
       </motion.div>
     </section>
