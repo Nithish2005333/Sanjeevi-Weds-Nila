@@ -14,20 +14,65 @@ interface FloatingPetal {
   size: number;
   sway: number;
   rotate: number;
-  variant: "gold" | "yellow";
+  variant: "gold" | "yellow" | "pink" | "red";
 }
 
-// Slightly more than footer (8 delicate petals) for atmospheric romance
+// 16 rich petals with vibrant wedding floral colors (yellow marigold, gold, blush lotus, and rose red)
 const COUPLE_PETALS: FloatingPetal[] = [
-  { id: 1, left: "7%", delay: 0.2, duration: 9.6, size: 10, sway: 14, rotate: 120, variant: "yellow" },
-  { id: 2, left: "20%", delay: 2.8, duration: 10.4, size: 9, sway: -12, rotate: -140, variant: "gold" },
-  { id: 3, left: "34%", delay: 1.2, duration: 9.2, size: 11, sway: 16, rotate: 160, variant: "yellow" },
-  { id: 4, left: "48%", delay: 4.2, duration: 11.0, size: 8, sway: -10, rotate: -120, variant: "gold" },
-  { id: 5, left: "62%", delay: 0.8, duration: 9.8, size: 11, sway: 15, rotate: 150, variant: "yellow" },
-  { id: 6, left: "76%", delay: 3.4, duration: 10.6, size: 9, sway: -13, rotate: -130, variant: "gold" },
-  { id: 7, left: "88%", delay: 2.0, duration: 9.4, size: 10, sway: 12, rotate: 140, variant: "yellow" },
-  { id: 8, left: "95%", delay: 5.0, duration: 11.4, size: 8, sway: -11, rotate: -110, variant: "gold" },
+  { id: 1, left: "5%", delay: 0.2, duration: 9.6, size: 10, sway: 14, rotate: 120, variant: "red" },
+  { id: 2, left: "12%", delay: 3.5, duration: 10.2, size: 11, sway: -15, rotate: -130, variant: "pink" },
+  { id: 3, left: "19%", delay: 1.0, duration: 9.0, size: 12, sway: 16, rotate: 160, variant: "yellow" },
+  { id: 4, left: "26%", delay: 4.8, duration: 11.2, size: 9, sway: -12, rotate: -110, variant: "gold" },
+  { id: 5, left: "33%", delay: 2.2, duration: 9.8, size: 11, sway: 15, rotate: 140, variant: "pink" },
+  { id: 6, left: "40%", delay: 0.6, duration: 10.5, size: 10, sway: -14, rotate: -150, variant: "red" },
+  { id: 7, left: "47%", delay: 4.0, duration: 11.0, size: 12, sway: 13, rotate: 130, variant: "yellow" },
+  { id: 8, left: "54%", delay: 1.8, duration: 9.4, size: 9, sway: -16, rotate: -120, variant: "pink" },
+  { id: 9, left: "61%", delay: 5.2, duration: 10.8, size: 11, sway: 15, rotate: 170, variant: "gold" },
+  { id: 10, left: "68%", delay: 2.9, duration: 9.2, size: 12, sway: -13, rotate: -140, variant: "red" },
+  { id: 11, left: "75%", delay: 0.4, duration: 10.4, size: 10, sway: 16, rotate: 150, variant: "pink" },
+  { id: 12, left: "82%", delay: 3.8, duration: 9.9, size: 11, sway: -15, rotate: -130, variant: "yellow" },
+  { id: 13, left: "89%", delay: 1.5, duration: 10.6, size: 9, sway: 12, rotate: 140, variant: "red" },
+  { id: 14, left: "95%", delay: 4.5, duration: 11.5, size: 10, sway: -14, rotate: -120, variant: "gold" },
+  { id: 15, left: "22%", delay: 6.0, duration: 10.0, size: 10, sway: 14, rotate: 135, variant: "red" },
+  { id: 16, left: "70%", delay: 5.6, duration: 9.5, size: 11, sway: -12, rotate: -145, variant: "pink" },
 ];
+
+const getPetalGradient = (variant: FloatingPetal["variant"]) => {
+  switch (variant) {
+    case "pink":
+      return "url(#couple-pink-lotus-grad)";
+    case "red":
+      return "url(#couple-red-rose-grad)";
+    case "gold":
+      return "url(#couple-golden-amber-grad)";
+    default:
+      return "url(#couple-yellow-marigold-grad)";
+  }
+};
+
+const getPetalStroke = (variant: FloatingPetal["variant"]) => {
+  switch (variant) {
+    case "pink":
+      return "#BE185D";
+    case "red":
+      return "#4C0519";
+    case "gold":
+      return "#C96D00";
+    default:
+      return "#E5A100";
+  }
+};
+
+const getPetalShadow = (variant: FloatingPetal["variant"]) => {
+  switch (variant) {
+    case "pink":
+      return "drop-shadow-[0_1px_3px_rgba(219,39,119,0.28)]";
+    case "red":
+      return "drop-shadow-[0_1px_3px_rgba(190,18,60,0.32)]";
+    default:
+      return "drop-shadow-[0_1px_3px_rgba(200,120,20,0.22)]";
+  }
+};
 
 const CoupleMarigoldPetal: React.FC<{ petal: FloatingPetal }> = ({ petal }) => (
   <motion.div
@@ -39,7 +84,7 @@ const CoupleMarigoldPetal: React.FC<{ petal: FloatingPetal }> = ({ petal }) => (
       top: ["-6%", "106%"],
       x: [0, petal.sway, -petal.sway * 0.7, petal.sway * 0.4, 0],
       rotate: [0, petal.rotate * 0.5, petal.rotate],
-      opacity: [0, 0.65, 0.7, 0.55, 0],
+      opacity: [0, 0.7, 0.75, 0.6, 0],
     }}
     transition={{
       duration: petal.duration,
@@ -53,15 +98,15 @@ const CoupleMarigoldPetal: React.FC<{ petal: FloatingPetal }> = ({ petal }) => (
       height={petal.size * 1.35}
       viewBox="0 0 20 28"
       fill="none"
-      className="filter drop-shadow-[0_1px_3px_rgba(200,120,20,0.22)]"
+      className={`filter ${getPetalShadow(petal.variant)}`}
     >
       <path
         d="M10 0C4 8 0 16 0 21C0 25.5 4.5 28 10 28C15.5 28 20 25.5 20 21C20 16 16 8 10 0Z"
-        fill={petal.variant === "yellow" ? "url(#couple-yellow-marigold-grad)" : "url(#couple-golden-amber-grad)"}
+        fill={getPetalGradient(petal.variant)}
       />
       <path
         d="M10 4C7 10 4 16 4 20C4 23 7 25 10 25"
-        stroke={petal.variant === "yellow" ? "#E5A100" : "#C96D00"}
+        stroke={getPetalStroke(petal.variant)}
         strokeWidth="0.8"
         strokeOpacity="0.4"
       />
@@ -289,7 +334,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       className="relative flex flex-col items-center justify-center min-h-screen w-full bg-[#FAF6F0] overflow-hidden select-none px-4 pt-16 sm:pt-20 pb-8"
       aria-label="Sanjeevi and Nila Couple Section"
     >
-      {/* Shared SVG Gradients for Couple Section Petals */}
+      {/* Shared SVG Gradients for Couple Section Petals (Yellow, Gold, Pink, Red) */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
         <defs>
           <linearGradient id="couple-yellow-marigold-grad" x1="10" y1="0" x2="10" y2="28" gradientUnits="userSpaceOnUse">
@@ -304,10 +349,22 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
             <stop offset="0.8" stopColor="#FB8C00" />
             <stop offset="1" stopColor="#E65100" />
           </linearGradient>
+          <linearGradient id="couple-pink-lotus-grad" x1="10" y1="0" x2="10" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FFF0F5" />
+            <stop offset="0.3" stopColor="#FBCFE8" />
+            <stop offset="0.7" stopColor="#F472B6" />
+            <stop offset="1" stopColor="#DB2777" />
+          </linearGradient>
+          <linearGradient id="couple-red-rose-grad" x1="10" y1="0" x2="10" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FDA4AF" />
+            <stop offset="0.35" stopColor="#F43F5E" />
+            <stop offset="0.75" stopColor="#BE123C" />
+            <stop offset="1" stopColor="#881337" />
+          </linearGradient>
         </defs>
       </svg>
 
-      {/* Falling Marigold Petals overlay across entire couple section (8 petals - more than footer) */}
+      {/* Falling Floral Petals overlay across entire couple section (Yellow, Gold, Pink & Red) */}
       {!shouldReduceMotion && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-20" aria-hidden="true">
           {COUPLE_PETALS.map((petal) => (
@@ -316,12 +373,12 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         </div>
       )}
 
-      {/* Traditional Temple Arch Mandapam Backdrop with Hanging Bells & Garlands */}
+      {/* Ornate Indian Wedding Mandap Invitation Background with Carved Pillars & Lamps */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-top opacity-75 pointer-events-none"
-        style={{ backgroundImage: `url('/assets/couple_section_bg.webp')` }}
+        className="absolute inset-0 z-0 bg-cover bg-top pointer-events-none opacity-95"
+        style={{ backgroundImage: `url('/assets/mandap_invitation_bg.webp')` }}
       />
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#FAF6F0]/80 via-transparent to-[#FAF6F0]/90 pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#FAF6F0]/60 via-transparent to-[#FAF6F0]/75 pointer-events-none" />
 
       {/* Decorative Circular Mandapam Pattern Overlay */}
       <div
