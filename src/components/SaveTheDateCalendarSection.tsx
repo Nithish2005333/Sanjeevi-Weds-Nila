@@ -1,7 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+
+// Auspicious Wedding Muhurtham Target: Friday, 20 Nov 2026, 4:30 AM IST
+const WEDDING_TARGET_TIME = new Date("2026-11-20T04:30:00+05:30").getTime();
+
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
 
 const reveal = (delay = 0, y = 12) => ({
   initial: { opacity: 0, y, filter: "blur(4px)" },
@@ -31,6 +41,42 @@ const APPLE_CALENDAR_URL =
   "webcal://sanjeeviwedsnila.vercel.app/Sanjeevi-Nila-Dates.ics";
 
 export const SaveTheDateCalendarSection: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    setMounted(true);
+    const calculateTime = () => {
+      const now = Date.now();
+      const difference = WEDDING_TARGET_TIME - now;
+
+      if (difference <= 0) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      return { days, hours, minutes, seconds };
+    };
+
+    setTimeLeft(calculateTime());
+    const interval = setInterval(() => {
+      setTimeLeft(calculateTime());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatNumber = (num: number) => String(num).padStart(2, "0");
+
   const handleCalendarClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (typeof window === "undefined") return;
@@ -198,36 +244,105 @@ export const SaveTheDateCalendarSection: React.FC = () => {
         </button>
       </motion.div>
 
-      {/* 5. Beneath the Button: Interactive direct calendar selector */}
+      {/* 5. Countdown Timer: Days, Hours, Minutes, Seconds (Directly after Add to Calendar button) */}
       <motion.div
-        className="absolute inset-x-0 top-[88.0%] -translate-y-1/2 flex justify-center items-center gap-1.5 sm:gap-2 z-20 text-center px-2"
-        initial={{ opacity: 0, y: 6 }}
+        className="absolute inset-x-0 top-[89.0%] -translate-y-1/2 flex flex-col items-center justify-center z-20 px-2"
+        initial={{ opacity: 0, y: 12, scale: 0.94 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.75, delay: 0.46, ease: [0.16, 1, 0.3, 1] as const }}
+      >
+        {/* Subtle Eyebrow */}
+        <span className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[9.5px] font-bold tracking-[0.24em] text-[#570713]/85 uppercase mb-1.5 [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+          Countdown to Celebration
+        </span>
+
+        {/* 4 Timer Units: Days : Hours : Minutes : Seconds */}
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+          {/* Days */}
+          <div className="flex flex-col items-center justify-center min-w-[52px] sm:min-w-[58px] py-1 px-1 rounded-lg bg-[#FFF9EE]/88 backdrop-blur-[2px] border border-[#C9A46A]/60 shadow-[0_2px_8px_rgba(75,30,15,0.08)]">
+            <span className="font-['Playfair_Display',Georgia,serif] text-[18px] sm:text-[21px] font-bold text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+              {mounted ? formatNumber(timeLeft.days) : "--"}
+            </span>
+            <span className="font-['Cinzel',Georgia,serif] text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.14em] text-[#7A4515] uppercase mt-0.5">
+              Days
+            </span>
+          </div>
+
+          <span className="text-[#A07028] font-black text-[13px] sm:text-[15px] leading-none pb-2 select-none" aria-hidden="true">
+            :
+          </span>
+
+          {/* Hours */}
+          <div className="flex flex-col items-center justify-center min-w-[52px] sm:min-w-[58px] py-1 px-1 rounded-lg bg-[#FFF9EE]/88 backdrop-blur-[2px] border border-[#C9A46A]/60 shadow-[0_2px_8px_rgba(75,30,15,0.08)]">
+            <span className="font-['Playfair_Display',Georgia,serif] text-[18px] sm:text-[21px] font-bold text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+              {mounted ? formatNumber(timeLeft.hours) : "--"}
+            </span>
+            <span className="font-['Cinzel',Georgia,serif] text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.14em] text-[#7A4515] uppercase mt-0.5">
+              Hours
+            </span>
+          </div>
+
+          <span className="text-[#A07028] font-black text-[13px] sm:text-[15px] leading-none pb-2 select-none" aria-hidden="true">
+            :
+          </span>
+
+          {/* Minutes */}
+          <div className="flex flex-col items-center justify-center min-w-[52px] sm:min-w-[58px] py-1 px-1 rounded-lg bg-[#FFF9EE]/88 backdrop-blur-[2px] border border-[#C9A46A]/60 shadow-[0_2px_8px_rgba(75,30,15,0.08)]">
+            <span className="font-['Playfair_Display',Georgia,serif] text-[18px] sm:text-[21px] font-bold text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+              {mounted ? formatNumber(timeLeft.minutes) : "--"}
+            </span>
+            <span className="font-['Cinzel',Georgia,serif] text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.14em] text-[#7A4515] uppercase mt-0.5">
+              Minutes
+            </span>
+          </div>
+
+          <span className="text-[#A07028] font-black text-[13px] sm:text-[15px] leading-none pb-2 select-none" aria-hidden="true">
+            :
+          </span>
+
+          {/* Seconds */}
+          <div className="flex flex-col items-center justify-center min-w-[52px] sm:min-w-[58px] py-1 px-1 rounded-lg bg-[#FFF9EE]/88 backdrop-blur-[2px] border border-[#C9A46A]/60 shadow-[0_2px_8px_rgba(75,30,15,0.08)]">
+            <span className="font-['Playfair_Display',Georgia,serif] text-[18px] sm:text-[21px] font-bold text-[#B85038] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+              {mounted ? formatNumber(timeLeft.seconds) : "--"}
+            </span>
+            <span className="font-['Cinzel',Georgia,serif] text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.14em] text-[#7A4515] uppercase mt-0.5">
+              Seconds
+            </span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* 6. Calendar links (discreetly placed at the bottom) */}
+      <motion.div
+        className="absolute inset-x-0 top-[96.6%] -translate-y-1/2 flex justify-center items-center gap-1.5 sm:gap-2 z-20 text-center px-2"
+        initial={{ opacity: 0, y: 4 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.6, delay: 0.56, ease: "easeOut" }}
       >
         <button
           type="button"
           onClick={() => window.open(GOOGLE_CALENDAR_URL, "_blank")}
-          className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+          className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
         >
           Google Calendar
         </button>
-        <span className="text-[#C9A46A] text-[9px] select-none" aria-hidden="true">·</span>
+        <span className="text-[#C9A46A] text-[8.5px] select-none" aria-hidden="true">·</span>
         <button
           type="button"
           onClick={() => {
             window.location.href = APPLE_CALENDAR_URL;
           }}
-          className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+          className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
         >
           Apple Calendar
         </button>
-        <span className="text-[#C9A46A] text-[9px] select-none" aria-hidden="true">·</span>
+        <span className="text-[#C9A46A] text-[8.5px] select-none" aria-hidden="true">·</span>
         <a
           href="/Sanjeevi-Nila-Dates.ics"
           download="Sanjeevi-Nila-Dates.ics"
-          className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+          className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
           title="Download .ICS for Outlook & other calendar apps"
         >
           Outlook
