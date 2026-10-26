@@ -80,7 +80,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                     : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }
                 }
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                src="/assets/sn-monogram.png"
+                src="/assets/sn-monogram.webp"
                 alt="Monogram Logo"
                 className="h-11 sm:h-13 w-auto object-contain"
                 style={{

@@ -15,7 +15,7 @@ const LotusDivider = () => (
     <span className="flex-1 h-[1.5px] bg-gradient-to-l from-[#C38A25] via-[#C38A25]/50 to-transparent" />
     {/* Center lotus image */}
     <img
-      src="/assets/lotus-divider.png"
+      src="/assets/lotus-divider.webp"
       alt=""
       className="w-5.5 h-5.5 object-contain shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.12)]"
       aria-hidden="true"
@@ -39,7 +39,7 @@ export const ReceptionSection: React.FC<ReceptionSectionProps> = ({ event }) => 
         className="reception-illustration-wrapper w-full mb-5 flex justify-start items-center pointer-events-none select-none"
       >
         <img
-          src="/images/invitation-events/reception-radha-krishna.png"
+          src="/images/invitation-events/reception-radha-krishna.webp"
           alt="Divine Radha Krishna blessing Sanjeevi and Nila"
           aria-hidden="true"
           className="reception-illustration w-full h-auto max-w-[460px] object-contain filter drop-shadow-[0_6px_16px_rgba(113,13,24,0.12)]"

@@ -141,7 +141,7 @@ export const CelebrationScene: React.FC = () => {
       id="celebration-scene"
       className="celebration-scene relative w-full overflow-hidden bg-[#FFF7E6] select-none"
       style={{
-        backgroundImage: "url('/images/invitation-events/ivory-paper.png')",
+        backgroundImage: "url('/images/invitation-events/ivory-paper.webp')",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "top center",
@@ -155,7 +155,7 @@ export const CelebrationScene: React.FC = () => {
       >
         <img
           data-celebration-vine
-          src="/images/invitation-events/continuous-lotus-vine-mobile.png"
+          src="/images/invitation-events/continuous-lotus-vine-mobile.webp"
           alt=""
           aria-hidden="true"
           className="h-full w-auto max-w-none object-contain object-right"

@@ -221,7 +221,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       {/* Traditional Temple Arch Mandapam Backdrop with Hanging Bells & Garlands */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-top opacity-75 pointer-events-none"
-        style={{ backgroundImage: `url('/assets/couple_section_bg.png')` }}
+        style={{ backgroundImage: `url('/assets/couple_section_bg.webp')` }}
       />
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#FAF6F0]/80 via-transparent to-[#FAF6F0]/90 pointer-events-none" />
 
@@ -263,7 +263,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
             className="absolute top-0 left-0 w-[51%] h-full overflow-hidden flex items-center justify-center"
           >
             <img
-              src="/groom.png"
+              src="/groom.webp"
               alt="Sanjeevi - Groom"
               className="w-full h-full object-cover object-center filter drop-shadow-[0_4px_16px_rgba(43,18,11,0.2)]"
             />
@@ -275,7 +275,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
             className="absolute top-0 right-0 w-[51%] h-full overflow-hidden flex items-center justify-center"
           >
             <img
-              src="/bride.png"
+              src="/bride.webp"
               alt="Nila - Bride"
               className="w-full h-full object-cover object-center filter drop-shadow-[0_4px_16px_rgba(43,18,11,0.2)]"
             />
@@ -287,7 +287,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
             className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center"
           >
             <img
-              src="/couple.png"
+              src="/couple.webp"
               alt="Sanjeevi & Nila"
               className="w-full h-full object-cover object-center filter drop-shadow-[0_6px_24px_rgba(43,18,11,0.3)]"
             />

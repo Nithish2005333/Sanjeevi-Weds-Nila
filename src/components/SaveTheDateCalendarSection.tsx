@@ -20,7 +20,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
     >
       {/* 1. Complete Watercolor Calendar Backdrop with shared pond & temple reflection */}
       <img
-        src="/assets/watercolor-lotus-wedding-calendar-backdrop.png"
+        src="/assets/watercolor-lotus-wedding-calendar-backdrop.webp"
         alt="Watercolor lotus wedding calendar background"
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"

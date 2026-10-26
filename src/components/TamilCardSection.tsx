@@ -224,7 +224,7 @@ export const TamilCardSection: React.FC = () => {
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: "url('/invitation-bg-mid.png')",
+            backgroundImage: "url('/invitation-bg-mid.webp')",
             backgroundRepeat: "repeat-y",
             backgroundSize: "100% auto",
             backgroundPosition: "center top",
@@ -237,7 +237,7 @@ export const TamilCardSection: React.FC = () => {
           style={{
             aspectRatio: "724 / 320",
             maxHeight: "320px",
-            backgroundImage: "url('/invitation-bg-top.png')",
+            backgroundImage: "url('/invitation-bg-top.webp')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "100% auto",
             backgroundPosition: "top center",
@@ -250,7 +250,7 @@ export const TamilCardSection: React.FC = () => {
           style={{
             aspectRatio: "724 / 312",
             maxHeight: "312px",
-            backgroundImage: "url('/invitation-bg-bottom.png')",
+            backgroundImage: "url('/invitation-bg-bottom.webp')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "100% auto",
             backgroundPosition: "bottom center",
@@ -288,7 +288,7 @@ export const TamilCardSection: React.FC = () => {
         <motion.div {...slideUp(0.06)} className="relative w-full flex justify-center mb-2 sm:mb-2.5">
           <div className="relative w-full rounded-2xl overflow-hidden filter drop-shadow-md">
             <Image
-              src="/Tamil%20Wedding.png"
+              src="/Tamil%20Wedding.webp"
               alt="20 நவம்பர் கல்யாணம் - திருமண விழா"
               width={1448}
               height={807}
@@ -303,7 +303,7 @@ export const TamilCardSection: React.FC = () => {
         <motion.div {...slideUp(0.08)} className="relative w-full mb-2.5 sm:mb-3">
           <div className="relative w-full rounded-2xl overflow-hidden filter drop-shadow-md">
             <Image
-              src="/Tamil%20Reception.png"
+              src="/Tamil%20Reception.webp"
               alt="22 நவம்பர் வரவேற்பு - திருமண வரவேற்பு விழா"
               width={1447}
               height={836}

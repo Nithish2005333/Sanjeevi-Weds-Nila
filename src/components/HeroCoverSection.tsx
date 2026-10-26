@@ -109,7 +109,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <img
-            src="/assets/sn-monogram.png"
+            src="/assets/sn-monogram.webp"
             alt="Sanjeevi and Nila Monogram"
             className="h-11 sm:h-13 w-auto object-contain [filter:drop-shadow(0_2px_4px_rgba(87,7,19,0.25))]"
             loading="eager"

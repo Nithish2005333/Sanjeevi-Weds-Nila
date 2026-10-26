@@ -15,7 +15,7 @@ const LotusDivider = () => (
     <span className="flex-1 h-[1.5px] bg-gradient-to-l from-[#C38A25] via-[#C38A25]/50 to-transparent" />
     {/* Center lotus image */}
     <img
-      src="/assets/lotus-divider.png"
+      src="/assets/lotus-divider.webp"
       alt=""
       className="w-5.5 h-5.5 object-contain shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.12)]"
       aria-hidden="true"
@@ -41,7 +41,7 @@ export const WeddingSection: React.FC<WeddingSectionProps> = ({ event }) => {
         aria-hidden="true"
       >
         <img
-          src="/images/invitation-events/wedding-hands.png"
+          src="/images/invitation-events/wedding-hands.webp"
           alt=""
           aria-hidden="true"
           className="wedding-hands-art w-full h-auto object-contain object-top"

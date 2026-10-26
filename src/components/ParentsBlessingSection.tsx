@@ -32,11 +32,11 @@ export const ParentsBlessingSection: React.FC = () => {
       aria-label="With Divine Grace & Blessings of Our Families - Sanjeevi & Nila"
     >
       {/* Seamless Leaf Transition Overlay */}
-      <img src="/images/family-seam.png" className="family-seam" alt="" aria-hidden="true" />
+      <img src="/images/family-seam.webp" className="family-seam" alt="" aria-hidden="true" />
 
       {/* Background Watercolor Art (Temple, Water, and Lotus Frame) */}
       <img
-        src="/assets/Family garden with peacock and elephant.png"
+        src="/assets/Family garden with peacock and elephant.webp"
         alt="Family Garden with Peacock and Elephant Wedding Invitation Frame"
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 w-full h-full object-cover object-center"
