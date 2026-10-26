@@ -7,23 +7,23 @@ X-WR-CALNAME:Sanjeevi & Nila Wedding & Reception
 X-WR-TIMEZONE:Asia/Kolkata
 BEGIN:VEVENT
 UID:wedding-sanjeevi-nila-20261120@sanjeeviwedsnila.com
-DTSTAMP:20261021T000000Z
-DTSTART;VALUE=DATE:20261120
-DTEND;VALUE=DATE:20261121
-SUMMARY:Sanjeevi & Nila Wedding (திருமணம்)
-DESCRIPTION:Wedding Ceremony of Sanjeevi & Nila at Malaiamman Marriage Hall, Dalavapalayam, Karur.
-LOCATION:Malaiamman Marriage Hall, Dalavapalayam, Karur, Tamil Nadu
+DTSTAMP:20261026T000000Z
+DTSTART:20261120T034500Z
+DTEND:20261120T070000Z
+SUMMARY:💍 Sanjeevi & Nila — Wedding Ceremony (திருமணம்)
+DESCRIPTION:With divine grace and families' blessings\, you are cordially invited to the sacred Wedding Ceremony of Sanjeevi & Nila.\n\nDate: Friday\, 20 November 2026\nAuspicious Muhurtham: 9:15 AM IST\nVenue: Arulmigu Sri Varadharaja Perumal Temple\, Sengal Malai\, Karur.
+LOCATION:Arulmigu Sri Varadharaja Perumal Temple\, Sengal Malai\, Karur\, Tamil Nadu 639113
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
 UID:reception-sanjeevi-nila-20261122@sanjeeviwedsnila.com
-DTSTAMP:20261021T000000Z
-DTSTART;VALUE=DATE:20261122
-DTEND;VALUE=DATE:20261123
-SUMMARY:Sanjeevi & Nila Reception (திருமண வரவேற்பு)
-DESCRIPTION:Wedding Reception of Sanjeevi & Nila at Malaiamman Marriage Hall, Dalavapalayam, Karur.
-LOCATION:Malaiamman Marriage Hall, Dalavapalayam, Karur, Tamil Nadu
+DTSTAMP:20261026T000000Z
+DTSTART:20261122T060000Z
+DTEND:20261122T093000Z
+SUMMARY:🎉 Sanjeevi & Nila — Wedding Reception (திருமண வரவேற்பு)
+DESCRIPTION:With joy and celebration\, you are cordially invited to the Wedding Reception of Sanjeevi & Nila.\n\nDate: Sunday\, 22 November 2026\nTime: 11:30 AM to 3:00 PM IST\nVenue: Malaiamman Marriage Hall\, Thalavapalayam\, Karur.
+LOCATION:Malaiamman Marriage Hall\, Pugalur Main Road\, Punjai Thottakurichi\, Thalavapalayam\, Karur\, Tamil Nadu 639113
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT

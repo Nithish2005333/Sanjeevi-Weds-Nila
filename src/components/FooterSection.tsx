@@ -218,14 +218,21 @@ export const FooterSection: React.FC = () => {
               </motion.i>{" "}
               Nila
               <motion.span
-                initial={{ opacity: 0, letterSpacing: "0.06em" }}
-                whileInView={{ opacity: 1, letterSpacing: "0.14em" }}
+                initial={{ opacity: 0, y: 6 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.72 }}
+                className="invitation-footer__date flex flex-col items-center justify-center gap-1 mt-2.5 sm:mt-3"
               >
-                <span className="font-serif-numbers font-bold">22</span>{" "}
-                November{" "}
-                <span className="font-serif-numbers font-bold">2026</span>
+                <span className="font-serif-numbers font-bold text-[13px] sm:text-[14px] leading-tight tracking-[0.2em] text-[#8a5b2d]">
+                  22
+                </span>
+                <span className="font-['Cinzel',Georgia,serif] font-bold text-[10.5px] sm:text-[11.5px] leading-tight tracking-[0.22em] text-[#8a5b2d] uppercase">
+                  November
+                </span>
+                <span className="font-serif-numbers font-bold text-[13px] sm:text-[14px] leading-tight tracking-[0.2em] text-[#8a5b2d]">
+                  2026
+                </span>
               </motion.span>
             </motion.p>
           </div>

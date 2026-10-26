@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Calendar, CalendarDays, ExternalLink } from "lucide-react";
 
 // Auspicious Wedding Muhurtham Target: Friday, 20 Nov 2026, 9:15 AM IST
 const WEDDING_TARGET_TIME = new Date("2026-11-20T09:15:00+05:30").getTime();
@@ -20,28 +21,51 @@ const reveal = (delay = 0, y = 12) => ({
   transition: { duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] as const },
 });
 
-const GOOGLE_CALENDAR_URL =
+// 1. Google Calendar URL: Wedding Ceremony (Friday, 20 Nov 2026, 9:15 AM IST)
+export const GOOGLE_WEDDING_CALENDAR_URL =
   "https://calendar.google.com/calendar/render?action=TEMPLATE" +
   "&text=" +
-  encodeURIComponent("Sanjeevi & Nila — Royal Wedding & Reception") +
-  "&dates=20261120/20261123" +
+  encodeURIComponent("💍 Sanjeevi & Nila — Wedding Ceremony (திருமணம்)") +
+  "&dates=20261120T034500Z/20261120T070000Z" +
+  "&ctz=Asia/Kolkata" +
   "&details=" +
   encodeURIComponent(
-    "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila.\n\n" +
-      "💍 Wedding Ceremony: Friday, 20 Nov 2026 at Arulmigu Sri Varadharaja Perumal Temple, Karur\n" +
-      "🎉 Reception: Sunday, 22 Nov 2026 at Malaiamman Marriage Hall, Karur.\n\n" +
-      "Venue: Malaiamman Marriage Hall, Pugalur Main Road, Punjai Thottakurichi, Thalavapalayam, Karur, Tamil Nadu 639113"
+    "With divine grace and families' blessings, we joyfully invite you to celebrate the sacred Wedding Ceremony of Sanjeevi & Nila.\n\n" +
+      "💍 Wedding Ceremony: Friday, 20 November 2026\n" +
+      "⏰ Auspicious Muhurtham: 9:15 AM IST\n" +
+      "📍 Venue: Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur\n\n" +
+      "🎉 Reception: Sunday, 22 November 2026 at Malaiamman Marriage Hall, Karur."
   ) +
   "&location=" +
   encodeURIComponent(
-    "Malaiamman Marriage Hall, Thalavapalayam, Karur, Tamil Nadu"
+    "Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur, Tamil Nadu 639113"
   );
 
-const APPLE_CALENDAR_URL =
-  "webcal://sanjeeviwedsnila.vercel.app/Sanjeevi-Nila-Dates.ics";
+// 2. Google Calendar URL: Wedding Reception (Sunday, 22 Nov 2026, 11:30 AM IST)
+export const GOOGLE_RECEPTION_CALENDAR_URL =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" +
+  encodeURIComponent("🎉 Sanjeevi & Nila — Wedding Reception (திருமண வரவேற்பு)") +
+  "&dates=20261122T060000Z/20261122T093000Z" +
+  "&ctz=Asia/Kolkata" +
+  "&details=" +
+  encodeURIComponent(
+    "With joy and celebration, you are cordially invited to celebrate the Wedding Reception of Sanjeevi & Nila.\n\n" +
+      "🎉 Reception: Sunday, 22 November 2026\n" +
+      "⏰ Time: 11:30 AM to 3:00 PM IST\n" +
+      "📍 Venue: Malaiamman Marriage Hall, Thalavapalayam, Karur.\n\n" +
+      "💍 Wedding Ceremony: Friday, 20 November 2026, 9:15 AM at Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur."
+  ) +
+  "&location=" +
+  encodeURIComponent(
+    "Malaiamman Marriage Hall, Pugalur Main Road, Punjai Thottakurichi, Thalavapalayam, Karur, Tamil Nadu 639113"
+  );
+
+const APPLE_CALENDAR_URL = "/Sanjeevi-Nila-Dates.ics";
 
 export const SaveTheDateCalendarSection: React.FC = () => {
   const [mounted, setMounted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -79,19 +103,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
 
   const handleCalendarClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (typeof window === "undefined") return;
-
-    const isIOS =
-      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-
-    if (isIOS) {
-      // Direct redirect to native Apple Calendar on iPhone/iPad
-      window.location.href = APPLE_CALENDAR_URL;
-    } else {
-      // Direct redirect to Google Calendar on Android / Mobile (opens native Calendar app)
-      window.open(GOOGLE_CALENDAR_URL, "_blank");
-    }
+    setIsModalOpen(true);
   };
 
   return (
@@ -135,16 +147,19 @@ export const SaveTheDateCalendarSection: React.FC = () => {
         </motion.div>
 
         {/* 3A. Above the Horizontal Gold Lines: Date Numerals & Month (Auspicious Seal Pop & Scale) */}
-        <div className="absolute inset-x-[8%] top-[62.0%] h-[12.2%] z-10 grid grid-cols-2 pointer-events-none">
-          {/* Left Date: 20 NOV 2026 (Spring seal pop with subtle counter-clockwise tilt) */}
-          <motion.div
-            className="flex flex-col items-center justify-center text-center pr-3 sm:pr-4 select-none"
+        <div className="absolute inset-x-[8%] top-[62.0%] h-[12.2%] z-20 grid grid-cols-2">
+          {/* Left Date: 20 NOV 2026 (Wedding) */}
+          <motion.button
+            type="button"
+            onClick={() => window.open(GOOGLE_WEDDING_CALENDAR_URL, "_blank")}
+            title="Click to add Wedding (20 Nov · 9:15 AM) to Google Calendar"
+            className="flex flex-col items-center justify-center text-center pr-3 sm:pr-4 select-none cursor-pointer group hover:scale-[1.04] transition-transform"
             initial={{ opacity: 0, scale: 0.45, rotate: -8, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.34, 1.56, 0.64, 1] as const }}
           >
-            <span className="font-['Playfair_Display',Georgia,serif] text-[44px] sm:text-[52px] font-bold text-[#B85038] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.85)]">
+            <span className="font-['Playfair_Display',Georgia,serif] text-[44px] sm:text-[52px] font-bold text-[#B85038] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.85)] group-hover:brightness-110">
               20
             </span>
             <motion.span
@@ -156,17 +171,20 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             >
               NOV <span className="font-serif-numbers font-bold">2026</span>
             </motion.span>
-          </motion.div>
+          </motion.button>
 
-          {/* Right Date: 22 NOV 2026 (Spring seal pop with subtle clockwise tilt) */}
-          <motion.div
-            className="flex flex-col items-center justify-center text-center pl-3 sm:pl-4 select-none"
+          {/* Right Date: 22 NOV 2026 (Reception) */}
+          <motion.button
+            type="button"
+            onClick={() => window.open(GOOGLE_RECEPTION_CALENDAR_URL, "_blank")}
+            title="Click to add Reception (22 Nov · 11:30 AM) to Google Calendar"
+            className="flex flex-col items-center justify-center text-center pl-3 sm:pl-4 select-none cursor-pointer group hover:scale-[1.04] transition-transform"
             initial={{ opacity: 0, scale: 0.45, rotate: 8, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.22, ease: [0.34, 1.56, 0.64, 1] as const }}
           >
-            <span className="font-['Playfair_Display',Georgia,serif] text-[44px] sm:text-[52px] font-bold text-[#4B6647] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.85)]">
+            <span className="font-['Playfair_Display',Georgia,serif] text-[44px] sm:text-[52px] font-bold text-[#4B6647] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.85)] group-hover:brightness-110">
               22
             </span>
             <motion.span
@@ -178,39 +196,45 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             >
               NOV <span className="font-serif-numbers font-bold">2026</span>
             </motion.span>
-          </motion.div>
+          </motion.button>
         </div>
 
-        {/* 3B. Beneath the Horizontal Gold Lines: Event Labels (Masked clip reveal from below the line) */}
-        <div className="absolute inset-x-[8%] top-[74.9%] h-[4.8%] z-10 grid grid-cols-2 pointer-events-none">
+        {/* 3B. Beneath the Horizontal Gold Lines: Event Labels */}
+        <div className="absolute inset-x-[8%] top-[74.9%] h-[4.8%] z-20 grid grid-cols-2">
           {/* Left Event: WEDDING */}
-          <motion.div
-            className="flex items-center justify-center text-center pr-3 sm:pr-4 select-none"
+          <motion.button
+            type="button"
+            onClick={() => window.open(GOOGLE_WEDDING_CALENDAR_URL, "_blank")}
+            title="Click to add Wedding (20 Nov · 9:15 AM) to Google Calendar"
+            className="flex items-center justify-center text-center pr-3 sm:pr-4 select-none cursor-pointer group"
             initial={{ opacity: 0, y: 10, clipPath: "inset(100% 0 0 0)" }}
             whileInView={{ opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65, delay: 0.28, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <span className="font-['Cinzel',Georgia,serif] text-[12.5px] sm:text-[14.5px] font-bold tracking-[0.24em] text-[#B85038] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.8)]">
+            <span className="font-['Cinzel',Georgia,serif] text-[12.5px] sm:text-[14.5px] font-bold tracking-[0.24em] text-[#B85038] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.8)] group-hover:underline underline-offset-2">
               WEDDING
             </span>
-          </motion.div>
+          </motion.button>
 
           {/* Right Event: RECEPTION */}
-          <motion.div
-            className="flex items-center justify-center text-center pl-3 sm:pl-4 select-none"
+          <motion.button
+            type="button"
+            onClick={() => window.open(GOOGLE_RECEPTION_CALENDAR_URL, "_blank")}
+            title="Click to add Reception (22 Nov · 11:30 AM) to Google Calendar"
+            className="flex items-center justify-center text-center pl-3 sm:pl-4 select-none cursor-pointer group"
             initial={{ opacity: 0, y: 10, clipPath: "inset(100% 0 0 0)" }}
             whileInView={{ opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65, delay: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <span className="font-['Cinzel',Georgia,serif] text-[12.5px] sm:text-[14.5px] font-bold tracking-[0.24em] text-[#4B6647] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.8)]">
+            <span className="font-['Cinzel',Georgia,serif] text-[12.5px] sm:text-[14.5px] font-bold tracking-[0.24em] text-[#4B6647] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.8)] group-hover:underline underline-offset-2">
               RECEPTION
             </span>
-          </motion.div>
+          </motion.button>
         </div>
 
-        {/* 4. Inside the Blank Button: “ADD DATES TO CALENDAR” (Direct redirect to mobile calendar without downloading file) */}
+        {/* 4. Inside the Blank Button: “ADD DATES TO CALENDAR” (Opens direct date selection modal) */}
         <motion.div
           className="absolute left-[16.8%] right-[16.8%] top-[80.14%] h-[5.33%] z-20 flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.82, y: 12 }}
@@ -221,31 +245,17 @@ export const SaveTheDateCalendarSection: React.FC = () => {
           <button
             type="button"
             onClick={handleCalendarClick}
-            aria-label="Add Wedding and Reception Dates directly to Mobile Calendar"
+            aria-label="Add Wedding and Reception Dates directly to Calendar"
             className="w-full h-full flex items-center justify-center rounded-full text-[#FFF8F0] font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.14em] uppercase transition-all duration-300 hover:brightness-110 active:scale-[0.98] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#FFF8F0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#B85038] cursor-pointer select-none"
           >
             <span className="flex items-center justify-center gap-1.5 sm:gap-2 drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.6)]">
-              <svg
-                viewBox="0 0 24 24"
-                className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FFF8F0] shrink-0"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-              </svg>
+              <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FFF8F0] shrink-0" />
               <span className="pt-0.5">Add Dates to Calendar</span>
             </span>
           </button>
         </motion.div>
 
-        {/* 5. Beneath the Button: Interactive direct calendar selector in original place */}
+        {/* 5. Beneath the Button: Interactive direct calendar selector */}
         <motion.div
           className="absolute inset-x-0 top-[88.0%] -translate-y-1/2 flex justify-center items-center gap-1.5 sm:gap-2 z-20 text-center px-2"
           initial={{ opacity: 0, y: 6 }}
@@ -255,7 +265,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
         >
           <button
             type="button"
-            onClick={() => window.open(GOOGLE_CALENDAR_URL, "_blank")}
+            onClick={() => setIsModalOpen(true)}
             className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
           >
             Google Calendar
@@ -284,7 +294,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
 
       {/* Countdown Timer: Placed AFTER the calendar card with matching ivory paper background, NO cards, pure frameless typography */}
       <motion.div
-        className="relative z-10 w-full pt-4 pb-3 sm:pt-5 sm:pb-4 px-3 bg-[#FFF7E6] flex flex-col items-center justify-center text-center select-none overflow-hidden"
+        className="relative z-10 w-full pt-5 pb-4 sm:pt-6 sm:pb-5 px-3 bg-[#FFF7E6] flex flex-col items-center justify-center text-center select-none overflow-hidden"
         style={{
           backgroundImage: "url('/images/invitation-events/ivory-paper.webp')",
           backgroundRepeat: "no-repeat",
@@ -302,7 +312,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0, letterSpacing: "0.26em" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-2 mb-2.5 sm:mb-3"
+          className="flex items-center justify-center gap-2 mb-3 sm:mb-3.5"
         >
           <motion.span
             initial={{ scaleX: 0, opacity: 0 }}
@@ -313,7 +323,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             className="w-5 sm:w-8 h-[1px] bg-gradient-to-r from-transparent to-[#C9A46A]"
             aria-hidden="true"
           />
-          <span className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.26em] text-[#570713]/90 uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+          <span className="font-['Cinzel',Georgia,serif] text-[10.5px] sm:text-[12px] font-bold tracking-[0.26em] text-[#570713]/90 uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
             Countdown to Celebration
           </span>
           <motion.span
@@ -328,7 +338,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
         </motion.div>
 
         {/* 4 Timer Units: Frameless, pure royal typography with staggered 3D cascade reveal */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4 w-full max-w-xs sm:max-w-sm [perspective:800px]">
+        <div className="flex items-center justify-center gap-2.5 sm:gap-4.5 w-full max-w-[340px] sm:max-w-[410px] [perspective:800px]">
           {/* Days */}
           <div className="flex flex-col items-center flex-1">
             <motion.span
@@ -337,16 +347,16 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformStyle: "preserve-3d" }}
-              className="inline-block font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]"
+              className="inline-block font-['Cinzel',Georgia,serif] text-[28px] sm:text-[35px] font-black text-[#570713] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)]"
             >
               {mounted ? formatNumber(timeLeft.days) : "--"}
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 8, letterSpacing: "0.08em" }}
-              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.16em" }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.24, ease: "easeOut" }}
-              className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1"
+              className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.18em] text-[#7A4515] uppercase mt-1.5"
             >
               Days
             </motion.span>
@@ -359,7 +369,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformOrigin: "center" }}
-            className="w-[1.5px] h-8 sm:h-9 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
+            className="w-[1.5px] h-9 sm:h-11 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
             aria-hidden="true"
           />
 
@@ -371,16 +381,16 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformStyle: "preserve-3d" }}
-              className="inline-block font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]"
+              className="inline-block font-['Cinzel',Georgia,serif] text-[28px] sm:text-[35px] font-black text-[#570713] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)]"
             >
               {mounted ? formatNumber(timeLeft.hours) : "--"}
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 8, letterSpacing: "0.08em" }}
-              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.16em" }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.32, ease: "easeOut" }}
-              className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1"
+              className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.18em] text-[#7A4515] uppercase mt-1.5"
             >
               Hours
             </motion.span>
@@ -393,7 +403,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformOrigin: "center" }}
-            className="w-[1.5px] h-8 sm:h-9 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
+            className="w-[1.5px] h-9 sm:h-11 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
             aria-hidden="true"
           />
 
@@ -405,16 +415,16 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformStyle: "preserve-3d" }}
-              className="inline-block font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-black text-[#570713] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]"
+              className="inline-block font-['Cinzel',Georgia,serif] text-[28px] sm:text-[35px] font-black text-[#570713] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)]"
             >
               {mounted ? formatNumber(timeLeft.minutes) : "--"}
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 8, letterSpacing: "0.08em" }}
-              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.16em" }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.42, ease: "easeOut" }}
-              className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1"
+              className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.18em] text-[#7A4515] uppercase mt-1.5"
             >
               Minutes
             </motion.span>
@@ -427,7 +437,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformOrigin: "center" }}
-            className="w-[1.5px] h-8 sm:h-9 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
+            className="w-[1.5px] h-9 sm:h-11 bg-gradient-to-b from-transparent via-[#C9A46A] to-transparent self-center drop-shadow-[0_0_2px_rgba(201,164,106,0.5)]"
             aria-hidden="true"
           />
 
@@ -439,7 +449,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformStyle: "preserve-3d" }}
-              className="inline-block font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-black text-[#B85038] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.95)]"
+              className="inline-block font-['Cinzel',Georgia,serif] text-[28px] sm:text-[35px] font-black text-[#B85038] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)]"
             >
               <motion.span
                 key={timeLeft.seconds}
@@ -453,16 +463,139 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 8, letterSpacing: "0.08em" }}
-              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.16em" }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.5, ease: "easeOut" }}
-              className="font-['Cinzel',Georgia,serif] text-[8px] sm:text-[9.5px] font-bold tracking-[0.16em] text-[#7A4515] uppercase mt-1"
+              className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.18em] text-[#7A4515] uppercase mt-1.5"
             >
               Seconds
             </motion.span>
           </div>
         </div>
       </motion.div>
+
+      {/* Royal Calendar Event Selection Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/65 backdrop-blur-xs select-none"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 16 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-sm sm:max-w-md rounded-2xl bg-[#FFFDF8] border border-[#C9A46A] shadow-[0_20px_50px_rgba(43,18,11,0.35)] overflow-hidden p-4 sm:p-5"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-3 right-3 p-1.5 rounded-full text-[#7A4515] hover:bg-[#F5E6CC] transition-colors cursor-pointer"
+                aria-label="Close calendar options"
+              >
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+
+              {/* Modal Header */}
+              <div className="text-center mb-3 sm:mb-4">
+                <div className="flex items-center justify-center gap-1.5 mb-1 opacity-80" aria-hidden="true">
+                  <span className="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#C9A46A]" />
+                  <span className="text-[#96672E] text-[10px]">✦</span>
+                  <span className="w-8 h-[1px] bg-gradient-to-l from-transparent to-[#C9A46A]" />
+                </div>
+                <h3 className="font-['Cinzel',Georgia,serif] text-base sm:text-lg font-bold text-[#570713] tracking-wide">
+                  Save Dates to Calendar
+                </h3>
+                <p className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[10.5px] text-[#7A4515] font-semibold mt-0.5 tracking-wider uppercase">
+                  Select Event to Add
+                </p>
+              </div>
+
+              {/* Event Cards */}
+              <div className="space-y-3">
+                {/* 1. Wedding Event Card */}
+                <div className="rounded-xl border border-[#B85038]/30 bg-[#FDF6F0] p-3 shadow-xs">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#B85038] text-white text-[9px] sm:text-[10px] font-['Cinzel',Georgia,serif] font-bold tracking-wider uppercase">
+                      💍 Wedding Ceremony
+                    </span>
+                    <span className="font-['Cinzel',Georgia,serif] text-[10.5px] sm:text-[11.5px] font-extrabold text-[#B85038]">
+                      20 NOV 2026
+                    </span>
+                  </div>
+                  <p className="font-['Cinzel',Georgia,serif] text-[11px] font-bold text-[#570713] mt-1.5">
+                    Friday · 9:15 AM IST (Muhurtham)
+                  </p>
+                  <p className="font-sans text-[11px] sm:text-xs text-[#6B3A2A] mt-0.5 leading-snug">
+                    Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.open(GOOGLE_WEDDING_CALENDAR_URL, "_blank");
+                      setIsModalOpen(false);
+                    }}
+                    className="w-full mt-2.5 py-2 px-3 rounded-lg bg-gradient-to-r from-[#B85038] to-[#9E3E28] hover:brightness-105 active:scale-[0.99] text-white font-['Cinzel',Georgia,serif] text-[10px] sm:text-[11px] font-bold tracking-wider uppercase shadow-xs flex items-center justify-center gap-1.5 cursor-pointer transition-all"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Add Wedding to Google Calendar</span>
+                    <ExternalLink className="w-3 h-3 opacity-80" />
+                  </button>
+                </div>
+
+                {/* 2. Reception Event Card */}
+                <div className="rounded-xl border border-[#4B6647]/30 bg-[#F3F7F2] p-3 shadow-xs">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#4B6647] text-white text-[9px] sm:text-[10px] font-['Cinzel',Georgia,serif] font-bold tracking-wider uppercase">
+                      🎉 Wedding Reception
+                    </span>
+                    <span className="font-['Cinzel',Georgia,serif] text-[10.5px] sm:text-[11.5px] font-extrabold text-[#4B6647]">
+                      22 NOV 2026
+                    </span>
+                  </div>
+                  <p className="font-['Cinzel',Georgia,serif] text-[11px] font-bold text-[#2B3B29] mt-1.5">
+                    Sunday · 11:30 AM to 3:00 PM IST
+                  </p>
+                  <p className="font-sans text-[11px] sm:text-xs text-[#3E523A] mt-0.5 leading-snug">
+                    Malaiamman Marriage Hall, Thalavapalayam, Karur
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.open(GOOGLE_RECEPTION_CALENDAR_URL, "_blank");
+                      setIsModalOpen(false);
+                    }}
+                    className="w-full mt-2.5 py-2 px-3 rounded-lg bg-gradient-to-r from-[#4B6647] to-[#395036] hover:brightness-105 active:scale-[0.99] text-white font-['Cinzel',Georgia,serif] text-[10px] sm:text-[11px] font-bold tracking-wider uppercase shadow-xs flex items-center justify-center gap-1.5 cursor-pointer transition-all"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Add Reception to Google Calendar</span>
+                    <ExternalLink className="w-3 h-3 opacity-80" />
+                  </button>
+                </div>
+
+                {/* 3. Combined .ICS for Apple / Outlook / All Phones */}
+                <div className="pt-1">
+                  <a
+                    href="/Sanjeevi-Nila-Dates.ics"
+                    download="Sanjeevi-Nila-Dates.ics"
+                    onClick={() => setIsModalOpen(false)}
+                    className="w-full py-2.5 px-3 rounded-lg bg-[#FAF2DE] hover:bg-[#F3E5C8] border border-[#C9A46A] active:scale-[0.99] text-[#570713] font-['Cinzel',Georgia,serif] text-[10px] sm:text-[11px] font-bold tracking-wider uppercase shadow-xs flex items-center justify-center gap-2 cursor-pointer transition-all text-center"
+                  >
+                    <CalendarDays className="w-4 h-4 text-[#96672E] shrink-0" />
+                    <span>Add Both Dates to Phone / Apple / Outlook (.ics)</span>
+                  </a>
+                  <p className="text-center font-sans text-[9.5px] sm:text-[10px] text-[#7A4515] mt-1.5 opacity-90">
+                    Marks 20 Nov (Wedding · 9:15 AM) &amp; 22 Nov (Reception · 11:30 AM)
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

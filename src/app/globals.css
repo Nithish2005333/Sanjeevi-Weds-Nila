@@ -1528,15 +1528,23 @@ body {
   text-transform: none;
 }
 .invitation-footer__closing-signature i { color: #a06927; font-family: 'Great Vibes', cursive; font-size: .78em; font-weight: 400; }
-.invitation-footer__closing-signature span {
-  display: block;
-  margin-top: 8px;
-  color: #8a5b2d;
+.invitation-footer__closing-signature .invitation-footer__date {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  margin-top: 10px !important;
+}
+.invitation-footer__closing-signature .invitation-footer__date span {
+  display: block !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  line-height: 1.15 !important;
+  color: #8a5b2d !important;
   font-family: 'Cinzel', Georgia, serif;
-  font-size: clamp(9px, 2.6vw, 12px);
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
 }
 .invitation-footer__simple-message > div {
   display: flex;
@@ -1562,4 +1570,18 @@ body {
 @media (max-width: 370px) {
   .invitation-footer__credit { min-height: 0; padding: 6px 10px 8px; }
   .invitation-footer__content--simple { top: 38%; }
+}
+
+@keyframes coupleGentleFloat {
+  0%, 100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+.couple-gentle-float {
+  animation: coupleGentleFloat 4.8s ease-in-out infinite;
+  will-change: transform;
 }

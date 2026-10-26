@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import confetti from "canvas-confetti";
 
 interface FloatingPetal {
@@ -145,18 +144,6 @@ const CoupleMarigoldPetal: React.FC<{ petal: FloatingPetal }> = ({ petal }) => (
   </motion.div>
 );
 
-interface GoldPaper {
-  id: number;
-  startX: number;
-  startY: number;
-  targetX: number;
-  targetY: number;
-  rotateTarget: number;
-  color: string;
-  width: number;
-  height: number;
-}
-
 interface CoupleScrollJoinSectionProps {
   onJoinComplete?: () => void;
 }
@@ -173,73 +160,47 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
   const flashRef = useRef<HTMLDivElement>(null);
   const imagesStageRef = useRef<HTMLDivElement>(null);
 
-  const [goldPapers, setGoldPapers] = useState<GoldPaper[]>([]);
-  const [showCrackers, setShowCrackers] = useState(false);
-  const [isJoined, setIsJoined] = useState(false);
   const hasStartedRef = useRef(false);
   const hasPoppedRef = useRef(false);
   const hasFinishedRef = useRef(false);
 
-  // Trigger gold cracker papers shooting from all 4 corners + canvas confetti
+  // Trigger high-performance multi-cannon golden celebration confetti (zero DOM allocations, 60fps GPU)
   const triggerGoldCrackers = () => {
     if (hasPoppedRef.current) return;
     hasPoppedRef.current = true;
 
-    // Canvas confetti burst with golden tones
     try {
+      // Golden center fountain
       confetti({
-        particleCount: 65,
-        spread: 85,
-        origin: { y: 0.6 },
+        particleCount: 50,
+        spread: 80,
+        origin: { y: 0.62 },
         colors: ["#C9A46A", "#D4AF37", "#FFD700", "#F3E5AB", "#FFE8A3", "#E6C280"],
+        disableForReducedMotion: true,
+      });
+
+      // Left corner golden cannon
+      confetti({
+        particleCount: 30,
+        angle: 60,
+        spread: 50,
+        origin: { x: 0.12, y: 0.68 },
+        colors: ["#C9A46A", "#D4AF37", "#FFD700", "#FFE8A3"],
+        disableForReducedMotion: true,
+      });
+
+      // Right corner golden cannon
+      confetti({
+        particleCount: 30,
+        angle: 120,
+        spread: 50,
+        origin: { x: 0.88, y: 0.68 },
+        colors: ["#C9A46A", "#D4AF37", "#FFD700", "#FFE8A3"],
+        disableForReducedMotion: true,
       });
     } catch (e) {
       // fallback if canvas not available
     }
-
-    const shadesOfGold = [
-      "#C9A46A",
-      "#D4AF37",
-      "#FFD700",
-      "#F3E5AB",
-      "#FFE8A3",
-      "#E6C280",
-    ];
-    const corners = [
-      { x: -180, y: -240, baseAngle: Math.PI / 4 }, // Top Left
-      { x: 180, y: -240, baseAngle: (3 * Math.PI) / 4 }, // Top Right
-      { x: -180, y: 240, baseAngle: -Math.PI / 4 }, // Bottom Left
-      { x: 180, y: 240, baseAngle: (-3 * Math.PI) / 4 }, // Bottom Right
-    ];
-
-    const papers: GoldPaper[] = [];
-    let idCounter = 0;
-
-    corners.forEach((corner) => {
-      for (let i = 0; i < 15; i++) {
-        const spreadAngle = corner.baseAngle + (Math.random() * 0.8 - 0.4);
-        const distance = 130 + Math.random() * 200;
-
-        papers.push({
-          id: idCounter++ + Date.now(),
-          startX: corner.x,
-          startY: corner.y,
-          targetX: corner.x + Math.cos(spreadAngle) * distance,
-          targetY: corner.y + Math.sin(spreadAngle) * distance + (50 + Math.random() * 80),
-          rotateTarget: Math.random() * 1080 - 540,
-          color: shadesOfGold[Math.floor(Math.random() * shadesOfGold.length)],
-          width: 8 + Math.random() * 6,
-          height: 4 + Math.random() * 3,
-        });
-      }
-    });
-
-    setGoldPapers(papers);
-    setShowCrackers(true);
-
-    setTimeout(() => {
-      setShowCrackers(false);
-    }, 2200);
   };
 
   useEffect(() => {
@@ -255,25 +216,33 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
     )
       return;
 
+    // 0. Pre-decode images into browser GPU memory ahead of time to eliminate any texture upload hitch
+    const predecode = (src: string) => {
+      const img = new Image();
+      img.src = src;
+      if ("decode" in img) {
+        img.decode().catch(() => {});
+      }
+    };
+    predecode("/groom.webp");
+    predecode("/bride.webp");
+    predecode("/couple.webp");
+
     // If animation has already completed in this session, keep joined forever
     if (hasFinishedRef.current) {
-      const elementsToHide = [groomRef.current, brideRef.current].filter(Boolean);
-      if (elementsToHide.length > 0) {
-        gsap.set(elementsToHide, { opacity: 0 });
-      }
-      if (coupleRef.current) {
-        gsap.set(coupleRef.current, { scale: 1, opacity: 1 });
-      }
-      setIsJoined(true);
+      if (groomRef.current) gsap.set(groomRef.current, { opacity: 0 });
+      if (brideRef.current) gsap.set(brideRef.current, { opacity: 0 });
+      if (coupleRef.current) gsap.set(coupleRef.current, { scale: 1, opacity: 1 });
+      if (flashRef.current) gsap.set(flashRef.current, { opacity: 0 });
       onJoinComplete?.();
       return;
     }
 
-    // 1. Initialize GSAP positions
-    if (groomRef.current) gsap.set(groomRef.current, { xPercent: -105, opacity: 0 });
-    if (brideRef.current) gsap.set(brideRef.current, { xPercent: 105, opacity: 0 });
-    if (coupleRef.current) gsap.set(coupleRef.current, { scale: 0.9, opacity: 0 });
-    if (flashRef.current) gsap.set(flashRef.current, { opacity: 0 });
+    // 1. Initialize GSAP positions with hardware acceleration forced
+    if (groomRef.current) gsap.set(groomRef.current, { xPercent: -105, opacity: 0, force3D: true });
+    if (brideRef.current) gsap.set(brideRef.current, { xPercent: 105, opacity: 0, force3D: true });
+    if (coupleRef.current) gsap.set(coupleRef.current, { scale: 1, opacity: 0, force3D: true });
+    if (flashRef.current) gsap.set(flashRef.current, { opacity: 0, force3D: true });
 
     const playJoinAnimation = () => {
       if (hasStartedRef.current || hasFinishedRef.current) return;
@@ -282,58 +251,58 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       const tl = gsap.timeline({
         onComplete: () => {
           hasFinishedRef.current = true;
-          setIsJoined(true);
-          const elementsToHide = [groomRef.current, brideRef.current].filter(Boolean);
-          if (elementsToHide.length > 0) {
-            gsap.set(elementsToHide, { opacity: 0 });
-          }
-          if (coupleRef.current) {
-            gsap.set(coupleRef.current, { scale: 1, opacity: 1 });
-          }
+          if (groomRef.current) gsap.set(groomRef.current, { opacity: 0 });
+          if (brideRef.current) gsap.set(brideRef.current, { opacity: 0 });
+          if (coupleRef.current) gsap.set(coupleRef.current, { scale: 1, opacity: 1 });
+          if (flashRef.current) gsap.set(flashRef.current, { opacity: 0 });
           onJoinComplete?.();
         },
       });
 
-      // Step A: Faster, snappier slide-in of Groom & Bride from sides (0s -> 0.52s)
+      // Step A: Smooth, snappy slide-in of Groom & Bride towards center (0s -> 0.48s)
       tl.to(
         groomRef.current,
-        { xPercent: 0, opacity: 1, duration: 0.52, ease: "power2.out" },
+        { xPercent: 0, opacity: 1, duration: 0.48, ease: "power2.out" },
         0
       ).to(
         brideRef.current,
-        { xPercent: 0, opacity: 1, duration: 0.52, ease: "power2.out" },
+        { xPercent: 0, opacity: 1, duration: 0.48, ease: "power2.out" },
         0
       );
 
-      // Step B: Faster morph transition (Groom & Bride fade out, white flash pops, Couple zooms in) (0.52s -> 0.9s)
+      // Step B: Celestial golden flash blooms right as the cards meet (0.38s -> 0.48s)
       tl.to(
-        [groomRef.current, brideRef.current],
-        { opacity: 0, duration: 0.28, ease: "power1.inOut" },
-        0.52
-      )
-        .to(
-          coupleRef.current,
-          { opacity: 1, scale: 1, duration: 0.38, ease: "back.out(1.25)" },
-          0.52
-        )
-        .to(
-          flashRef.current,
-          { opacity: 0.6, duration: 0.1, ease: "power1.out" },
-          0.52
-        )
-        .to(
-          flashRef.current,
-          { opacity: 0, duration: 0.25, ease: "power1.in" },
-          0.62
-        );
+        flashRef.current,
+        { opacity: 0.92, duration: 0.10, ease: "power1.in" },
+        0.38
+      );
 
-      // Trigger golden confetti burst exactly at the joining point (0.52s)
+      // Step C: Instant seamless image swap at the peak of the flash (0.48s)
+      // Masked under the radiant glow, eliminating ghosting, stutter, or lag
+      tl.set(
+        [groomRef.current, brideRef.current],
+        { opacity: 0 },
+        0.48
+      ).set(
+        coupleRef.current,
+        { opacity: 1, scale: 1 },
+        0.48
+      );
+
+      // Step D: Trigger golden confetti burst exactly at the union (0.48s)
       tl.call(() => {
         triggerGoldCrackers();
-      }, [], 0.52);
+      }, [], 0.48);
+
+      // Step E: Radiant flash smoothly dissolves away (0.48s -> 0.72s), revealing the united couple
+      tl.to(
+        flashRef.current,
+        { opacity: 0, duration: 0.24, ease: "power2.out" },
+        0.48
+      );
     };
 
-    // Trigger join animation ONLY when the couple image is at least 75% in screen view
+    // Trigger join animation when the couple section scrolls into view
     const target = stageContainerRef.current || imagesStageRef.current || sectionRef.current;
     if (!target) return;
 
@@ -341,15 +310,15 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       (entries) => {
         entries.forEach((entry) => {
           if (
-            (entry.isIntersecting && entry.intersectionRatio >= 0.75) ||
-            entry.boundingClientRect.bottom < window.innerHeight * 0.4
+            (entry.isIntersecting && entry.intersectionRatio >= 0.5) ||
+            entry.boundingClientRect.bottom < window.innerHeight * 0.55
           ) {
             playJoinAnimation();
             observer.disconnect();
           }
         });
       },
-      { threshold: [0.75] }
+      { threshold: [0.5] }
     );
 
     observer.observe(target);
@@ -457,10 +426,16 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         ref={stageContainerRef}
         className="relative w-full max-w-[305px] sm:max-w-[330px] h-[405px] sm:h-[435px] overflow-hidden flex items-center justify-center"
       >
-        {/* White camera flash layer for the morph transition */}
+        {/* Radiant golden-white flash layer for seamless morph transition */}
         <div
           ref={flashRef}
-          className="absolute inset-0 bg-white z-40 pointer-events-none mix-blend-overlay"
+          className="absolute inset-0 z-40 pointer-events-none opacity-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(255,255,255,0.98) 0%, rgba(255,248,225,0.85) 45%, rgba(201,164,106,0.35) 75%, transparent 100%)",
+            willChange: "opacity",
+            transform: "translateZ(0)",
+          }}
         />
 
         {/* Cinematic Images Stage */}
@@ -471,11 +446,14 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
           {/* Groom Full Vertical Image (Left Half) */}
           <div
             ref={groomRef}
-            className="absolute top-0 left-0 w-[51%] h-full overflow-hidden flex items-center justify-center"
+            className="absolute top-0 left-0 w-[51%] h-full overflow-hidden flex items-center justify-center opacity-0"
+            style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
           >
             <img
               src="/groom.webp"
               alt="Sanjeevi - Groom"
+              loading="eager"
+              decoding="sync"
               className="w-full h-full object-cover object-center filter drop-shadow-[0_2px_8px_rgba(43,18,11,0.08)]"
             />
           </div>
@@ -483,80 +461,38 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
           {/* Bride Full Vertical Image (Right Half) */}
           <div
             ref={brideRef}
-            className="absolute top-0 right-0 w-[51%] h-full overflow-hidden flex items-center justify-center"
+            className="absolute top-0 right-0 w-[51%] h-full overflow-hidden flex items-center justify-center opacity-0"
+            style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
           >
             <img
               src="/bride.webp"
               alt="Nila - Bride"
+              loading="eager"
+              decoding="sync"
               className="w-full h-full object-cover object-center filter drop-shadow-[0_2px_8px_rgba(43,18,11,0.08)]"
             />
           </div>
 
-          {/* Couple Full Overlay Image (Joined Hand-in-Hand with reduced soft floating effect) */}
+          {/* Couple Full Overlay Image (Joined Hand-in-Hand with smooth GPU floating effect) */}
           <div
             ref={coupleRef}
-            className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center"
+            className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center opacity-0"
+            style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
           >
-            <motion.div
-              className="w-full h-full flex items-center justify-center"
-              animate={
-                isJoined && !shouldReduceMotion
-                  ? {
-                      y: [-1.8, 1.8, -1.8],
-                    }
-                  : { y: 0 }
-              }
-              transition={{
-                duration: 4.8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+            <div
+              className={`w-full h-full flex items-center justify-center ${
+                !shouldReduceMotion ? "couple-gentle-float" : ""
+              }`}
             >
               <img
                 src="/couple.webp"
                 alt="Sanjeevi & Nila"
+                loading="eager"
+                decoding="sync"
                 className="w-full h-full object-cover object-center filter drop-shadow-[0_2px_8px_rgba(43,18,11,0.08)]"
               />
-            </motion.div>
+            </div>
           </div>
-        </div>
-
-        {/* Gold Cracker Confetti papers overlay */}
-        <div className="absolute inset-0 z-40 pointer-events-none flex items-center justify-center">
-          <AnimatePresence>
-            {showCrackers &&
-              goldPapers.map((paper) => (
-                <motion.div
-                  key={paper.id}
-                  initial={{
-                    opacity: 1,
-                    scale: 0.1,
-                    x: paper.startX,
-                    y: paper.startY,
-                    rotate: 0,
-                  }}
-                  animate={{
-                    opacity: [1, 1, 0],
-                    scale: [0.1, 1.25, 0.6],
-                    x: paper.targetX,
-                    y: paper.targetY,
-                    rotate: paper.rotateTarget,
-                  }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    duration: 1.8,
-                    ease: "easeOut",
-                  }}
-                  className="absolute rounded-sm"
-                  style={{
-                    backgroundColor: paper.color,
-                    width: paper.width,
-                    height: paper.height,
-                    boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
-                  }}
-                />
-              ))}
-          </AnimatePresence>
         </div>
       </div>
 
