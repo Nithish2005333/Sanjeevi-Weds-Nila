@@ -1,0 +1,1564 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Alex+Brush&family=Cinzel:wght@400;500;600;700;800;900&family=Cinzel+Decorative:wght@400;700;900&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&family=Noto+Serif+Tamil:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Allura&family=Italianno&family=Parisienne&family=Corinthia:wght@400;700&family=Arizonia&family=Playball&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,700&family=Lora:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Tangerine:wght@400;700&display=swap');
+@import "tailwindcss";
+@import "./layout-guards.css";
+
+@font-face {
+  font-family: 'Odstemplik';
+  src: url('/fonts/odstemplik.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Odstemplik';
+  src: url('/fonts/odstemplikBold.otf') format('opentype');
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Parceh';
+  src: url('/fonts/Parceh.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SilianRail';
+  src: url('/fonts/SilianRailLight_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SilianRail';
+  src: url('/fonts/SilianRailLightSharp_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SilianRail';
+  src: url('/fonts/SilianRailLightItalic_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SilianRail';
+  src: url('/fonts/SilianRail_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SilianRail';
+  src: url('/fonts/SilianRailBold_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SilianRail';
+  src: url('/fonts/SilianRailItalic_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SilianRail';
+  src: url('/fonts/SilianRailBoldItalic_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 600 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Classica';
+  src: url('/fonts/Classica-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Classica';
+  src: url('/fonts/Classica-BookOblique.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Classica';
+  src: url('/fonts/Classica-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Classica';
+  src: url('/fonts/Classica-BoldOblique.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Great Vibes';
+  src: url('/fonts/GreatVibes-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Alex Brush';
+  src: url('/fonts/AlexBrush-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pinyon Script';
+  src: url('/fonts/PinyonScript-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BabyLovely';
+  src: url('/fonts/baby_lovely/Baby Lovely.woff2') format('woff2'),
+       url('/fonts/baby_lovely/Baby Lovely.woff') format('woff'),
+       url('/fonts/baby_lovely/Baby Lovely.ttf') format('truetype'),
+       url('/fonts/baby_lovely/Baby Lovely.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BabyLovely';
+  src: url('/fonts/baby_lovely/Baby Lovely Italic.woff2') format('woff2'),
+       url('/fonts/baby_lovely/Baby Lovely Italic.woff') format('woff'),
+       url('/fonts/baby_lovely/Baby Lovely Italic.ttf') format('truetype'),
+       url('/fonts/baby_lovely/Baby Lovely Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tangerine';
+  src: url('/fonts/Tangerine-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel Decorative';
+  src: url('/fonts/CinzelDecorative-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-parchment: #FAF6F0;
+  --color-parchment-light: #FDFBF7;
+  --color-text-primary: #1A100B;
+  --color-gold: #C9A46A;
+  --color-gold-bright: #D4AF37;
+  --color-maroon: #570713;
+  --color-maroon-dark: #3D0609;
+}
+
+body {
+  background-color: #FAF6F0;
+  color: #1A100B;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+/* Custom Typography Utilities */
+.font-silian-rail {
+  font-family: 'SilianRail', 'Times New Roman', Georgia, serif;
+}
+
+.font-odstemplik {
+  font-family: 'Odstemplik', Georgia, serif;
+}
+
+.font-sharp-sans {
+  font-family: 'Plus Jakarta Sans', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', Georgia, serif;
+}
+
+.font-cinzel-decorative {
+  font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+}
+
+.font-serif-numbers {
+  font-family: 'Cinzel', 'Lora', Georgia, serif !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+}
+
+.font-great-vibes {
+  font-family: 'Great Vibes', 'Alex Brush', 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive;
+}
+
+.font-baby-lovely {
+  font-family: 'BabyLovely', 'Great Vibes', 'Alex Brush', cursive;
+}
+
+.font-tamil {
+  font-family: 'Noto Serif Tamil', 'Noto Sans Tamil', Georgia, serif;
+}
+
+.font-parceh {
+  font-family: 'Parceh', 'Cinzel', serif;
+}
+
+/* Shimmer & Gold Gradient Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFF7D1 0%, #FFFBE6 20%, #F5C542 45%, #D4A017 75%, #FFEAA7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-metallic {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FDE9B8 35%, #D4AF37 70%, #996515 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero Section Falling Leaves */
+.hero-falling-leaves {
+  position: absolute !important;
+  z-index: 1 !important;
+  inset: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.hero-falling-leaves i {
+  position: absolute !important;
+  top: -8% !important;
+  left: var(--leaf-left) !important;
+  width: 22px !important;
+  height: 16px !important;
+  display: block !important;
+  opacity: 0;
+  transform-origin: 65% 50%;
+  color: #C9A46A !important;
+}
+
+.hero-falling-leaves i:nth-child(3n + 2) {
+  color: #B38728 !important;
+}
+
+.hero-falling-leaves i:nth-child(3n) {
+  color: #D4AF37 !important;
+}
+
+.hero-falling-leaves.is-active i {
+  animation: hero-leaf-fall var(--leaf-duration) linear var(--leaf-delay) infinite;
+}
+
+@keyframes hero-leaf-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -8vh, 0) rotate(0deg) scale(var(--leaf-scale));
+  }
+  9% {
+    opacity: 0.75;
+  }
+  28% {
+    transform: translate3d(var(--leaf-drift), 28vh, 0) rotate(115deg) scale(var(--leaf-scale));
+  }
+  52% {
+    transform: translate3d(0, 52vh, 0) rotate(235deg) scale(var(--leaf-scale));
+  }
+  74% {
+    transform: translate3d(var(--leaf-drift), 78vh, 0) rotate(355deg) scale(var(--leaf-scale));
+  }
+  92% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 110vh, 0) rotate(510deg) scale(var(--leaf-scale));
+  }
+}
+
+/* Poster Opening Hero Container */
+.invitation-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #EADBC5;
+  color: #352317;
+}
+
+.invitation-hero__text-veil {
+  position: absolute;
+  z-index: 2;
+  top: 6%;
+  left: 6%;
+  right: 6%;
+  height: 48%;
+  border-radius: 46%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 239, 206, 0.45) 0%,
+    rgba(255, 231, 184, 0.25) 50%,
+    rgba(255, 222, 164, 0.08) 75%,
+    transparent 100%
+  );
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+.invitation-hero__heading {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.invitation-hero__monogram {
+  filter: drop-shadow(0 4px 10px rgba(87, 7, 19, 0.28));
+}
+
+.invitation-hero .invitation-hero__tamil {
+  color: #64101D;
+  font-family: 'Noto Serif Tamil', Georgia, serif;
+  font-size: clamp(10px, 2.7vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  text-shadow: 0 1px 0 rgba(255, 238, 203, 0.85), 0 1px 3px rgba(75, 9, 14, 0.15);
+}
+
+.invitation-hero .invitation-hero__tamil > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.invitation-hero .invitation-hero__name {
+  color: #570713;
+  font-family: 'SilianRail', 'Times New Roman', Georgia, serif;
+  font-size: clamp(34px, 9.8vw, 48px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 0 rgba(255, 235, 193, 0.9), 0 2px 4px rgba(63, 7, 12, 0.2);
+}
+
+.invitation-hero .invitation-hero__weds {
+  color: #853119;
+  font-family: 'Great Vibes', 'Alex Brush', 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive;
+  font-size: clamp(29px, 8vw, 38px);
+  font-weight: 400;
+  text-shadow: 0 1px 0 rgba(255, 239, 204, 0.88), 0 2px 3px rgba(87, 20, 12, 0.14);
+}
+
+.invitation-hero .invitation-hero__tagline {
+  color: #52101A;
+  font-family: 'Cinzel', 'Times New Roman', Times, serif;
+  font-size: clamp(8.5px, 2.5vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-shadow: 0 1px 0 rgba(255, 239, 205, 0.85), 0 1px 2px rgba(67, 8, 13, 0.1);
+}
+
+/* Pulsing Golden Glow */
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.8), inset 0 0 20px rgba(212, 175, 55, 0.4);
+  }
+}
+
+.gold-glow-pulse {
+  animation: goldPulse 3s infinite ease-in-out;
+}
+
+
+/* ======================================================== */
+
+/* SECTIONS FROM INVITATION 14 (DINESH & THUJITHRA)          */
+
+/* ======================================================== */
+
+/* Tamil kalyana mandapam ceremony — rebuilt for the generated vertical artwork. */
+.wedding-details {
+  min-height: 0 !important;
+  padding: 0 !important;
+  color: #571018 !important;
+  background: #4a0a13;
+  isolation: isolate;
+}
+.wedding-details__background {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.96) contrast(1.02) brightness(.97);
+}
+.wedding-details__shade {
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(19, 3, 3, .42) 0%, rgba(28, 5, 3, .12) 17%, transparent 37%, transparent 100%),
+    radial-gradient(ellipse at 50% 12%, rgba(19, 3, 3, .25), transparent 54%);
+  pointer-events: none;
+}
+.wedding-details .ceremony-header {
+  color: #ffdda0;
+  text-shadow: 0 2px 10px rgba(17, 2, 2, .92);
+}
+.wedding-details .ceremony-kicker {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #ffe4a8 !important;
+  font-family: 'Noto Serif Tamil', 'Noto Sans Tamil', Georgia, serif;
+  font-size: clamp(10px, 2.8vw, 13px) !important;
+  font-weight: 700;
+  letter-spacing: .16em !important;
+  text-shadow: 0 2px 8px rgba(18, 2, 2, .95) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.wedding-details .ceremony-title {
+  margin: 8px 0 0 !important;
+  color: #ffe7ad !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: clamp(54px, 16vw, 76px) !important;
+  font-weight: 600 !important;
+  line-height: .78 !important;
+  letter-spacing: -.035em;
+  text-shadow: 0 2px 12px rgba(20, 2, 2, .95), 0 0 1px #3a0508 !important;
+}
+.wedding-details .ceremony-script {
+  margin: 3px 0 0 !important;
+  color: #e9b94f !important;
+  font-family: 'Great Vibes', 'Alex Brush', cursive !important;
+  font-size: clamp(45px, 13.3vw, 63px) !important;
+  font-weight: 400 !important;
+  line-height: .82 !important;
+  text-shadow: 0 2px 10px rgba(20, 2, 2, .96) !important;
+}
+.ceremony-header__rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 10px;
+}
+.ceremony-header__rule span { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #e5b74d); }
+.ceremony-header__rule span:last-child { background: linear-gradient(90deg, #e5b74d, transparent); }
+.ceremony-header__rule i { width: 6px; height: 6px; border: 1px solid #f1ce7a; transform: rotate(45deg); }
+
+.wedding-details .ceremony-content {
+  width: auto;
+  max-width: none;
+  padding: 0 !important;
+}
+.wedding-details .ceremony-date-card {
+  grid-template-columns: .84fr .82fr 1fr;
+  min-height: clamp(70px, 18.5vw, 84px) !important;
+  padding: 5px 8px !important;
+}
+.wedding-details .ceremony-date-label {
+  padding-right: 8px;
+  color: #65301e;
+  font-size: clamp(9px, 2.4vw, 11.5px);
+  line-height: 1.08;
+  border-right: 1px solid rgba(92, 29, 17, .42);
+}
+.wedding-details .ceremony-date-number {
+  padding-inline: 6px;
+  color: #580810 !important;
+  font-family: 'Cinzel', 'Lora', Georgia, serif !important;
+  font-size: clamp(44px, 11.5vw, 55px) !important;
+  font-weight: 700 !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  letter-spacing: -.02em;
+  border-right: 1px solid rgba(92, 29, 17, .42);
+}
+.wedding-details .ceremony-date-copy {
+  padding-left: 8px;
+}
+.wedding-details .ceremony-date-copy strong {
+  color: #541019;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(14px, 3.8vw, 18px);
+  font-weight: 700;
+  line-height: .88;
+}
+.wedding-details .ceremony-date-copy strong .ceremony-number {
+  margin-top: 2px;
+  font-family: 'Cinzel', 'Lora', Georgia, serif !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  font-size: 1.04em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.wedding-details .ceremony-date-copy > span {
+  margin-top: 2px;
+  color: #70401f;
+  font-size: clamp(10.5px, 2.8vw, 13px);
+}
+
+.wedding-details .ceremony-time-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  margin-top: 5px;
+}
+.wedding-details .ceremony-time-card {
+  min-height: clamp(72px, 19vw, 86px) !important;
+  padding: 5px 4px 6px !important;
+}
+.wedding-details .ceremony-time-card__icon {
+  width: clamp(24px, 6.5vw, 30px) !important;
+  height: clamp(24px, 6.5vw, 30px) !important;
+  margin-bottom: 2px !important;
+  color: #72331a;
+  background: rgba(255, 245, 214, .34);
+  border: 1px solid rgba(113, 58, 24, .82);
+  box-shadow: inset 0 0 0 2px rgba(255, 248, 222, .78);
+}
+.wedding-details .ceremony-time-card__icon svg { width: 14px; height: 14px; }
+.wedding-details .ceremony-time-card > span {
+  color: #66321f;
+  font-size: clamp(10px, 2.7vw, 12.5px) !important;
+  font-weight: 600;
+}
+.wedding-details .ceremony-time-card strong {
+  margin-top: 2px !important;
+  color: #570a12;
+  font-family: 'Cinzel', 'Lora', Georgia, serif !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  font-size: clamp(18px, 4.8vw, 23px) !important;
+  font-weight: 700;
+  line-height: .9;
+}
+.wedding-details .ceremony-time-card strong .ceremony-number,
+.wedding-details .ceremony-time-card small .ceremony-number,
+.wedding-details .ceremony-number {
+  font-family: 'Cinzel', 'Lora', Georgia, serif !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  font-weight: 700;
+}
+.wedding-details .ceremony-time-card small {
+  margin-top: 1px !important;
+  color: #5f301e;
+  font-family: 'Cinzel', 'Lora', Georgia, serif;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  font-size: clamp(7.5px, 2vw, 9.5px) !important;
+  font-weight: 600;
+}
+
+.wedding-details .ceremony-venue {
+  min-height: auto !important;
+  margin-top: 5px !important;
+  padding: 6px 10px 7px !important;
+}
+.wedding-details .ceremony-venue__label {
+  color: #62311e;
+  font-size: clamp(7px, 1.9vw, 9px) !important;
+  font-weight: 700;
+  line-height: 1;
+  text-align: left;
+}
+.wedding-details .ceremony-venue__body {
+  grid-template-columns: 34px minmax(0, 1fr) !important;
+  gap: 8px !important;
+  margin-top: 2px !important;
+}
+.wedding-details .ceremony-venue__icon {
+  width: 34px !important;
+  height: 34px !important;
+  background: rgba(255, 245, 214, .34);
+  border: 1px solid rgba(113, 58, 24, .82);
+  box-shadow: inset 0 0 0 2px rgba(255, 248, 222, .78);
+}
+.wedding-details .ceremony-venue__icon svg { width: 16px; height: 16px; }
+.wedding-details .ceremony-venue h3 {
+  color: #570910 !important;
+  font-size: clamp(16px, 4.4vw, 21px) !important;
+  font-weight: 700;
+  line-height: .95;
+  white-space: nowrap;
+}
+.wedding-details .ceremony-venue p {
+  margin-top: 2px !important;
+  color: #4f2c20;
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: clamp(7.5px, 2vw, 9px) !important;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.wedding-details .ceremony-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 5px !important;
+}
+.wedding-details .ceremony-actions a {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: clamp(7px, 2vw, 9.5px) 6px !important;
+  border-radius: 999px;
+  font: 700 clamp(8.5px, 2.2vw, 11px)/1 'Cinzel', Georgia, serif !important;
+  letter-spacing: .025em;
+  white-space: nowrap;
+  transition: transform .2s ease, filter .2s ease;
+}
+.wedding-details .ceremony-actions a:hover { transform: translateY(-2px); filter: brightness(1.07); }
+.wedding-details .ceremony-actions svg { width: 14px; height: 14px; flex: 0 0 14px; stroke-width: 1.7; }
+.wedding-details .ceremony-calendar {
+  color: #ffe9ae !important;
+  background: linear-gradient(180deg, #781824, #591018) !important;
+  border: 1px solid #c99a44 !important;
+  box-shadow: 0 4px 10px rgba(70, 9, 15, .2), inset 0 0 0 2px rgba(255,220,143,.12) !important;
+}
+.wedding-details .ceremony-directions {
+  color: #62121a !important;
+  background: linear-gradient(180deg, #ffe9ad, #eabd63) !important;
+  border: 1px solid #a46a20 !important;
+  box-shadow: 0 4px 10px rgba(89, 41, 8, .16), inset 0 0 0 2px rgba(255,255,255,.32) !important;
+  text-shadow: none !important;
+}
+
+
+/* Wedding programme timeline */
+.event-programme { font-family: 'Cormorant Garamond', Georgia, serif; color: #68141a; }
+.event-programme__emblem { color: #ad7518; font-size: clamp(17px, 5vw, 24px); line-height: 1; }
+.event-programme__header > p { margin-top: 4px; font-family: 'Cinzel', serif; font-size: clamp(7px, 2.5vw, 12px); font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+.event-programme__header h2 { margin-top: 7px; font-size: clamp(34px, 10.5vw, 51px); font-weight: 500; line-height: .92; letter-spacing: -.025em; }
+.event-programme__title-rule { width: 80px; height: 1px; margin: 10px auto 8px; background: linear-gradient(90deg, transparent, #b17818, transparent); }
+.event-programme__header > span { display: block; color: #435029; font-size: clamp(9px, 3vw, 14px); font-weight: 600; }
+.event-programme__event { transform: translateY(-44%); }
+.event-programme__event h3 { font-size: clamp(22px, 6.8vw, 34px); font-weight: 600; line-height: .92; }
+.event-programme__date { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin-top: 8px; }
+.event-programme__date b { font-family: 'Bodoni Moda', 'Lora', 'Cinzel', Georgia, serif; font-size: clamp(25px, 8vw, 39px); line-height: 1; font-weight: 700; font-variant-numeric: lining-nums tabular-nums !important; font-feature-settings: "lnum" 1, "tnum" 1 !important; }
+.event-programme__date span { color: #4d552d; font-family: 'Cinzel', serif; font-size: clamp(8px, 2.8vw, 13px); font-weight: 700; letter-spacing: .08em; }
+.event-programme__time { display: inline-block; margin-top: 9px; padding: 4px 13px 5px; border: 1px solid #c18d36; border-radius: 999px; background: #731722; box-shadow: inset 0 0 0 2px rgba(255, 217, 135, .16); color: #fff0c6; font-family: 'Bodoni Moda', 'Lora', 'Cinzel', Georgia, serif; font-size: clamp(10px, 3vw, 15px); font-weight: 700; line-height: 1; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums !important; font-feature-settings: "lnum" 1, "tnum" 1 !important; }
+.event-programme__footer p { font-family: 'Cinzel', serif; font-size: clamp(7px, 2.5vw, 12px); font-weight: 800; letter-spacing: .1em; line-height: 1.35; text-transform: uppercase; }
+
+
+/* RSVP — portrait-led burgundy and antique-gold invitation form. */
+.rsvp-section {
+  background: #350005;
+}
+
+.rsvp-section__heading {
+  left: 8%;
+  right: 8%;
+  width: auto;
+}
+
+.rsvp-section__heading > p:first-of-type {
+  color: #f1ca79;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(15px, 4.7vw, 22px);
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+
+.rsvp-section__heading h2 {
+  margin-top: 11px;
+  color: #f3cd78;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(44px, 12.8vw, 60px);
+  font-weight: 500;
+  line-height: .86;
+  white-space: nowrap;
+  text-shadow: 0 2px 8px rgba(20, 2, 4, .72);
+}
+
+.rsvp-section__rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px auto 0;
+  color: #e2b65d;
+  font-size: 8px;
+}
+.rsvp-section__rule span { width: 72px; height: 1px; background: linear-gradient(90deg, transparent, #dfb45e); }
+.rsvp-section__rule span:last-child { background: linear-gradient(90deg, #dfb45e, transparent); }
+
+.rsvp-form {
+  left: 12%;
+  right: 12%;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(12px, 2.6vw, 18px);
+  padding: 0;
+  background: transparent;
+}
+.rsvp-form > * { margin-top: 0 !important; }
+
+.rsvp-form__intro {
+  color: #f4d990;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(10px, 2.9vw, 13.5px);
+  font-weight: 500;
+  line-height: 1.28;
+}
+
+.rsvp-form fieldset { display: block; margin-top: clamp(2px, 1.8vw, 8px); text-align: left; }
+.rsvp-form__field { display: block; margin-top: clamp(6px, 1.7vw, 12px); text-align: left; }
+.rsvp-form__intro + .rsvp-form__field { margin-top: clamp(10px, 2vw, 18px); }
+.rsvp-form__field > span:not(.rsvp-form__control),
+.rsvp-form legend {
+  display: block;
+  width: 100%;
+  margin-bottom: 7px;
+  color: #f4d993;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(11px, 3.2vw, 15px);
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-align: left;
+}
+.rsvp-form__field b,
+.rsvp-form legend b { margin-inline: 9px; color: #e9bd62; font-size: .62em; }
+
+.rsvp-form input[type='text'],
+.rsvp-form input[type='number'],
+.rsvp-form textarea {
+  width: 100%;
+  border: 1px solid #e5ba55;
+  border-radius: 10px;
+  outline: none;
+  padding: clamp(13px, 3.4vw, 16px) clamp(15px, 4vw, 20px);
+  background: rgba(43, 0, 5, .58);
+  color: #f7df9e;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(14px, 4vw, 18px);
+  font-weight: 600;
+  box-shadow: inset 0 1px 7px rgba(10, 0, 2, .35);
+}
+.rsvp-form__control { position: relative; display: block; }
+.rsvp-form__control > svg { position: absolute; z-index: 2; top: 50%; left: 18px; width: 20px; height: 20px; color: #dfb24f; stroke-width: 1.8; transform: translateY(-50%); pointer-events: none; }
+.rsvp-form__control input { padding-left: 55px !important; }
+.rsvp-form__control--wishes > svg { top: 18px; transform: none; }
+.rsvp-form__control textarea { padding-left: 55px !important; }
+.rsvp-form input::placeholder,
+.rsvp-form textarea::placeholder { color: rgba(243, 207, 126, .58); }
+.rsvp-form__custom-members { margin-top: 0; }
+.rsvp-form__custom-members input { height: clamp(42px, 11vw, 52px); }
+.rsvp-form textarea {
+  height: clamp(78px, 21vw, 99px);
+  min-height: clamp(78px, 21vw, 99px);
+  resize: none;
+}
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus { border-color: #f0c96f; box-shadow: 0 0 0 3px rgba(235, 193, 104, .18); }
+
+.rsvp-form__members label {
+  position: relative;
+  display: grid;
+  height: clamp(49px, 13vw, 61px);
+  place-items: center;
+  border: 1px solid #d9a84d;
+  border-radius: 10px;
+  color: #f2cc78;
+  background: rgba(42, 4, 11, .34);
+  cursor: pointer;
+  transition: .2s ease;
+}
+.rsvp-form__members input { position: absolute; opacity: 0; pointer-events: none; }
+.rsvp-form__members span { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(20px, 5.7vw, 27px); font-weight: 500; }
+.rsvp-form__members label.is-selected { color: #4f0b14; background: #e9bd62; box-shadow: 0 5px 13px rgba(17, 2, 5, .28); }
+
+.rsvp-form__submit {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: clamp(34px, 9.2vw, 43px);
+  border: 3px double #8c4a10;
+  border-radius: 13px;
+  padding: clamp(13px, 3.5vw, 17px) 14px;
+  color: #64131a;
+  background: linear-gradient(180deg, #f4d68b, #dba94d);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(21px, 6vw, 28px);
+  font-weight: 700;
+  letter-spacing: .01em;
+  box-shadow: 0 7px 18px rgba(16, 2, 4, .35), inset 0 0 0 2px rgba(255, 245, 198, .30);
+  transition: transform .2s ease, filter .2s ease;
+}
+.rsvp-form__submit:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.rsvp-form__submit:active { transform: translateY(1px); }
+.rsvp-form__submit i { color: #7a1c22; font-size: 15px; font-style: normal; }
+.rsvp-form__hint { color: rgba(255, 235, 190, .70); font-size: clamp(6px, 1.65vw, 8px); line-height: 1.2; }
+.rsvp-form__status { min-height: 11px; color: #f3cf7d; font-size: clamp(6px, 1.8vw, 8.5px); font-weight: 700; line-height: 1.2; }
+.rsvp-form.is-custom-member-count { top: 26.7% !important; height: 61.5%; }
+.rsvp-form.is-custom-member-count fieldset,
+.rsvp-form.is-custom-member-count .rsvp-form__field { margin-top: 0; }
+.rsvp-form.is-custom-member-count textarea { height: 68px; min-height: 68px; }
+.rsvp-form.is-custom-member-count .rsvp-form__submit { margin-top: 18px; }
+
+.rsvp-section__footer { color: #f0ca76; font-family: 'Cormorant Garamond', Georgia, serif; }
+.rsvp-section__footer > div { display: flex; align-items: center; justify-content: center; gap: 9px; margin-bottom: 6px; color: #d7a84f; font-size: 8px; }
+.rsvp-section__footer > div span { width: 55px; height: 1px; background: linear-gradient(90deg, transparent, #d7a84f); }
+.rsvp-section__footer > div span:last-child { background: linear-gradient(90deg, #d7a84f, transparent); }
+.rsvp-section__footer p { font-size: clamp(12px, 3.4vw, 16px); font-style: normal; font-weight: 600; white-space: nowrap; }
+
+@media (max-width: 380px) {
+  .rsvp-section__heading h2 { font-size: 46px; }
+  .rsvp-form { left: 10%; right: 10%; }
+  .rsvp-form__members { gap: 5px !important; }
+}
+
+/* Our Memories — full-frame, swipeable photo story. */
+.memories-carousel {
+  color: #fff2ce;
+  background: #2e160c;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+
+.memories-carousel__image {
+  z-index: 0;
+  object-fit: cover;
+  filter: sepia(.11) saturate(.93) contrast(1.02) brightness(.93);
+  user-select: none;
+  pointer-events: none;
+}
+
+.memories-carousel__warmth {
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(110, 55, 10, .14), rgba(238, 181, 71, .08), rgba(76, 27, 6, .12));
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+.memories-carousel__top-wash {
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(255, 238, 194, .96) 0%, rgba(255, 231, 178, .84) 13%, rgba(255, 226, 166, .34) 24%, transparent 36%);
+  pointer-events: none;
+}
+
+.memories-carousel__bottom-wash {
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 45%, rgba(51, 26, 11, .13) 60%, rgba(36, 18, 9, .82) 78%, rgba(25, 12, 7, .97) 100%);
+  pointer-events: none;
+}
+
+.memories-carousel__header { color: #68121c; font-family: 'Cormorant Garamond', Georgia, serif; }
+.memories-carousel__lotus,
+
+/* Editorial memory card — photograph and caption live on one album page. */
+.memories-carousel {
+  min-height: 780px;
+  padding-top: clamp(30px, 8vw, 40px);
+  padding-bottom: clamp(28px, 7vw, 38px);
+}
+.memories-carousel__paper {
+  background:
+    linear-gradient(180deg, rgba(42, 30, 19, .28) 0%, rgba(43, 29, 17, .12) 17%, rgba(255, 247, 227, .08) 38%, rgba(255, 246, 226, .08) 80%, rgba(44, 18, 15, .22) 100%),
+    radial-gradient(ellipse at 50% 44%, rgba(255, 250, 237, .34) 0%, rgba(255, 247, 229, .16) 42%, transparent 75%);
+}
+.memories-carousel__header {
+  margin-bottom: clamp(22px, 5vw, 28px);
+  color: #fff2d0;
+  text-shadow: 0 2px 12px rgba(42, 17, 9, .82);
+}
+.memories-carousel__header h2 {
+  color: #fff4d6;
+  font-size: clamp(45px, 13.2vw, 62px);
+  text-shadow: 0 2px 13px rgba(31, 11, 6, .92);
+}
+.memories-carousel__header > p {
+  max-width: 360px;
+  margin: 11px auto 0;
+  color: #fff0d2;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(14px, 4.1vw, 19px);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.15;
+  text-shadow: 0 2px 8px rgba(45, 12, 8, .98), 0 0 2px rgba(75, 18, 18, .72);
+}
+
+.memories-carousel__album {
+  width: calc(100% - 28px);
+  max-width: 414px;
+  padding: 13px 12px 11px;
+  background: #f8f0da;
+  border: 4px solid rgba(28, 48, 34, .94);
+  outline: 1px solid #d8ad58;
+  outline-offset: -8px;
+  box-shadow: 0 15px 34px rgba(28, 13, 7, .34), 0 0 0 1px rgba(245, 214, 145, .7);
+}
+.memories-carousel__album::before,
+.memories-carousel__album::after {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  content: '';
+  pointer-events: none;
+}
+.memories-carousel__album::before { top: 7px; left: 7px; border-top: 1px solid #b68030; border-left: 1px solid #b68030; }
+.memories-carousel__album::after { right: 7px; bottom: 7px; border-right: 1px solid #b68030; border-bottom: 1px solid #b68030; }
+.memories-carousel__album-heading {
+  display: flex;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #9c5f25;
+  font: 700 clamp(6px, 1.7vw, 8px)/1 'Cinzel', Georgia, serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.memories-carousel__album-heading i { width: 3px; height: 3px; border-radius: 50%; background: #b1782c; }
+
+.memories-carousel__album .memories-carousel__stage {
+  width: 100%;
+  max-width: none;
+  padding: 7px;
+  background: #fffaf0;
+  border: 1px solid #b58a49;
+  box-shadow: inset 0 0 0 3px rgba(80, 63, 36, .08);
+}
+.memories-carousel__album .memories-carousel__media { inset: 7px; }
+.memories-carousel__album .memories-carousel__image {
+  filter: saturate(.82) sepia(.13) contrast(1.04) brightness(.94);
+}
+.memories-carousel__album .memories-carousel__image-wash {
+  background: linear-gradient(180deg, rgba(32, 50, 34, .05), transparent 50%, rgba(30, 18, 9, .16));
+}
+.memories-carousel__album .memories-carousel__corner { width: 20px; height: 20px; border-color: rgba(255, 244, 214, .85); }
+.memories-carousel__album .memories-carousel__corner--tl { top: 13px; left: 13px; }
+.memories-carousel__album .memories-carousel__corner--tr { top: 13px; right: 13px; }
+.memories-carousel__album .memories-carousel__corner--bl { bottom: 13px; left: 13px; }
+.memories-carousel__album .memories-carousel__corner--br { right: 13px; bottom: 13px; }
+.memories-carousel__album .memories-carousel__arrow {
+  width: clamp(34px, 9vw, 42px);
+  height: clamp(34px, 9vw, 42px);
+  color: #fff3d1;
+  background: rgba(30, 50, 35, .62);
+  border-color: rgba(244, 220, 167, .86);
+}
+.memories-carousel__album .memories-carousel__arrow--left { left: 16px; }
+.memories-carousel__album .memories-carousel__arrow--right { right: 16px; }
+
+.memories-carousel__album .memories-carousel__caption {
+  min-height: 121px;
+  width: 100%;
+  margin: 0;
+  padding: 17px 10px 9px;
+  color: #5e1a19;
+  text-align: left;
+  background: transparent;
+}
+.memories-carousel__caption-meta {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin: 0 0 7px !important;
+  color: #aa6c2d !important;
+  font: 700 clamp(6px, 1.8vw, 8px)/1 'Cinzel', Georgia, serif !important;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+.memories-carousel__caption-meta::after { display: none; }
+.memories-carousel__caption-meta span { width: auto !important; height: auto !important; background: none !important; }
+.memories-carousel__album .memories-carousel__caption > p {
+  color: #8c5a2b;
+  font-size: clamp(7px, 1.95vw, 9px);
+  letter-spacing: .13em;
+}
+.memories-carousel__album .memories-carousel__caption h3 {
+  margin-top: 5px;
+  color: #601b1d;
+  font-size: clamp(25px, 7.2vw, 34px);
+  line-height: .88;
+}
+.memories-carousel__album .memories-carousel__caption h3 em {
+  display: inline;
+  margin-left: .18em;
+  color: #9b5429;
+  font-size: .92em;
+}
+.memories-carousel__album .memories-carousel__dots {
+  display: flex;
+  max-width: none;
+  justify-content: center;
+  gap: 6px;
+  margin: 2px auto 3px;
+  padding: 0 14px 5px;
+}
+.memories-carousel__album .memories-carousel__dots button {
+  width: 6px;
+  height: 6px;
+  border-color: #98713f;
+}
+.memories-carousel__album .memories-carousel__dots button.is-active {
+  border-color: #67151e;
+  background: #67151e;
+  box-shadow: 0 0 0 2px rgba(151, 105, 49, .2);
+}
+
+@media (max-width: 370px) {
+  .memories-carousel { min-height: 700px; padding-top: 27px; padding-bottom: 28px; }
+  .memories-carousel__header { margin-bottom: 19px; }
+  .memories-carousel__header h2 { font-size: 42px; }
+  .memories-carousel__header > p { margin-top: 8px; font-size: 14px; }
+  .memories-carousel__album { width: calc(100% - 22px); padding-inline: 10px; }
+  .memories-carousel__album .memories-carousel__caption { min-height: 111px; padding-top: 14px; }
+  .memories-carousel__album .memories-carousel__caption h3 { font-size: 25px; }
+}
+
+/* Simplified memory page: no dark-green outer frame or repeated metadata. */
+.memories-carousel {
+  min-height: 690px;
+  border-block: 0;
+}
+
+/* Keep the memory collage flowing cleanly into the journey footer. */
+.memories-carousel + .invitation-footer {
+  border-top: 0;
+}
+.memories-carousel__album {
+  padding: 11px 10px 10px;
+  background: #fbf3df;
+  border: 1px solid #bd8734;
+  outline: 1px solid rgba(177, 120, 44, .42);
+  outline-offset: -6px;
+  box-shadow: 0 14px 32px rgba(38, 18, 8, .28);
+}
+.memories-carousel__album .memories-carousel__caption {
+  position: relative;
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  padding: 13px 12px 10px;
+}
+.memories-carousel__album .memories-carousel__caption h3 {
+  max-width: calc(100% - 48px);
+  margin: 0;
+  color: #601b1d;
+  font-size: clamp(24px, 6.9vw, 32px);
+  line-height: .92;
+}
+.memories-carousel__album .memories-carousel__caption h3 em {
+  display: inline;
+  margin-left: .16em;
+}
+.memories-carousel__caption-count {
+  position: absolute;
+  right: 10px;
+  bottom: 13px;
+  color: #9f6729;
+  font: 700 clamp(6px, 1.7vw, 8px)/1 'Cinzel', Georgia, serif;
+  letter-spacing: .13em;
+}
+
+@media (max-width: 370px) {
+  .memories-carousel { min-height: 620px; }
+  .memories-carousel__album .memories-carousel__caption { min-height: 74px; padding-block: 11px 8px; }
+  .memories-carousel__album .memories-carousel__caption h3 { font-size: 23px; }
+}
+
+
+/* Journey footer — Tamil wedding flat-lay with responsive HTML typography. */
+.invitation-footer {
+  min-height: 0;
+  color: #552417;
+  background: #FAF6EE;
+  border-top: none;
+  isolation: isolate;
+}
+.invitation-footer__photo {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.94) contrast(1.01) brightness(1.01);
+}
+.invitation-footer__veil {
+  z-index: 1;
+  background: radial-gradient(ellipse at 50% 52%, rgba(255, 245, 219, .3) 0%, rgba(255, 244, 216, .16) 42%, transparent 73%);
+  pointer-events: none;
+}
+.invitation-footer__content {
+  min-height: 0;
+  padding: 0;
+  color: #552417;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.invitation-footer__journey { width: 100%; }
+.invitation-footer__before,
+.invitation-footer__began {
+  color: #6d351c;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(12px, 3.5vw, 16px);
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.invitation-footer__journey h2 {
+  margin: clamp(7px, 2vw, 10px) 0 clamp(6px, 1.8vw, 9px);
+  color: #5a2117;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: clamp(42px, 12.2vw, 57px);
+  font-weight: 400;
+  line-height: .86;
+}
+.invitation-footer__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: clamp(20px, 5vw, 25px);
+}
+.invitation-footer__divider span { width: clamp(46px, 14vw, 66px); height: 1px; background: linear-gradient(90deg, transparent, #a9702a); }
+.invitation-footer__divider span:last-child { background: linear-gradient(90deg, #a9702a, transparent); }
+.invitation-footer__divider i { width: 8px; height: 8px; border: 1px solid #a9702a; transform: rotate(45deg); }
+.invitation-footer__story {
+  margin-top: clamp(20px, 5.5vw, 28px);
+  color: #65301e;
+  font-size: clamp(17px, 4.7vw, 22px);
+  font-weight: 600;
+  line-height: 1.38;
+}
+.invitation-footer__beginning {
+  margin-top: clamp(29px, 7vw, 35px);
+  color: #5c281b;
+  line-height: 1;
+}
+.invitation-footer__beginning p { font-size: clamp(24px, 6.7vw, 31px); font-weight: 500; }
+.invitation-footer__beginning strong {
+  display: block;
+  margin-top: 3px;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: clamp(40px, 11vw, 52px);
+  font-weight: 400;
+}
+.invitation-footer__divider--second { margin-top: clamp(21px, 5.5vw, 28px); }
+.invitation-footer__blessings {
+  display: grid;
+  width: 116%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(23px, 6vw, 31px);
+  margin-left: -8%;
+}
+.invitation-footer__blessing {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 clamp(3px, 1.5vw, 8px);
+  border-right: 1px solid rgba(124, 68, 26, .42);
+}
+.invitation-footer__blessing:last-child { border-right: 0; }
+.invitation-footer__blessing svg {
+  width: clamp(25px, 7vw, 34px);
+  height: clamp(25px, 7vw, 34px);
+  color: #a26b1f;
+  stroke-width: 1.4;
+}
+.invitation-footer__blessing p {
+  margin-top: 8px;
+  color: #60301e;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(6.5px, 1.85vw, 8.7px);
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.invitation-footer__blessing p span { display: block; }
+.invitation-footer__thanks {
+  margin-top: clamp(24px, 6vw, 31px);
+  color: #61311f;
+}
+.invitation-footer__thanks > i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: 0 auto 11px;
+  background: #9a6a18;
+  transform: rotate(45deg);
+}
+.invitation-footer__thanks > p {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(8.5px, 2.45vw, 11.5px);
+  font-weight: 800;
+  letter-spacing: .035em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.invitation-footer__thanks > span {
+  display: block;
+  margin-top: 4px;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(7px, 2vw, 9.5px);
+  font-weight: 600;
+  letter-spacing: .025em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.invitation-footer__thanks > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 12px;
+}
+.invitation-footer__thanks > div b { width: 47px; height: 1px; background: linear-gradient(90deg, transparent, #a26922); }
+.invitation-footer__thanks > div b:last-child { background: linear-gradient(90deg, #a26922, transparent); }
+.invitation-footer__thanks > div em { width: 5px; height: 5px; background: #9d6b19; transform: rotate(45deg); }
+
+@media (max-width: 370px) {
+  .invitation-footer,
+  .invitation-footer__content { min-height: 0; }
+  .invitation-footer__content { top: 26.2%; }
+  .invitation-footer__story { line-height: 1.32; }
+  .invitation-footer__beginning { margin-top: 25px; }
+  .invitation-footer__blessings { margin-top: 21px; }
+  .invitation-footer__thanks { margin-top: 21px; }
+}
+
+/* Journey footer — Tamil wedding flat-lay with responsive HTML typography. */
+.invitation-footer {
+  min-height: 0;
+  color: #552417;
+  background: #FAF6EE;
+  border-top: none;
+  isolation: isolate;
+}
+.invitation-footer__photo {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.94) contrast(1.01) brightness(1.01);
+}
+.invitation-footer__veil {
+  z-index: 1;
+  background: radial-gradient(ellipse at 50% 52%, rgba(255, 245, 219, .3) 0%, rgba(255, 244, 216, .16) 42%, transparent 73%);
+  pointer-events: none;
+}
+.invitation-footer__content {
+  min-height: 0;
+  padding: 0;
+  color: #552417;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.invitation-footer__journey { width: 100%; }
+.invitation-footer__before,
+.invitation-footer__began {
+  color: #6d351c;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(12px, 3.5vw, 16px);
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.invitation-footer__journey h2 {
+  margin: clamp(7px, 2vw, 10px) 0 clamp(6px, 1.8vw, 9px);
+  color: #5a2117;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: clamp(42px, 12.2vw, 57px);
+  font-weight: 400;
+  line-height: .86;
+}
+.invitation-footer__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: clamp(20px, 5vw, 25px);
+}
+.invitation-footer__divider span { width: clamp(46px, 14vw, 66px); height: 1px; background: linear-gradient(90deg, transparent, #a9702a); }
+.invitation-footer__divider span:last-child { background: linear-gradient(90deg, #a9702a, transparent); }
+.invitation-footer__divider i { width: 8px; height: 8px; border: 1px solid #a9702a; transform: rotate(45deg); }
+.invitation-footer__story {
+  margin-top: clamp(20px, 5.5vw, 28px);
+  color: #65301e;
+  font-size: clamp(17px, 4.7vw, 22px);
+  font-weight: 600;
+  line-height: 1.38;
+}
+.invitation-footer__beginning {
+  margin-top: clamp(29px, 7vw, 35px);
+  color: #5c281b;
+  line-height: 1;
+}
+.invitation-footer__beginning p { font-size: clamp(24px, 6.7vw, 31px); font-weight: 500; }
+.invitation-footer__beginning strong {
+  display: block;
+  margin-top: 3px;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: clamp(40px, 11vw, 52px);
+  font-weight: 400;
+}
+.invitation-footer__divider--second { margin-top: clamp(21px, 5.5vw, 28px); }
+.invitation-footer__blessings {
+  display: grid;
+  width: 116%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(23px, 6vw, 31px);
+  margin-left: -8%;
+}
+.invitation-footer__blessing {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 clamp(3px, 1.5vw, 8px);
+  border-right: 1px solid rgba(124, 68, 26, .42);
+}
+.invitation-footer__blessing:last-child { border-right: 0; }
+.invitation-footer__blessing svg {
+  width: clamp(25px, 7vw, 34px);
+  height: clamp(25px, 7vw, 34px);
+  color: #a26b1f;
+  stroke-width: 1.4;
+}
+.invitation-footer__blessing p {
+  margin-top: 8px;
+  color: #60301e;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(6.5px, 1.85vw, 8.7px);
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.invitation-footer__blessing p span { display: block; }
+.invitation-footer__thanks {
+  margin-top: clamp(24px, 6vw, 31px);
+  color: #61311f;
+}
+.invitation-footer__thanks > i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: 0 auto 11px;
+  background: #9a6a18;
+  transform: rotate(45deg);
+}
+.invitation-footer__thanks > p {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(8.5px, 2.45vw, 11.5px);
+  font-weight: 800;
+  letter-spacing: .035em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.invitation-footer__thanks > span {
+  display: block;
+  margin-top: 4px;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(7px, 2vw, 9.5px);
+  font-weight: 600;
+  letter-spacing: .025em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.invitation-footer__thanks > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 12px;
+}
+.invitation-footer__thanks > div b { width: 47px; height: 1px; background: linear-gradient(90deg, transparent, #a26922); }
+.invitation-footer__thanks > div b:last-child { background: linear-gradient(90deg, #a26922, transparent); }
+.invitation-footer__thanks > div em { width: 5px; height: 5px; background: #9d6b19; transform: rotate(45deg); }
+
+@media (max-width: 370px) {
+  .invitation-footer,
+  .invitation-footer__content { min-height: 0; }
+  .invitation-footer__content { top: 26.2%; }
+  .invitation-footer__story { line-height: 1.32; }
+  .invitation-footer__beginning { margin-top: 25px; }
+  .invitation-footer__blessings { margin-top: 21px; }
+  .invitation-footer__thanks { margin-top: 21px; }
+}
+
+.invitation-footer__visual { background: #FAF6EE; }
+.invitation-footer__credit {
+  z-index: 5;
+  display: flex;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 12px 8px;
+  color: #9b7447;
+  background: linear-gradient(180deg, transparent 0%, rgba(253, 246, 235, 0.6) 40%, rgba(253, 246, 235, 0.88) 100%);
+  border-top: 0;
+  font-family: 'Cinzel', Georgia, serif;
+  text-transform: uppercase;
+}
+.invitation-footer__credit > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: clamp(7px, 2vw, 9px);
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+.invitation-footer__credit > p svg {
+  width: 10px;
+  height: 10px;
+  color: #b98331;
+  fill: currentColor;
+  stroke: none;
+}
+.invitation-footer__credit > p strong { color: #a56827; font-weight: 800; }
+.invitation-footer__credit > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #87633a;
+  font-size: clamp(7px, 2vw, 9px);
+  font-weight: 600;
+  letter-spacing: .1em;
+  transition: color .2s ease, transform .2s ease;
+}
+.invitation-footer__credit > a:hover { color: #6c351e; transform: translateY(-1px); }
+.invitation-footer__credit > a svg { width: 13px; height: 13px; color: #aa762d; stroke-width: 1.5; }
+
+.invitation-footer__content--simple { color: #572417; }
+.invitation-footer__simple-message {
+  width: 100%;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  text-shadow: 0 1px 0 rgba(255, 244, 216, .8);
+}
+.invitation-footer__simple-message > p {
+  color: #77411f;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(11px, 3vw, 14px);
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.invitation-footer__simple-message h2 {
+  margin-top: 22px;
+  color: #5b2018;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: clamp(46px, 13vw, 61px);
+  font-weight: 400;
+  line-height: .86;
+}
+.invitation-footer__simple-message > strong {
+  display: block;
+  margin-top: 7px;
+  color: #69301d;
+  font-size: clamp(22px, 6vw, 28px);
+  font-style: italic;
+  font-weight: 600;
+}
+.invitation-footer__closing-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: clamp(28px, 7vw, 35px);
+}
+.invitation-footer__closing-rule span { width: clamp(42px, 12vw, 56px); height: 1px; background: linear-gradient(90deg, transparent, #a36b25); }
+.invitation-footer__closing-rule span:last-child { background: linear-gradient(90deg, #a36b25, transparent); }
+.invitation-footer__closing-rule i { width: 6px; height: 6px; border: 1px solid #9b6422; transform: rotate(45deg); }
+.invitation-footer__simple-message .invitation-footer__closing-note {
+  margin-top: clamp(24px, 6vw, 30px);
+  color: #65331f;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(15px, 4.2vw, 20px);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: .01em;
+  line-height: 1.3;
+  text-transform: none;
+}
+.invitation-footer__closing-signature {
+  margin-top: clamp(20px, 5vw, 25px);
+  color: #64231a;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(27px, 7.5vw, 35px);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: none;
+}
+.invitation-footer__closing-signature i { color: #a06927; font-family: 'Great Vibes', cursive; font-size: .78em; font-weight: 400; }
+.invitation-footer__closing-signature span {
+  display: block;
+  margin-top: 8px;
+  color: #8a5b2d;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(9px, 2.6vw, 12px);
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.invitation-footer__simple-message > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 23px;
+}
+.invitation-footer__simple-message > div span { width: 58px; height: 1px; background: linear-gradient(90deg, transparent, #a66e27); }
+.invitation-footer__simple-message > div span:last-child { background: linear-gradient(90deg, #a66e27, transparent); }
+.invitation-footer__simple-message > div i { width: 7px; height: 7px; border: 1px solid #a66e27; transform: rotate(45deg); }
+.invitation-footer__simple-message > small {
+  display: block;
+  margin-top: 18px;
+  color: #71411f;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(8px, 2.25vw, 10.5px);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 370px) {
+  .invitation-footer__credit { min-height: 0; padding: 6px 10px 8px; }
+  .invitation-footer__content--simple { top: 38%; }
+}

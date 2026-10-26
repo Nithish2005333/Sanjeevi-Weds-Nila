@@ -1,0 +1,241 @@
+/* Scoped layout rules for celebration scene from Wedding-Reception-Layout-Fix */
+
+[data-celebration-scene] {
+  --event-ink: #710d18;
+  --event-body: #553b29;
+  --event-rail: clamp(86px, 21.3vw, 116px);
+  position: relative;
+  isolation: isolate;
+  background-color: #fff7e6;
+}
+
+[data-celebration-decoration] {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+[data-celebration-vine] {
+  position: absolute;
+  top: 0;
+  right: -8px;
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+
+[data-celebration-content] {
+  position: relative;
+  z-index: 1;
+  max-width: 1040px;
+  margin-inline: auto;
+  padding: 24px var(--event-rail) 40px 20px;
+}
+
+[data-event-section] {
+  position: relative;
+  min-width: 0;
+  height: auto;
+  background: transparent;
+  overflow: visible;
+}
+
+[data-event-section]+[data-event-section] {
+  margin-top: clamp(36px, 7vw, 64px);
+}
+
+[data-event-title] {
+  margin: 0 !important;
+  color: var(--event-ink);
+  font-size: clamp(30px, 8.4vw, 48px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  overflow-wrap: normal;
+}
+
+[data-event-date] {
+  margin: 0 0 16px;
+  font-size: clamp(17px, 4.4vw, 22px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.015em;
+  text-transform: none;
+}
+
+[data-event-venue] {
+  margin: 0 0 8px;
+  color: var(--event-ink);
+  font-size: clamp(20px, 5.2vw, 28px);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+}
+
+[data-event-address] {
+  margin: 0 0 20px;
+  color: var(--event-body);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1.55;
+  letter-spacing: 0;
+  opacity: 1;
+  overflow-wrap: break-word;
+}
+
+[data-event-hands] {
+  position: absolute;
+  top: -16px;
+  right: -30px;
+  z-index: -1;
+  width: min(58%, 245px);
+  height: auto;
+  opacity: 0.72;
+  transform: rotate(-5deg);
+  transform-origin: top right;
+  pointer-events: none;
+}
+
+[data-event-illustration] {
+  position: relative;
+  display: block;
+  margin: 0 auto 20px;
+  width: min(100%, 420px);
+  height: auto;
+}
+
+[data-event-illustration] img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+[data-map-card] {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--event-accent, #b75231);
+  border-radius: 18px;
+  background: #fffaf2;
+  box-shadow: 0 4px 20px rgba(113, 13, 24, 0.06);
+}
+
+[data-map-canvas] {
+  position: relative;
+  width: 100%;
+  height: clamp(200px, 46vw, 240px);
+  min-height: 200px;
+  background: #efe9dc;
+  overflow: hidden;
+}
+
+[data-map-card] iframe {
+  display: block;
+  flex: none;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  border: 0;
+}
+
+[data-directions] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 34px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 0;
+  background: var(--event-accent, #b75231);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.015em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+[data-directions] svg {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  color: #fff;
+  stroke: #fff;
+  fill: none;
+  display: block;
+}
+
+[data-directions]:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -5px;
+}
+
+[data-event-welcome] {
+  margin: 20px 0 0;
+  color: var(--event-ink);
+  font-size: clamp(16px, 4.2vw, 19px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0;
+  opacity: 1;
+  text-align: left;
+}
+
+[data-event-section][id='wedding'] {
+  --event-accent: #b75231;
+}
+
+[data-event-section][id='reception'] {
+  --event-accent: #49633d;
+}
+
+[data-event-date] {
+  color: var(--event-accent, #b75231);
+}
+
+@media (min-width: 768px) {
+  [data-celebration-content] {
+    padding-left: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-celebration-content] [data-reveal] {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
+
+.families-section {
+  position: relative;
+  overflow: visible;
+}
+
+.family-seam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transform: translateY(-70%);
+  z-index: 10;
+  pointer-events: none;
+}

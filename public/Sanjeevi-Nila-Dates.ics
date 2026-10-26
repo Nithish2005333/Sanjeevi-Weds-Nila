@@ -1,0 +1,30 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sanjeevi & Nila Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Sanjeevi & Nila Wedding & Reception
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VEVENT
+UID:wedding-sanjeevi-nila-20261120@sanjeeviwedsnila.com
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:Sanjeevi & Nila Wedding (திருமணம்)
+DESCRIPTION:Wedding Ceremony of Sanjeevi & Nila at Malaiamman Marriage Hall, Dalavapalayam, Karur.
+LOCATION:Malaiamman Marriage Hall, Dalavapalayam, Karur, Tamil Nadu
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:reception-sanjeevi-nila-20261122@sanjeeviwedsnila.com
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20261122
+DTEND;VALUE=DATE:20261123
+SUMMARY:Sanjeevi & Nila Reception (திருமண வரவேற்பு)
+DESCRIPTION:Wedding Reception of Sanjeevi & Nila at Malaiamman Marriage Hall, Dalavapalayam, Karur.
+LOCATION:Malaiamman Marriage Hall, Dalavapalayam, Karur, Tamil Nadu
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
