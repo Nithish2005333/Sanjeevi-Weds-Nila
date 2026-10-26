@@ -26,6 +26,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
   onJoinComplete,
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const stageContainerRef = useRef<HTMLDivElement>(null);
   const groomRef = useRef<HTMLDivElement>(null);
   const brideRef = useRef<HTMLDivElement>(null);
   const coupleRef = useRef<HTMLDivElement>(null);
@@ -192,20 +193,26 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       }, [], 0.85);
     };
 
-    // Trigger join animation as soon as the couple section enters the viewport
+    // Trigger join animation ONLY when the couple image is at least 75% in screen view
+    const target = stageContainerRef.current || imagesStageRef.current || sectionRef.current;
+    if (!target) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (
+            (entry.isIntersecting && entry.intersectionRatio >= 0.75) ||
+            entry.boundingClientRect.bottom < window.innerHeight * 0.4
+          ) {
             playJoinAnimation();
             observer.disconnect();
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: [0.75] }
     );
 
-    observer.observe(sectionRef.current);
+    observer.observe(target);
 
     return () => {
       observer.disconnect();
@@ -233,19 +240,40 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         }}
       />
 
-      {/* Header Eyebrow Title */}
+      {/* Header Eyebrow Title with elegant scroll reveal */}
       <div className="relative z-10 text-center mb-4 mt-2.5 sm:mt-3">
-        <span className="font-sharp-sans text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] text-[#853119] block mb-1">
+        <motion.span
+          initial={{ opacity: 0, y: -6, letterSpacing: "0.18em" }}
+          whileInView={{ opacity: 1, y: 0, letterSpacing: "0.3em" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] as const }}
+          className="font-sharp-sans text-[10px] sm:text-xs font-bold uppercase text-[#853119] block mb-1"
+        >
           Together in Love &amp; Blessings
-        </span>
-        <h2 className="font-odstemplik text-2xl sm:text-3xl font-bold text-[#2B120B] tracking-wide">
+        </motion.span>
+        <motion.h2
+          initial={{ opacity: 0, y: 14, scale: 0.94, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] as const }}
+          className="font-odstemplik text-2xl sm:text-3xl font-bold text-[#2B120B] tracking-wide"
+        >
           An Eternal Union
-        </h2>
-        <div className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C9A46A] to-transparent mx-auto mt-2" />
+        </motion.h2>
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
+          className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C9A46A] to-transparent mx-auto mt-2 origin-center"
+        />
       </div>
 
       {/* Frame Container for Groom & Bride Scroll Join Stage */}
-      <div className="relative w-full max-w-sm h-[480px] sm:h-[520px] overflow-hidden flex items-center justify-center">
+      <div
+        ref={stageContainerRef}
+        className="relative w-full max-w-sm h-[480px] sm:h-[520px] overflow-hidden flex items-center justify-center"
+      >
         {/* White camera flash layer for the morph transition */}
         <div
           ref={flashRef}
@@ -334,11 +362,17 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       </div>
 
       {/* Bottom Auspicious Blessing Tag */}
-      <div className="relative z-10 text-center mt-3 max-w-xs">
+      <motion.div
+        initial={{ opacity: 0, y: 12, filter: "blur(3px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.85, delay: 0.2, ease: "easeOut" }}
+        className="relative z-10 text-center mt-3 max-w-xs"
+      >
         <p className="font-serif italic text-xs text-[#5C1A22] leading-relaxed">
           “Two souls with but a single thought, two hearts that beat as one.”
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -50,11 +50,31 @@ const GroomDetails: React.FC = () => (
   </div>
 );
 
-/* ─── Reusable Connecting Divider (Straight on BgImage) ─── */
+/* ─── Reusable Connecting Divider (Straight on BgImage with expanding rules) ─── */
 const ConnectingDivider: React.FC = () => (
-  <div className="flex items-center justify-center gap-3 my-2 sm:my-3 w-full select-none">
-    <div className="h-[1px] flex-1 max-w-[80px] bg-gradient-to-r from-transparent via-[#C9A46A] to-[#C9A46A]" />
-    <div
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.4 }}
+    variants={{
+      hidden: {},
+      visible: { transition: { staggerChildren: 0.12, delayChildren: 0.08 } },
+    }}
+    className="flex items-center justify-center gap-3 my-2 sm:my-3 w-full select-none"
+  >
+    <motion.div
+      variants={{
+        hidden: { scaleX: 0, opacity: 0 },
+        visible: { scaleX: 1, opacity: 1, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const } },
+      }}
+      style={{ transformOrigin: "right center" }}
+      className="h-[1px] flex-1 max-w-[80px] bg-gradient-to-r from-transparent via-[#C9A46A] to-[#C9A46A]"
+    />
+    <motion.div
+      variants={{
+        hidden: { scale: 0.65, opacity: 0 },
+        visible: { scale: 1, opacity: 1, transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] as const } },
+      }}
       className="inline-flex items-center gap-2 px-5 py-1 rounded-full shadow-xs"
       style={{
         background: "linear-gradient(180deg, #FAF2DC 0%, #F3E2BD 100%)",
@@ -66,9 +86,16 @@ const ConnectingDivider: React.FC = () => (
         இணைந்து மணக்கும்
       </span>
       <span className="text-[#C9A46A] text-xs">✦</span>
-    </div>
-    <div className="h-[1px] flex-1 max-w-[80px] bg-gradient-to-l from-transparent via-[#C9A46A] to-[#C9A46A]" />
-  </div>
+    </motion.div>
+    <motion.div
+      variants={{
+        hidden: { scaleX: 0, opacity: 0 },
+        visible: { scaleX: 1, opacity: 1, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const } },
+      }}
+      style={{ transformOrigin: "left center" }}
+      className="h-[1px] flex-1 max-w-[80px] bg-gradient-to-l from-transparent via-[#C9A46A] to-[#C9A46A]"
+    />
+  </motion.div>
 );
 
 /* ─── Reusable Bride Details (Straight on BgImage, Ornate Traditional Design) ─── */
@@ -153,7 +180,16 @@ const DateTimeDetails: React.FC = () => (
 
 /* ─── Reusable Contact Section (Straight on BgImage, No Card, No Box) ─── */
 const ContactSection: React.FC = () => (
-  <div className="w-full text-center pt-4 sm:pt-6 mt-1 select-none">
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.3 }}
+    variants={{
+      hidden: {},
+      visible: { transition: { staggerChildren: 0.14, delayChildren: 0.08 } },
+    }}
+    className="w-full text-center pt-4 sm:pt-6 mt-1 select-none"
+  >
     {/* Header: தொடர்புக்கு with gold ornamental rules */}
     <div className="flex items-center justify-center gap-2 mb-1.5">
       <span className="h-[1px] w-12 sm:w-16 bg-gradient-to-r from-transparent via-[#C9A46A] to-[#C9A46A]" />
@@ -165,9 +201,13 @@ const ContactSection: React.FC = () => (
       <span className="h-[1px] w-12 sm:w-16 bg-gradient-to-l from-transparent via-[#C9A46A] to-[#C9A46A]" />
     </div>
 
-    {/* Two Phone buttons stacked vertically (Real button design, icon without card) */}
+    {/* Two Phone buttons stacked vertically (Real button design with spring pop) */}
     <div className="flex flex-col items-center gap-2 w-full mt-1">
-      <a
+      <motion.a
+        variants={{
+          hidden: { opacity: 0, scale: 0.88, y: 12 },
+          visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: [0.34, 1.4, 0.64, 1] as const } },
+        }}
         href="tel:9786804303"
         className="group inline-flex items-center justify-center gap-2.5 py-2 px-6 min-w-[210px] sm:min-w-[230px] rounded-full bg-gradient-to-r from-[#4A0207] via-[#5C0913] to-[#4A0207] text-[#FFFDF8] border border-[#C9A46A]/80 shadow-[0_2px_8px_rgba(74,2,7,0.22)] hover:shadow-[0_4px_14px_rgba(74,2,7,0.35)] hover:border-[#F4E3B7] hover:scale-[1.03] active:scale-95 transition-all"
         aria-label="Call 97868 04303"
@@ -176,9 +216,13 @@ const ContactSection: React.FC = () => (
         <span className="font-tamil font-bold text-base sm:text-[17px] tracking-wider text-[#FFFDF8]">
           97868 04303
         </span>
-      </a>
+      </motion.a>
 
-      <a
+      <motion.a
+        variants={{
+          hidden: { opacity: 0, scale: 0.88, y: 12 },
+          visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: [0.34, 1.4, 0.64, 1] as const } },
+        }}
         href="tel:8885409595"
         className="group inline-flex items-center justify-center gap-2.5 py-2 px-6 min-w-[210px] sm:min-w-[230px] rounded-full bg-gradient-to-r from-[#4A0207] via-[#5C0913] to-[#4A0207] text-[#FFFDF8] border border-[#C9A46A]/80 shadow-[0_2px_8px_rgba(74,2,7,0.22)] hover:shadow-[0_4px_14px_rgba(74,2,7,0.35)] hover:border-[#F4E3B7] hover:scale-[1.03] active:scale-95 transition-all"
         aria-label="Call 88854 09595"
@@ -187,9 +231,9 @@ const ContactSection: React.FC = () => (
         <span className="font-tamil font-bold text-base sm:text-[17px] tracking-wider text-[#FFFDF8]">
           88854 09595
         </span>
-      </a>
+      </motion.a>
     </div>
-  </div>
+  </motion.div>
 );
 
 /* ─── Main Tamil Wedding Invitation Section ─── */
@@ -261,8 +305,14 @@ export const TamilCardSection: React.FC = () => {
       {/* ── Main Content Container ── */}
       <div className="relative z-10 max-w-md mx-auto px-4 sm:px-5 pt-14 sm:pt-18 pb-28 sm:pb-32">
 
-        {/* ── 1. Small Centered “சிவமயம்” ── */}
-        <motion.div {...slideUp(0)} className="text-center mb-1.5">
+        {/* ── 1. Small Centered “சிவமயம்” (Sacred glyph scale pop) ── */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.75, filter: "blur(3px)" }}
+          whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.75, ease: [0.34, 1.56, 0.64, 1] as const }}
+          className="text-center mb-1.5"
+        >
           <div className="inline-flex items-center justify-center gap-2">
             <span className="text-[#8B5213] text-sm">☙</span>
             <span className="font-tamil text-xs font-bold tracking-[0.25em] text-[#783F06] uppercase">
@@ -272,8 +322,14 @@ export const TamilCardSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* ── 2. Main Heading “திருமண வரவேற்பு அழைப்பிதழ்” (No line below) ── */}
-        <motion.div {...slideUp(0.04)} className="text-center mb-3.5 sm:mb-4">
+        {/* ── 2. Main Heading “திருமண வரவேற்பு அழைப்பிதழ்” (Majestic slide with blur clearing) ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 22, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.85, delay: 0.08, ease: [0.22, 1, 0.36, 1] as const }}
+          className="text-center mb-3.5 sm:mb-4"
+        >
           <h2
             className="font-tamil font-bold text-[#4A0207] leading-tight"
             style={{ fontSize: "clamp(1.45rem, 5.5vw, 1.95rem)" }}
@@ -284,8 +340,14 @@ export const TamilCardSection: React.FC = () => {
           </h2>
         </motion.div>
 
-        {/* ── 3. Wedding Event Card (20 நவம்பர் கல்யாணம்) ── */}
-        <motion.div {...slideUp(0.06)} className="relative w-full flex justify-center mb-2 sm:mb-2.5">
+        {/* ── 3. Wedding Event Card (20 நவம்பர் கல்யாணம் - 3D Tilt Reveal from Left) ── */}
+        <motion.div
+          initial={{ opacity: 0, x: -22, rotateY: 7, scale: 0.95 }}
+          whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.85, delay: 0.12, ease: [0.22, 1, 0.36, 1] as const }}
+          className="relative w-full flex justify-center mb-2 sm:mb-2.5 [perspective:1000px]"
+        >
           <div className="relative w-full rounded-2xl overflow-hidden filter drop-shadow-md">
             <Image
               src="/Tamil%20Wedding.webp"
@@ -299,8 +361,14 @@ export const TamilCardSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* ── 4. Reception Event Card (22 நவம்பர் வரவேற்பு) ── */}
-        <motion.div {...slideUp(0.08)} className="relative w-full mb-2.5 sm:mb-3">
+        {/* ── 4. Reception Event Card (22 நவம்பர் வரவேற்பு - 3D Tilt Reveal from Right) ── */}
+        <motion.div
+          initial={{ opacity: 0, x: 22, rotateY: -7, scale: 0.95 }}
+          whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.85, delay: 0.16, ease: [0.22, 1, 0.36, 1] as const }}
+          className="relative w-full mb-2.5 sm:mb-3 [perspective:1000px]"
+        >
           <div className="relative w-full rounded-2xl overflow-hidden filter drop-shadow-md">
             <Image
               src="/Tamil%20Reception.webp"
@@ -313,8 +381,14 @@ export const TamilCardSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* ── 5. Centered Sacred Invocation “அருள்மிகு ஸ்ரீ முருகன் துணை” (Compact Royal Gold Cartouche) ── */}
-        <motion.div {...slideUp(0.05)} className="w-full flex justify-center my-3.5 sm:my-4">
+        {/* ── 5. Centered Sacred Invocation “அருள்மிகு ஸ்ரீ முருகன் துணை” (Gilded Seal Bloom) ── */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.82, filter: "blur(3px)" }}
+          whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.75, delay: 0.18, ease: [0.34, 1.4, 0.64, 1] as const }}
+          className="w-full flex justify-center my-3.5 sm:my-4"
+        >
           <div className="p-[1.5px] rounded-full bg-gradient-to-r from-[#B5863F] via-[#F4E3B7] to-[#B5863F] shadow-[0_2px_8px_rgba(181,134,63,0.18)]">
             <div
               className="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-1 rounded-full"
@@ -332,32 +406,50 @@ export const TamilCardSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* ── 6. Single-Column Vertical Details Arrangement (Straight to BgImage, No Cards) ── */}
+        {/* ── 6. Single-Column Vertical Details Arrangement ── */}
         <div className="space-y-2 sm:space-y-3 w-full flex flex-col items-center">
           {/* 1. Groom Details */}
-          <motion.div {...slideUp(0.06)} className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] as const }}
+            className="w-full"
+          >
             <GroomDetails />
           </motion.div>
 
           {/* 2. Centered Connecting Text */}
-          <motion.div {...slideUp(0.07)} className="w-full">
+          <div className="w-full">
             <ConnectingDivider />
-          </motion.div>
+          </div>
 
           {/* 3. Bride Details */}
-          <motion.div {...slideUp(0.08)} className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] as const }}
+            className="w-full"
+          >
             <BrideDetails />
           </motion.div>
 
           {/* 4. Date and Time Details */}
-          <motion.div {...slideUp(0.09)} className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 14, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+            className="w-full"
+          >
             <DateTimeDetails />
           </motion.div>
 
           {/* 5. Contact Section */}
-          <motion.div {...slideUp(0.1)} className="w-full">
+          <div className="w-full">
             <ContactSection />
-          </motion.div>
+          </div>
         </div>
 
       </div>

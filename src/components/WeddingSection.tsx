@@ -10,18 +10,18 @@ interface WeddingSectionProps {
 
 /* Lotus Divider with lines bold at center, fading to sides */
 const LotusDivider = () => (
-  <div className="flex items-center gap-2 w-full -mt-0.5 mb-2.5" aria-hidden="true">
+  <div className="lotus-divider-wrapper flex items-center gap-2 w-full -mt-0.5 mb-2.5" aria-hidden="true">
     {/* Left line: dark near lotus, fades left */}
-    <span className="flex-1 h-[1.5px] bg-gradient-to-l from-[#C38A25] via-[#C38A25]/50 to-transparent" />
+    <span className="lotus-divider-line lotus-divider-left flex-1 h-[1.5px] bg-gradient-to-l from-[#C38A25] via-[#C38A25]/50 to-transparent origin-right" />
     {/* Center lotus image */}
     <img
       src="/assets/lotus-divider.webp"
       alt=""
-      className="w-5.5 h-5.5 object-contain shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.12)]"
+      className="lotus-divider-flower w-5.5 h-5.5 object-contain shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.12)]"
       aria-hidden="true"
     />
     {/* Right line: dark near lotus, fades right */}
-    <span className="flex-1 h-[1.5px] bg-gradient-to-r from-[#C38A25] via-[#C38A25]/50 to-transparent" />
+    <span className="lotus-divider-line lotus-divider-right flex-1 h-[1.5px] bg-gradient-to-r from-[#C38A25] via-[#C38A25]/50 to-transparent origin-left" />
   </div>
 );
 
@@ -56,19 +56,19 @@ export const WeddingSection: React.FC<WeddingSectionProps> = ({ event }) => {
         {/* ── HEADING: Drop-cap W + EDDING ── */}
         <h2
           data-event-title
-          className="wedding-heading leading-none flex items-baseline gap-0 mt-3 sm:mt-4"
+          className="wedding-heading leading-none flex items-baseline gap-0 mt-3 sm:mt-4 overflow-hidden"
           style={{ fontFamily: "'Cinzel', Georgia, serif", marginBottom: "0px" }}
         >
           {/* Large drop-cap first letter */}
           <span
-            className="text-[#710D18] font-bold [text-shadow:0_1px_0_rgba(255,255,255,0.85)]"
+            className="drop-cap-letter text-[#710D18] font-bold [text-shadow:0_1px_0_rgba(255,255,255,0.85)] inline-block origin-bottom-left"
             style={{ fontSize: "clamp(58px, 15vw, 76px)", lineHeight: 1 }}
           >
             W
           </span>
           {/* Rest of heading in smaller caps, baseline-aligned */}
           <span
-            className="text-[#710D18] font-bold tracking-[0.06em] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.85)]"
+            className="event-title-rest text-[#710D18] font-bold tracking-[0.06em] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.85)] inline-block"
             style={{ fontSize: "clamp(28px, 7.5vw, 38px)", lineHeight: 1 }}
           >
             EDDING

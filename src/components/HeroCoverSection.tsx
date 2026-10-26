@@ -448,10 +448,20 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                 style={{ transformOrigin: "left center" }}
                 className="w-full h-[2px] bg-gradient-to-l from-transparent via-[#A8742A] to-[#A8742A]/85 rounded-full shadow-[0_1px_1px_rgba(255,255,255,0.6)]"
               />
-              <div className="h-8 flex items-center justify-center">
-                <span className="font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.14em] text-[#3D0609] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
-                  AT <span className="font-['Cinzel',Georgia,serif] font-black">11:30</span> AM
-                </span>
+              <div className="relative overflow-hidden h-8 w-full flex items-center justify-center [perspective:500px]">
+                <AnimatePresence mode="popLayout" initial={false}>
+                  <motion.span
+                    key={isReception ? "reception-time" : "wedding-time"}
+                    initial={{ y: 20, rotateX: 55, opacity: 0, filter: "blur(3px)" }}
+                    animate={{ y: 0, rotateX: 0, opacity: 1, filter: "blur(0px)" }}
+                    exit={{ y: -20, rotateX: -55, opacity: 0, filter: "blur(3px)" }}
+                    transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
+                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                    className="w-full text-center font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.14em] text-[#3D0609] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
+                  >
+                    AT <span className="font-['Cinzel',Georgia,serif] font-black">{isReception ? "11:30" : "4:30"}</span> AM
+                  </motion.span>
+                </AnimatePresence>
               </div>
               <motion.div
                 initial={{ scaleX: 0 }}

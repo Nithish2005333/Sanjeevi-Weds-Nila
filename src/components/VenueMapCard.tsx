@@ -30,6 +30,7 @@ export const VenueMapCard: React.FC<VenueMapCardProps> = ({ event, className = "
       className={`venue-map-card group/card w-full ${className}`}
       style={{
         borderColor: isWedding ? "#B75231" : "#49633D",
+        transformOrigin: "top center",
       }}
     >
       {/* 1. Map Canvas Area (Responsive height, full iframe fit without cutoff or gap) */}
