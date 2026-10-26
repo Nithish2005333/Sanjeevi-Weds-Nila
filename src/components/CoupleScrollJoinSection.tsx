@@ -376,9 +376,23 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
       {/* Ornate Indian Wedding Mandap Invitation Background with Carved Pillars & Lamps */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-top pointer-events-none opacity-95"
-        style={{ backgroundImage: `url('/assets/mandap_invitation_bg.webp')` }}
+        style={{
+          backgroundImage: `url('/assets/mandap_invitation_bg.webp')`,
+          maskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 4%, rgba(0,0,0,0.85) 12%, black 22%, black 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 4%, rgba(0,0,0,0.85) 12%, black 22%, black 100%)",
+        }}
       />
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#FAF6F0]/60 via-transparent to-[#FAF6F0]/75 pointer-events-none" />
+
+      {/* Smooth Seamless Top Gradient Fade from above celebration section bottom color (#FFF7E6) */}
+      <div
+        className="absolute top-0 inset-x-0 h-44 sm:h-56 z-[5] pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, #FFF7E6 0%, rgba(255, 247, 230, 0.96) 20%, rgba(255, 247, 230, 0.65) 50%, rgba(255, 247, 230, 0.18) 80%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
 
       {/* Decorative Circular Mandapam Pattern Overlay */}
       <div
