@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sanjeeviwedsnila.com"),
-  title: "Sanjeevi & Nila — Royal Wedding Invitation",
+  metadataBase: new URL("https://sanjeeviwedsnila.vercel.app"),
+  title: "Sanjeevi & Nila | Royal Wedding Invitation (திருமண அழைப்பிதழ்)",
   description:
     "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
   icons: {
