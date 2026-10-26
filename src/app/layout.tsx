@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sanjeeviwedsnila.vercel.app"),
-  title: "Sanjeevi & Nila — Wedding Invitation (திருமண வரவேற்பு  அழைப்பிதழ்)",
+  title: "Sanjeevi & Nila — Wedding Invitation (திருமண வரவேற்பு அழைப்பிதழ்)",
   description:
     "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
   icons: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://sanjeeviwedsnila.vercel.app",
     siteName: "Sanjeevi & Nila Wedding",
-    title: "Sanjeevi & Nila — Royal Wedding Invitation",
+    title: "Sanjeevi & Nila — Royal Wedding Invitation (திருமண வரவேற்பு அழைப்பிதழ்)",
     description:
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
     images: [
