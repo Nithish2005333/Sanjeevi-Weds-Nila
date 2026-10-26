@@ -331,7 +331,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col items-center justify-center min-h-screen w-full bg-[#FAF6F0] overflow-hidden select-none px-4 pt-16 sm:pt-20 pb-8"
+      className="relative flex flex-col items-center justify-center min-h-screen w-full bg-[#FDF1D3] overflow-hidden select-none px-4 pt-16 sm:pt-20 pb-8"
       aria-label="Sanjeevi and Nila Couple Section"
     >
       {/* Shared SVG Gradients for Couple Section Petals (Yellow, Gold, Pink, Red) */}
@@ -373,37 +373,27 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         </div>
       )}
 
-      {/* Ornate Indian Wedding Mandap Invitation Background with Carved Pillars & Lamps */}
+      {/* Ornate Indian Wedding Mandap Invitation Background with Carved Pillars & Lamps - 100% Fully Visible */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-top pointer-events-none opacity-95"
+        className="absolute inset-0 z-0 bg-cover bg-top pointer-events-none opacity-100"
         style={{
           backgroundImage: `url('/assets/mandap_invitation_bg.webp')`,
-          maskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 4%, rgba(0,0,0,0.85) 12%, black 22%, black 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 4%, rgba(0,0,0,0.85) 12%, black 22%, black 100%)",
+          maskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 1.5%, black 3%, black 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 1.5%, black 3%, black 100%)",
         }}
       />
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#FAF6F0]/60 via-transparent to-[#FAF6F0]/75 pointer-events-none" />
 
-      {/* Smooth Seamless Top Gradient Fade from above celebration section bottom color (#FFF7E6) */}
+      {/* Seamless Top Match Color: Exactly matching the above celebration scene's golden paper tone (#FDF1D3) */}
       <div
-        className="absolute top-0 inset-x-0 h-44 sm:h-56 z-[5] pointer-events-none"
+        className="absolute top-0 inset-x-0 h-8 sm:h-10 z-[5] pointer-events-none"
         style={{
-          background:
-            "linear-gradient(to bottom, #FFF7E6 0%, rgba(255, 247, 230, 0.96) 20%, rgba(255, 247, 230, 0.65) 50%, rgba(255, 247, 230, 0.18) 80%, transparent 100%)",
+          background: "linear-gradient(to bottom, #FDF1D3 0%, rgba(253, 241, 211, 0.8) 35%, transparent 100%)",
         }}
         aria-hidden="true"
       />
 
-      {/* Decorative Circular Mandapam Pattern Overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-repeat bg-[size:100px_100px]"
-        style={{
-          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="%236B4B3E" stroke-width="1" fill="none"/></svg>')`,
-        }}
-      />
-
       {/* Header Eyebrow Title with elegant scroll reveal */}
-      <div className="relative z-10 text-center mb-4 mt-2.5 sm:mt-3">
+      <div className="relative z-10 text-center mb-3 mt-2.5 sm:mt-3">
         <motion.span
           initial={{ opacity: 0, y: -6, letterSpacing: "0.18em" }}
           whileInView={{ opacity: 1, y: 0, letterSpacing: "0.3em" }}
@@ -431,10 +421,10 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         />
       </div>
 
-      {/* Frame Container for Groom & Bride Scroll Join Stage */}
+      {/* Frame Container for Groom & Bride Scroll Join Stage - Scaled down slightly to comfortably fit within mandap pillars */}
       <div
         ref={stageContainerRef}
-        className="relative w-full max-w-sm h-[480px] sm:h-[520px] overflow-hidden flex items-center justify-center"
+        className="relative w-full max-w-[285px] sm:max-w-[305px] h-[375px] sm:h-[400px] overflow-hidden flex items-center justify-center"
       >
         {/* White camera flash layer for the morph transition */}
         <div
@@ -455,7 +445,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
             <img
               src="/groom.webp"
               alt="Sanjeevi - Groom"
-              className="w-full h-full object-cover object-center filter drop-shadow-[0_4px_16px_rgba(43,18,11,0.2)]"
+              className="w-full h-full object-cover object-center filter drop-shadow-[0_2px_8px_rgba(43,18,11,0.08)]"
             />
           </div>
 
@@ -467,11 +457,11 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
             <img
               src="/bride.webp"
               alt="Nila - Bride"
-              className="w-full h-full object-cover object-center filter drop-shadow-[0_4px_16px_rgba(43,18,11,0.2)]"
+              className="w-full h-full object-cover object-center filter drop-shadow-[0_2px_8px_rgba(43,18,11,0.08)]"
             />
           </div>
 
-          {/* Couple Full Overlay Image (Joined Hand-in-Hand with serene floating effect) */}
+          {/* Couple Full Overlay Image (Joined Hand-in-Hand with reduced soft floating effect) */}
           <div
             ref={coupleRef}
             className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center"
@@ -481,14 +471,12 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
               animate={
                 isJoined && !shouldReduceMotion
                   ? {
-                      y: [-4, 4, -4],
-                      rotate: [-0.3, 0.3, -0.3],
-                      scale: [1, 1.008, 1],
+                      y: [-1.8, 1.8, -1.8],
                     }
-                  : { y: 0, rotate: 0, scale: 1 }
+                  : { y: 0 }
               }
               transition={{
-                duration: 4.2,
+                duration: 4.8,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -496,7 +484,7 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
               <img
                 src="/couple.webp"
                 alt="Sanjeevi & Nila"
-                className="w-full h-full object-cover object-center filter drop-shadow-[0_6px_24px_rgba(43,18,11,0.3)]"
+                className="w-full h-full object-cover object-center filter drop-shadow-[0_2px_8px_rgba(43,18,11,0.08)]"
               />
             </motion.div>
           </div>
@@ -541,17 +529,28 @@ export const CoupleScrollJoinSection: React.FC<CoupleScrollJoinSectionProps> = (
         </div>
       </div>
 
-      {/* Bottom Auspicious Blessing Tag */}
+      {/* Bottom Auspicious Blessing Tag - Royal Temple Parchment Plaque for Crystal Readability */}
       <motion.div
-        initial={{ opacity: 0, y: 12, filter: "blur(3px)" }}
+        initial={{ opacity: 0, y: 10, filter: "blur(2px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.85, delay: 0.2, ease: "easeOut" }}
-        className="relative z-10 text-center mt-3 max-w-xs"
+        className="relative z-10 text-center mt-2.5 max-w-[245px] sm:max-w-[270px] px-1"
       >
-        <p className="font-serif italic text-xs text-[#5C1A22] leading-relaxed">
-          “Two souls with but a single thought, two hearts that beat as one.”
-        </p>
+        <div className="relative flex flex-col items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-[#FFFDF8]/95 backdrop-blur-md border border-[#C9A46A]/60 shadow-[0_4px_14px_rgba(43,18,11,0.08),inset_0_0_0_1px_rgba(255,255,255,0.85)]">
+          {/* Subtle Golden Ornamental Accent at Top */}
+          <div className="flex items-center gap-1.5 mb-1 select-none opacity-85" aria-hidden="true">
+            <span className="w-5 h-[0.8px] bg-gradient-to-r from-transparent to-[#C9A46A]" />
+            <span className="text-[#96672E] text-[7.5px] leading-none">✦</span>
+            <span className="w-5 h-[0.8px] bg-gradient-to-l from-transparent to-[#C9A46A]" />
+          </div>
+
+          {/* Sized-down, ultra-clear quote in deep royal crimson */}
+          <p className="font-serif italic text-[10.5px] sm:text-[11.5px] font-medium text-[#5A0E18] tracking-wide leading-snug text-center drop-shadow-[0_1px_0_rgba(255,255,255,0.9)]">
+            “Two souls with but a single thought,
+            <span className="block">two hearts that beat as one.”</span>
+          </p>
+        </div>
       </motion.div>
     </section>
   );

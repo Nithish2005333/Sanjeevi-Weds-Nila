@@ -10,7 +10,44 @@ const reveal = (delay = 0, y = 12) => ({
   transition: { duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] as const },
 });
 
+const GOOGLE_CALENDAR_URL =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" +
+  encodeURIComponent("Sanjeevi & Nila — Royal Wedding & Reception") +
+  "&dates=20261120/20261123" +
+  "&details=" +
+  encodeURIComponent(
+    "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila.\n\n" +
+      "💍 Wedding Ceremony: Friday, 20 Nov 2026 at Arulmigu Sri Varadharaja Perumal Temple, Karur\n" +
+      "🎉 Reception: Sunday, 22 Nov 2026 at Malaiamman Marriage Hall, Karur.\n\n" +
+      "Venue: Malaiamman Marriage Hall, Pugalur Main Road, Punjai Thottakurichi, Thalavapalayam, Karur, Tamil Nadu 639113"
+  ) +
+  "&location=" +
+  encodeURIComponent(
+    "Malaiamman Marriage Hall, Thalavapalayam, Karur, Tamil Nadu"
+  );
+
+const APPLE_CALENDAR_URL =
+  "webcal://sanjeeviwedsnila.vercel.app/Sanjeevi-Nila-Dates.ics";
+
 export const SaveTheDateCalendarSection: React.FC = () => {
+  const handleCalendarClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window === "undefined") return;
+
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+    if (isIOS) {
+      // Direct redirect to native Apple Calendar on iPhone/iPad
+      window.location.href = APPLE_CALENDAR_URL;
+    } else {
+      // Direct redirect to Google Calendar on Android / Mobile (opens native Calendar app)
+      window.open(GOOGLE_CALENDAR_URL, "_blank");
+    }
+  };
+
   return (
     <section
       id="save-the-date"
@@ -126,7 +163,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* 4. Inside the Blank Button: “ADD DATES TO CALENDAR” (Scale-spring pulse button reveal) */}
+      {/* 4. Inside the Blank Button: “ADD DATES TO CALENDAR” (Direct redirect to mobile calendar without downloading file) */}
       <motion.div
         className="absolute left-[16.8%] right-[16.8%] top-[80.14%] h-[5.33%] z-20 flex items-center justify-center"
         initial={{ opacity: 0, scale: 0.82, y: 12 }}
@@ -134,12 +171,10 @@ export const SaveTheDateCalendarSection: React.FC = () => {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.75, delay: 0.4, ease: [0.34, 1.4, 0.64, 1] as const }}
       >
-        <a
-          href="/Sanjeevi-Nila-Dates.ics"
-          download="Sanjeevi-Nila-Dates.ics"
-          role="button"
-          tabIndex={0}
-          aria-label="Add Wedding and Reception Dates to Calendar (Downloads Sanjeevi-Nila-Dates.ics)"
+        <button
+          type="button"
+          onClick={handleCalendarClick}
+          aria-label="Add Wedding and Reception Dates directly to Mobile Calendar"
           className="w-full h-full flex items-center justify-center rounded-full text-[#FFF8F0] font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.14em] uppercase transition-all duration-300 hover:brightness-110 active:scale-[0.98] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#FFF8F0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#B85038] cursor-pointer select-none"
         >
           <span className="flex items-center justify-center gap-1.5 sm:gap-2 drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.6)]">
@@ -160,20 +195,43 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             </svg>
             <span className="pt-0.5">Add Dates to Calendar</span>
           </span>
-        </a>
+        </button>
       </motion.div>
 
-      {/* 5. Beneath the Button: Single-line “Google Calendar · Apple Calendar · Outlook” */}
+      {/* 5. Beneath the Button: Interactive direct calendar selector */}
       <motion.div
-        className="absolute inset-x-0 top-[88.0%] -translate-y-1/2 flex justify-center items-center z-10 pointer-events-none text-center px-2"
+        className="absolute inset-x-0 top-[88.0%] -translate-y-1/2 flex justify-center items-center gap-1.5 sm:gap-2 z-20 text-center px-2"
         initial={{ opacity: 0, y: 6 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
       >
-        <p className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-semibold tracking-[0.1em] text-[#7A4515] select-none whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.7)]">
-          Google Calendar · Apple Calendar · Outlook
-        </p>
+        <button
+          type="button"
+          onClick={() => window.open(GOOGLE_CALENDAR_URL, "_blank")}
+          className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+        >
+          Google Calendar
+        </button>
+        <span className="text-[#C9A46A] text-[9px] select-none" aria-hidden="true">·</span>
+        <button
+          type="button"
+          onClick={() => {
+            window.location.href = APPLE_CALENDAR_URL;
+          }}
+          className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+        >
+          Apple Calendar
+        </button>
+        <span className="text-[#C9A46A] text-[9px] select-none" aria-hidden="true">·</span>
+        <a
+          href="/Sanjeevi-Nila-Dates.ics"
+          download="Sanjeevi-Nila-Dates.ics"
+          className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+          title="Download .ICS for Outlook & other calendar apps"
+        >
+          Outlook
+        </a>
       </motion.div>
     </section>
   );
