@@ -95,8 +95,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
         <div className="absolute inset-0 bg-gradient-to-b from-[#FBF4E8]/20 via-transparent to-[#FBF4E8]/15 pointer-events-none" />
       </div>
 
-      {/* Header Overlay — Content laid out in open parchment space between golden arch and deities (moved down gracefully) */}
-      <header className="relative z-10 w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center text-center pt-14 sm:pt-18">
+      {/* Header Overlay — Content laid out in open parchment space between golden arch and deities */}
+      <header className="relative z-10 w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center text-center pt-4 sm:pt-7">
         {/* Monogram Logo under Top Golden Arch */}
         <motion.div
           className="flex flex-col items-center mb-2.5 sm:mb-4"
@@ -490,6 +490,74 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
           </motion.div>
         </div>
       </header>
+
+      {/* Animated Hand Scroll Indicator for Users Unaware of Scrolling */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={
+          isVisible
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 16 }
+        }
+        transition={{ duration: 0.8, delay: 2.5, ease: "easeOut" }}
+        className="absolute bottom-5 sm:bottom-7 inset-x-0 z-20 flex flex-col items-center justify-center cursor-pointer select-none"
+        onClick={() => {
+          document.getElementById("parents")?.scrollIntoView({ behavior: "smooth" });
+        }}
+        aria-label="Scroll down to view full invitation"
+      >
+        <div className="flex flex-col items-center gap-1 group">
+          {/* Animated Hand Gesture: touching and swiping up */}
+          <div className="relative w-8 h-8 flex items-center justify-center">
+            {/* Soft pulsing aura behind hand */}
+            <motion.div
+              animate={{
+                scale: [0.85, 1.25, 0.85],
+                opacity: [0.25, 0.55, 0.25],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute inset-0 rounded-full bg-[#FFE7B3]/45 blur-[3px] pointer-events-none"
+            />
+            <motion.div
+              animate={{
+                y: [7, -6, -6],
+                opacity: [0, 1, 0],
+                scale: [0.92, 1.05, 0.92],
+              }}
+              transition={{
+                duration: 1.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="flex flex-col items-center"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-5.5 h-5.5 text-[#70161E] drop-shadow-[0_1.5px_3px_rgba(255,255,255,0.9)]"
+              >
+                <path d="M12.5 2a1.5 1.5 0 0 0-1.5 1.5v8.2a1.8 1.8 0 0 0-.8-.2 1.8 1.8 0 0 0-1.7 1.2l-.7 2.1a2 2 0 0 0 .5 2.1l3.2 3.2c.8.8 1.8 1.2 2.8 1.2h2.2c2.2 0 4-1.8 4-4v-4.5a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0-1 .4v-.9a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0-.5.1V3.5A1.5 1.5 0 0 0 12.5 2z" />
+              </svg>
+            </motion.div>
+          </div>
+
+          {/* Clear Call to Action Text */}
+          <div className="flex items-center gap-1 text-[10px] sm:text-[11px] font-black font-['Cinzel',Georgia,serif] text-[#570713] tracking-[0.2em] uppercase drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
+            <span>Scroll Down</span>
+            <motion.span
+              animate={{ y: [0, 3, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+              className="text-[#966116] text-[12px] leading-none"
+            >
+              ↓
+            </motion.span>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 };

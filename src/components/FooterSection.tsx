@@ -267,20 +267,18 @@ export const FooterSection: React.FC = () => {
               href="https://nithish-portfolio-sigma.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#FAF0DC] via-[#F8ECD2] to-[#F5E5C4] hover:from-[#F5E5C4] hover:to-[#EDD5A8] border border-[#C9A46A]/80 hover:border-[#966116] text-[#570713] font-bold tracking-wider shadow-[0_2px_8px_rgba(87,7,19,0.12)] hover:shadow-[0_4px_14px_rgba(87,7,19,0.24)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer ml-0.5"
+              className="group inline-flex items-center gap-1 font-black text-[#570713] hover:text-[#8B1A24] text-[12px] sm:text-[13px] tracking-widest underline decoration-[#C9A46A] decoration-[1.5px] underline-offset-4 hover:decoration-[#570713] transition-colors duration-200 cursor-pointer ml-1 drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]"
               title="Visit Nithish's Developer Portfolio"
             >
-              <span className="font-extrabold text-[#570713] group-hover:text-[#8B1A24] transition-colors drop-shadow-[0_0.5px_0_rgba(255,255,255,0.9)]">
-                NITHISH
-              </span>
+              <span>NITHISH</span>
               <svg
                 viewBox="0 0 12 12"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2.2"
+                strokeWidth="2.4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-2.5 h-2.5 text-[#854518] group-hover:text-[#570713] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                className="w-2.5 h-2.5 text-[#966116] group-hover:text-[#8B1A24] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                 aria-hidden="true"
               >
                 <path d="M3.5 1.5h7v7" />
