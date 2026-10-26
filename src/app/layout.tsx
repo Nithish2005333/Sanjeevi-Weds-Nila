@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sanjeeviwedsnila.vercel.app"),
-  title: "Sanjeevi & Nila | Royal Wedding Invitation (திருமண அழைப்பிதழ்)",
+  title: "Sanjeevi & Nila — Royal Wedding Invitation",
   description:
     "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
   icons: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://sanjeeviwedsnila.com",
+    url: "https://sanjeeviwedsnila.vercel.app",
     siteName: "Sanjeevi & Nila Wedding",
     title: "Sanjeevi & Nila — Royal Wedding Invitation",
     description:
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "Sanjeevi & Nila — Royal Wedding Invitation",
     description:
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
-    images: ["/og-image.jpg"],
+    images: ["https://sanjeeviwedsnila.vercel.app/og-image.jpg"],
   },
 };
 
@@ -50,17 +50,20 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="image_src" href="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
+        <meta itemProp="image" content="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
         <meta property="og:title" content="Sanjeevi & Nila — Royal Wedding Invitation" />
         <meta
           property="og:description"
           content="With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur."
         />
-        <meta property="og:image" content="https://sanjeeviwedsnila.com/og-image.jpg" />
-        <meta property="og:image:secure_url" content="https://sanjeeviwedsnila.com/og-image.jpg" />
+        <meta property="og:image" content="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://sanjeeviwedsnila.vercel.app/og-image.jpg" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="600" />
         <meta property="og:image:height" content="600" />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sanjeeviwedsnila.vercel.app" />
         <meta property="og:site_name" content="Sanjeevi & Nila Wedding" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
