@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Volume2, VolumeX, Music } from "lucide-react";
+import { Music } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface BackgroundMusicControllerProps {
   audioUrl?: string;
@@ -66,11 +67,20 @@ export const BackgroundMusicController: React.FC<BackgroundMusicControllerProps>
             />
           )}
 
-          {/* Exactly one icon for each state */}
+          {/* Rotating Music Note Icon instead of speaker icon */}
           {isPlaying ? (
-            <Volume2 className="w-5 h-5 text-[#FDE9B8] transition-transform duration-300 group-hover:scale-110" />
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
+              className="flex items-center justify-center pointer-events-none"
+            >
+              <Music className="w-5 h-5 text-[#FDE9B8] drop-shadow-[0_0_8px_rgba(253,233,184,0.65)]" />
+            </motion.div>
           ) : (
-            <VolumeX className="w-5 h-5 text-[#C9A46A] transition-transform duration-300 group-hover:scale-110" />
+            <div className="relative flex items-center justify-center pointer-events-none">
+              <Music className="w-5 h-5 text-[#C9A46A]/65" />
+              <span className="absolute w-5 h-[1.6px] bg-[#E57373] -rotate-45 rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+            </div>
           )}
         </button>
       </div>
