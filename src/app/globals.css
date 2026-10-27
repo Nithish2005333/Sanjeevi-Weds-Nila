@@ -223,39 +223,6 @@ body {
     background-color: #FAF6F0 !important;
     color: #1A100B !important;
   }
-
-  /* Specific defense for #5C111A and maroon tones under Samsung Dark Theme:
-     Blink DarkModeColorFilter inverts solid dark text glyphs into light pink.
-     Applying linear-gradient background clipped to text prevents the filter from inverting it! */
-  .text-\[\#5C111A\], [class*="text-[#5C111A]"],
-  .text-\[\#570713\], [class*="text-[#570713]"],
-  .text-\[\#4A0710\], [class*="text-[#4A0710]"],
-  .text-\[\#4A0207\], [class*="text-[#4A0207]"],
-  .text-\[\#3D0609\], [class*="text-[#3D0609]"],
-  .text-\[\#54040A\], [class*="text-[#54040A]"],
-  .maroon-color-lock,
-  [data-maroon-lock="true"] {
-    color: #5C111A !important;
-    background: #5C111A !important;
-    background-image: linear-gradient(#5C111A, #5C111A) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    forced-color-adjust: none !important;
-  }
-}
-
-/* Protect all invitation palette text colors from mobile browser dark mode color inversion */
-.text-\[\#5C111A\], [class*="text-[#5C111A]"],
-.maroon-color-lock,
-[data-maroon-lock="true"] {
-  color: #5C111A !important;
-  -webkit-text-fill-color: #5C111A !important;
-  forced-color-adjust: none !important;
-  isolation: isolate;
-}
-.text-\[\#5C111A\] *, .maroon-color-lock * {
-  -webkit-text-fill-color: inherit;
 }
 
 /* Protect all invitation palette text colors from mobile browser dark mode color inversion */

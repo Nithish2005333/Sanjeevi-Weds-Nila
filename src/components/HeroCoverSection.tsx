@@ -316,9 +316,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                   },
                 },
               }}
-              className="text-[32px] sm:text-[40px] font-bold text-[#5C111A] tracking-[0.06em] leading-none inline-flex items-center justify-center select-none maroon-color-lock"
-              data-maroon-lock="true"
-              style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800, color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}
+              className="text-[32px] sm:text-[40px] font-bold text-[#570713] tracking-[0.06em] leading-none inline-flex items-center justify-center select-none"
+              style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800, color: "#570713", WebkitTextFillColor: "#570713", isolation: "isolate", forcedColorAdjust: "none" }}
             >
               {"Sanjeevi".split("").map((char, index) => (
                 <motion.span
@@ -343,15 +342,14 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                       },
                     },
                   }}
-                  className="inline-block maroon-color-lock"
-                  data-maroon-lock="true"
+                  className="inline-block"
                   style={{
                     transformOrigin: "bottom center",
-                    color: "#5C111A",
-                    WebkitTextFillColor: "#5C111A",
+                    color: "#570713",
+                    WebkitTextFillColor: "#570713",
                     forcedColorAdjust: "none",
                     textShadow:
-                      "0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(92, 17, 26, 0.2), 0 4px 14px rgba(92, 17, 26, 0.12)",
+                      "0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(87, 7, 19, 0.2), 0 4px 14px rgba(87, 7, 19, 0.12)",
                   }}
                 >
                   {char}
@@ -392,9 +390,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                   },
                 },
               }}
-              className="text-[32px] sm:text-[40px] font-bold text-[#5C111A] tracking-[0.06em] leading-none inline-flex items-center justify-center select-none maroon-color-lock"
-              data-maroon-lock="true"
-              style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800, color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}
+              className="text-[32px] sm:text-[40px] font-bold text-[#570713] tracking-[0.06em] leading-none inline-flex items-center justify-center select-none"
+              style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800, color: "#570713", WebkitTextFillColor: "#570713", isolation: "isolate", forcedColorAdjust: "none" }}
             >
               {"Nila".split("").map((char, index) => (
                 <motion.span
@@ -419,15 +416,14 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                       },
                     },
                   }}
-                  className="inline-block maroon-color-lock"
-                  data-maroon-lock="true"
+                  className="inline-block"
                   style={{
                     transformOrigin: "bottom center",
-                    color: "#5C111A",
-                    WebkitTextFillColor: "#5C111A",
+                    color: "#570713",
+                    WebkitTextFillColor: "#570713",
                     forcedColorAdjust: "none",
                     textShadow:
-                      "0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(92, 17, 26, 0.2), 0 4px 14px rgba(92, 17, 26, 0.12)",
+                      "0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(87, 7, 19, 0.2), 0 4px 14px rgba(87, 7, 19, 0.12)",
                   }}
                 >
                   {char}
@@ -474,9 +470,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
             transition={{ duration: 0.65, delay: 1.38, ease: [0.16, 1, 0.3, 1] }}
           >
             <p
-              data-maroon-lock="true"
-              style={{ color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}
-              className="font-['Cinzel',Georgia,serif] text-[13.5px] sm:text-[15px] font-extrabold text-[#5C111A] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)] maroon-color-lock"
+              style={{ color: "#4A0710", WebkitTextFillColor: "#4A0710", isolation: "isolate", forcedColorAdjust: "none" }}
+              className="font-['Cinzel',Georgia,serif] text-[13.5px] sm:text-[15px] font-extrabold text-[#4A0710] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
             >
               NOVEMBER
             </p>
@@ -526,9 +521,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                     animate={{ y: 0, rotateX: 0, opacity: 1, filter: "blur(0px)" }}
                     exit={{ y: -20, rotateX: -55, opacity: 0, filter: "blur(3px)" }}
                     transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-                    data-maroon-lock="true"
-                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}
-                    className="w-full text-center font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.18em] text-[#5C111A] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)] maroon-color-lock"
+                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#3D0609", WebkitTextFillColor: "#3D0609", isolation: "isolate", forcedColorAdjust: "none" }}
+                    className="w-full text-center font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.18em] text-[#3D0609] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
                   >
                     {isReception ? "SUNDAY" : "FRIDAY"}
                   </motion.span>
@@ -573,9 +567,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                     animate={{ y: 0, rotateX: 0, opacity: 1, scale: 1, filter: "blur(0px)" }}
                     exit={{ y: -30, rotateX: -55, opacity: 0, scale: 0.9, filter: "blur(3px)" }}
                     transition={{ duration: 0.65, ease: [0.19, 1, 0.22, 1] }}
-                    data-maroon-lock="true"
-                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}
-                    className="w-full text-center font-['Cinzel',Georgia,serif] text-[46px] sm:text-[54px] font-black text-[#5C111A] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)] whitespace-nowrap px-1 maroon-color-lock"
+                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#3D0609", WebkitTextFillColor: "#3D0609", isolation: "isolate", forcedColorAdjust: "none" }}
+                    className="w-full text-center font-['Cinzel',Georgia,serif] text-[46px] sm:text-[54px] font-black text-[#3D0609] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)] whitespace-nowrap px-1"
                   >
                     {isReception ? "22" : "20"}
                   </motion.span>
@@ -625,11 +618,10 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                     animate={{ y: 0, rotateX: 0, opacity: 1, filter: "blur(0px)" }}
                     exit={{ y: -20, rotateX: -55, opacity: 0, filter: "blur(3px)" }}
                     transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-                    data-maroon-lock="true"
-                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}
-                    className="w-full text-center font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.14em] text-[#5C111A] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)] maroon-color-lock"
+                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#3D0609", WebkitTextFillColor: "#3D0609", isolation: "isolate", forcedColorAdjust: "none" }}
+                    className="w-full text-center font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.14em] text-[#3D0609] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
                   >
-                    AT <span className="font-['Cinzel',Georgia,serif] font-black maroon-color-lock" data-maroon-lock="true" style={{ color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}>{isReception ? "11:30" : "9:15"}</span> AM
+                    AT <span className="font-['Cinzel',Georgia,serif] font-black" style={{ color: "#3D0609", WebkitTextFillColor: "#3D0609", isolation: "isolate", forcedColorAdjust: "none" }}>{isReception ? "11:30" : "9:15"}</span> AM
                   </motion.span>
                 </AnimatePresence>
               </div>
@@ -655,9 +647,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
             transition={{ duration: 0.65, delay: 1.95, ease: "easeOut" }}
           >
             <p
-              data-maroon-lock="true"
-              style={{ color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}
-              className="font-['Cinzel',Georgia,serif] text-[14px] sm:text-[17px] font-extrabold text-[#5C111A] tracking-[0.45em] [text-shadow:0_1px_0_rgba(255,255,255,0.9)] maroon-color-lock"
+              style={{ color: "#4A0710", WebkitTextFillColor: "#4A0710", isolation: "isolate", forcedColorAdjust: "none" }}
+              className="font-['Cinzel',Georgia,serif] text-[14px] sm:text-[17px] font-extrabold text-[#4A0710] tracking-[0.45em] [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
             >
               2 0 2 6
             </p>
@@ -685,9 +676,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
               >
                 <ScrollHandLottie className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center drop-shadow-[0_1.5px_3px_rgba(255,255,255,0.95)]" />
                 <span
-                  data-maroon-lock="true"
-                  style={{ color: "#5C111A", WebkitTextFillColor: "#5C111A", isolation: "isolate", forcedColorAdjust: "none" }}
-                  className="font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13px] font-extrabold tracking-[0.22em] uppercase text-[#5C111A] drop-shadow-[0_1px_3px_rgba(255,255,255,0.95)] transition-colors group-hover:text-[#6E0E18] maroon-color-lock"
+                  style={{ color: "#4A0710", WebkitTextFillColor: "#4A0710", isolation: "isolate", forcedColorAdjust: "none" }}
+                  className="font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13px] font-extrabold tracking-[0.22em] uppercase text-[#4A0710] drop-shadow-[0_1px_3px_rgba(255,255,255,0.95)] transition-colors group-hover:text-[#6E0E18]"
                 >
                   Scroll
                 </span>
