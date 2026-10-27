@@ -22,7 +22,7 @@ const GroomDetails: React.FC = () => (
     </div>
 
     {/* Groom's Name and Degree on Same Line */}
-    <h3 className="font-tamil font-bold text-[#4A0207] text-2xl sm:text-[26px] tracking-wide leading-tight mt-1 drop-shadow-2xs">
+    <h3 data-maroon-lock="true" className="font-tamil font-bold text-[#4A0207] text-2xl sm:text-[26px] tracking-wide leading-tight mt-1 drop-shadow-2xs maroon-color-lock">
       S. சஞ்சீவி, <span className="font-sans font-bold text-sm sm:text-base text-[#854D0E] tracking-wider ml-1">D.ICE</span>
     </h3>
 
@@ -115,7 +115,7 @@ const BrideDetails: React.FC = () => (
     </div>
 
     {/* Bride's Name and Degree on Same Line */}
-    <h3 className="font-tamil font-bold text-[#4A0207] text-2xl sm:text-[26px] tracking-wide leading-tight mt-1 drop-shadow-2xs">
+    <h3 data-maroon-lock="true" className="font-tamil font-bold text-[#4A0207] text-2xl sm:text-[26px] tracking-wide leading-tight mt-1 drop-shadow-2xs maroon-color-lock">
       A. நிலா <span className="text-base sm:text-lg font-normal text-[#783F06]">(எ) சினேகா</span>, <span className="font-sans font-bold text-sm sm:text-base text-[#854D0E] tracking-wider ml-1">M.Sc.</span>
     </h3>
 
@@ -154,15 +154,15 @@ const DateTimeDetails: React.FC = () => (
     </div>
 
     {/* Tamil Auspicious Year */}
-    <p className="font-tamil font-bold text-[#4A0207] text-sm sm:text-base leading-snug tracking-wide">
+    <p data-maroon-lock="true" className="font-tamil font-bold text-[#4A0207] text-sm sm:text-base leading-snug tracking-wide maroon-color-lock">
       ஸ்ரீ பராபவ வருடம்
     </p>
     {/* Karthikai 06 and (22.11.2026) in same line */}
-    <p className="font-tamil font-bold text-[#4A0207] text-base sm:text-lg leading-snug my-0.5 whitespace-nowrap">
+    <p data-maroon-lock="true" className="font-tamil font-bold text-[#4A0207] text-base sm:text-lg leading-snug my-0.5 whitespace-nowrap maroon-color-lock">
       கார்த்திகை 06 <span className="font-bold text-[#853119] text-sm sm:text-base ml-1.5">(22.11.2026)</span>
     </p>
     {/* Day */}
-    <p className="font-tamil font-bold text-[#4A0207] text-sm sm:text-base leading-snug">
+    <p data-maroon-lock="true" className="font-tamil font-bold text-[#4A0207] text-sm sm:text-base leading-snug maroon-color-lock">
       ஞாயிற்றுக்கிழமை
     </p>
 
@@ -339,7 +339,8 @@ export const TamilCardSection: React.FC = () => {
           className="text-center mb-3.5 sm:mb-4"
         >
           <h2
-            className="font-tamil font-bold text-[#4A0207] leading-tight"
+            data-maroon-lock="true"
+            className="font-tamil font-bold text-[#4A0207] leading-tight maroon-color-lock"
             style={{ fontSize: "clamp(1.45rem, 5.5vw, 1.95rem)" }}
           >
             திருமண வரவேற்பு
@@ -406,7 +407,7 @@ export const TamilCardSection: React.FC = () => {
               }}
             >
               <span className="text-[#853119] text-[11px] font-serif font-bold">॥</span>
-              <p className="font-tamil font-bold text-[#54040A] text-[11.5px] sm:text-xs tracking-wider drop-shadow-[0_1px_0_rgba(255,255,255,0.85)] whitespace-nowrap">
+              <p data-maroon-lock="true" className="font-tamil font-bold text-[#54040A] text-[11.5px] sm:text-xs tracking-wider drop-shadow-[0_1px_0_rgba(255,255,255,0.85)] whitespace-nowrap maroon-color-lock">
                 அருள்மிகு ஸ்ரீ முருகன் துணை
               </p>
               <span className="text-[#853119] text-[11px] font-serif font-bold">॥</span>

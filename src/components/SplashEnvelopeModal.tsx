@@ -140,10 +140,11 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                           },
                         },
                       }}
-                      className="inline-block"
+                      className="inline-block maroon-color-lock"
+                      data-maroon-lock="true"
                       style={{
-                        color: "#570713",
-                        WebkitTextFillColor: "#570713",
+                        color: "#5C111A",
+                        WebkitTextFillColor: "#5C111A",
                         textShadow:
                           "0 3px 8px rgba(0, 0, 0, 0.65), 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 235, 185, 0.75), 0 1px 1px rgba(255, 248, 230, 0.95)",
                       }}
@@ -192,11 +193,12 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                         : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
                     }
                     transition={{ duration: 0.65, delay: 0.68, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-['Plus_Jakarta_Sans',sans-serif] text-[11px] sm:text-[12px] font-bold text-[#570713] uppercase tracking-[0.22em] pl-[0.22em] leading-none select-none px-0.5 inline-block"
+                    className="font-['Plus_Jakarta_Sans',sans-serif] text-[11px] sm:text-[12px] font-bold text-[#5C111A] uppercase tracking-[0.22em] pl-[0.22em] leading-none select-none px-0.5 inline-block maroon-color-lock"
+                    data-maroon-lock="true"
                     style={{
-                      color: "#570713",
-                      WebkitTextFillColor: "#570713",
-                      WebkitTextStroke: "0.2px #570713",
+                      color: "#5C111A",
+                      WebkitTextFillColor: "#5C111A",
+                      WebkitTextStroke: "0.2px #5C111A",
                       textShadow:
                         "0 1px 1px rgba(255, 248, 230, 0.6), 0 2px 6px rgba(0, 0, 0, 0.35)",
                     }}
@@ -274,10 +276,11 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                           },
                         },
                       }}
-                      className="inline-block"
+                      className="inline-block maroon-color-lock"
+                      data-maroon-lock="true"
                       style={{
-                        color: "#570713",
-                        WebkitTextFillColor: "#570713",
+                        color: "#5C111A",
+                        WebkitTextFillColor: "#5C111A",
                         textShadow:
                           "0 3px 8px rgba(0, 0, 0, 0.65), 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 235, 185, 0.75), 0 1px 1px rgba(255, 248, 230, 0.95)",
                       }}
