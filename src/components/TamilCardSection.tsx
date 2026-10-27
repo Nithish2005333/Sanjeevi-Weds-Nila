@@ -213,7 +213,10 @@ const ContactSection: React.FC = () => (
         aria-label="Call 88254 99595"
       >
         <Phone className="w-4 h-4 text-[#F4E3B7] group-hover:rotate-12 transition-transform shrink-0" />
-        <span className="font-tamil font-bold text-base sm:text-[17px] tracking-wider text-[#FFFDF8]">
+        <span
+          style={{ color: "#FFFDF8", WebkitTextFillColor: "#FFFDF8" }}
+          className="font-tamil font-bold text-base sm:text-[17px] tracking-wider text-[#FFFDF8]"
+        >
           88254 99595
         </span>
       </motion.a>
@@ -228,7 +231,10 @@ const ContactSection: React.FC = () => (
         aria-label="Call 97868 04303"
       >
         <Phone className="w-4 h-4 text-[#F4E3B7] group-hover:rotate-12 transition-transform shrink-0" />
-        <span className="font-tamil font-bold text-base sm:text-[17px] tracking-wider text-[#FFFDF8]">
+        <span
+          style={{ color: "#FFFDF8", WebkitTextFillColor: "#FFFDF8" }}
+          className="font-tamil font-bold text-base sm:text-[17px] tracking-wider text-[#FFFDF8]"
+        >
           97868 04303
         </span>
       </motion.a>

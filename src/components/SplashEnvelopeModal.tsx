@@ -115,7 +115,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                     }),
                   }}
                   className="text-[2.15rem] sm:text-[2.6rem] font-bold text-[#570713] tracking-normal leading-none inline-flex items-center justify-center select-none"
-                  style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800 }}
+                  style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800, color: "#570713", WebkitTextFillColor: "#570713" }}
                 >
                   {"Sanjeevi".split("").map((char, index) => (
                     <motion.span
@@ -142,6 +142,8 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                       }}
                       className="inline-block"
                       style={{
+                        color: "#570713",
+                        WebkitTextFillColor: "#570713",
                         textShadow:
                           "0 3px 8px rgba(0, 0, 0, 0.65), 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 235, 185, 0.75), 0 1px 1px rgba(255, 248, 230, 0.95)",
                       }}
@@ -192,6 +194,8 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                     transition={{ duration: 0.65, delay: 0.68, ease: [0.16, 1, 0.3, 1] }}
                     className="font-['Plus_Jakarta_Sans',sans-serif] text-[11px] sm:text-[12px] font-bold text-[#570713] uppercase tracking-[0.22em] pl-[0.22em] leading-none select-none px-0.5 inline-block"
                     style={{
+                      color: "#570713",
+                      WebkitTextFillColor: "#570713",
                       WebkitTextStroke: "0.2px #570713",
                       textShadow:
                         "0 1px 1px rgba(255, 248, 230, 0.6), 0 2px 6px rgba(0, 0, 0, 0.35)",
@@ -245,7 +249,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                     }),
                   }}
                   className="text-[2.15rem] sm:text-[2.6rem] font-bold text-[#570713] tracking-normal leading-none inline-flex items-center justify-center select-none"
-                  style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800 }}
+                  style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800, color: "#570713", WebkitTextFillColor: "#570713" }}
                 >
                   {"Nila".split("").map((char, index) => (
                     <motion.span
@@ -272,6 +276,8 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                       }}
                       className="inline-block"
                       style={{
+                        color: "#570713",
+                        WebkitTextFillColor: "#570713",
                         textShadow:
                           "0 3px 8px rgba(0, 0, 0, 0.65), 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 235, 185, 0.75), 0 1px 1px rgba(255, 248, 230, 0.95)",
                       }}
@@ -290,10 +296,16 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
               className="relative z-20 mb-8 sm:mb-10 w-full px-6 flex flex-col items-center justify-center space-y-3.5 text-center"
             >
               <div className="space-y-1.5">
-                <p className="font-cinzel text-[13px] sm:text-[15px] font-bold text-[#FFE8B2] tracking-[0.24em] uppercase drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]">
-                  <span className="font-serif-numbers font-bold">22</span> NOVEMBER <span className="font-serif-numbers font-bold">2026</span>
+                <p
+                  style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2" }}
+                  className="font-cinzel text-[13px] sm:text-[15px] font-bold text-[#FFE8B2] tracking-[0.24em] uppercase drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]"
+                >
+                  <span className="font-serif-numbers font-bold" style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2" }}>22</span> NOVEMBER <span className="font-serif-numbers font-bold" style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2" }}>2026</span>
                 </p>
-                <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[11.5px] sm:text-[13px] font-medium text-[#FFFDF7] tracking-wide drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]">
+                <p
+                  style={{ color: "#FFFDF7", WebkitTextFillColor: "#FFFDF7" }}
+                  className="font-['Plus_Jakarta_Sans',sans-serif] text-[11.5px] sm:text-[13px] font-medium text-[#FFFDF7] tracking-wide drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]"
+                >
                   Malaiamman Marriage Hall, Dalavapalayam, Karur
                 </p>
               </div>
@@ -346,7 +358,10 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                   }}
                 />
 
-                <span className="relative z-10 font-serif text-[12px] sm:text-[13px] font-bold tracking-[0.22em] text-[#FFFDF7] uppercase group-hover:text-[#FFD700] transition-colors whitespace-nowrap drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] text-center">
+                <span
+                  style={{ color: "#FFFDF7", WebkitTextFillColor: "#FFFDF7" }}
+                  className="relative z-10 font-serif text-[12px] sm:text-[13px] font-bold tracking-[0.22em] text-[#FFFDF7] uppercase group-hover:text-[#FFD700] transition-colors whitespace-nowrap drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] text-center"
+                >
                   TAP TO OPEN INVITATION
                 </span>
               </motion.button>
