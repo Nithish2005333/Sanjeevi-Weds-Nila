@@ -1,5 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: "#FAF6F0",
+  colorScheme: "light dark",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sanjeeviwedsnila.vercel.app"),
@@ -43,8 +48,8 @@ export const metadata: Metadata = {
     images: ["https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png"],
   },
   other: {
-    "color-scheme": "light only",
-    "supported-color-schemes": "light",
+    "color-scheme": "light dark",
+    "supported-color-schemes": "light dark",
     "darkreader-lock": "true",
   },
 };
@@ -58,13 +63,13 @@ export default function RootLayout({
     <html
       lang="en"
       prefix="og: http://ogp.me/ns#"
-      style={{ colorScheme: "light" }}
+      style={{ colorScheme: "light dark" }}
       data-theme="light"
       suppressHydrationWarning
     >
       <head>
-        <meta name="color-scheme" content="light" />
-        <meta name="supported-color-schemes" content="light" />
+        <meta name="color-scheme" content="light dark" />
+        <meta name="supported-color-schemes" content="light dark" />
         <meta name="darkreader-lock" content="true" />
         <link rel="icon" type="image/png" href="https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png" />
         <link rel="shortcut icon" href="https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png" />
@@ -85,7 +90,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        style={{ colorScheme: "light" }}
+        style={{ colorScheme: "light dark" }}
         className="bg-[#FAF6F0] text-[#1A100B] min-h-screen antialiased selection:bg-[#C9A46A]/30 selection:text-[#1A100B]"
         suppressHydrationWarning
       >

@@ -295,15 +295,15 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
               transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
               className="relative z-20 mb-8 sm:mb-10 w-full px-6 flex flex-col items-center justify-center space-y-3.5 text-center"
             >
-              <div className="space-y-1.5">
+              <div className="space-y-1.5" style={{ isolation: "isolate" }}>
                 <p
-                  style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2" }}
+                  style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2", isolation: "isolate", forcedColorAdjust: "none" }}
                   className="font-cinzel text-[13px] sm:text-[15px] font-bold text-[#FFE8B2] tracking-[0.24em] uppercase drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]"
                 >
-                  <span className="font-serif-numbers font-bold" style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2" }}>22</span> NOVEMBER <span className="font-serif-numbers font-bold" style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2" }}>2026</span>
+                  <span className="font-serif-numbers font-bold" style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2", forcedColorAdjust: "none" }}>22</span> NOVEMBER <span className="font-serif-numbers font-bold" style={{ color: "#FFE8B2", WebkitTextFillColor: "#FFE8B2", forcedColorAdjust: "none" }}>2026</span>
                 </p>
                 <p
-                  style={{ color: "#FFFDF7", WebkitTextFillColor: "#FFFDF7" }}
+                  style={{ color: "#FFFDF7", WebkitTextFillColor: "#FFFDF7", isolation: "isolate", forcedColorAdjust: "none" }}
                   className="font-['Plus_Jakarta_Sans',sans-serif] text-[11.5px] sm:text-[13px] font-medium text-[#FFFDF7] tracking-wide drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.85)]"
                 >
                   Malaiamman Marriage Hall, Dalavapalayam, Karur
@@ -314,6 +314,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
               <motion.button
                 type="button"
                 onClick={handleOpen}
+                style={{ isolation: "isolate" }}
                 animate={
                   isOpening
                     ? { scale: 0.95, opacity: 0 }
@@ -359,7 +360,7 @@ export const SplashEnvelopeModal: React.FC<SplashEnvelopeModalProps> = ({
                 />
 
                 <span
-                  style={{ color: "#FFFDF7", WebkitTextFillColor: "#FFFDF7" }}
+                  style={{ color: "#FFFDF7", WebkitTextFillColor: "#FFFDF7", isolation: "isolate", forcedColorAdjust: "none" }}
                   className="relative z-10 font-serif text-[12px] sm:text-[13px] font-bold tracking-[0.22em] text-[#FFFDF7] uppercase group-hover:text-[#FFD700] transition-colors whitespace-nowrap drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] text-center"
                 >
                   TAP TO OPEN INVITATION

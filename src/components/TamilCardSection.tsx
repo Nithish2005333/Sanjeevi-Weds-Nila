@@ -209,12 +209,13 @@ const ContactSection: React.FC = () => (
           visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: [0.34, 1.4, 0.64, 1] as const } },
         }}
         href="tel:8825499595"
+        style={{ isolation: "isolate" }}
         className="group inline-flex items-center justify-center gap-2.5 py-2 px-6 min-w-[210px] sm:min-w-[230px] rounded-full bg-gradient-to-r from-[#4A0207] via-[#5C0913] to-[#4A0207] text-[#FFFDF8] border border-[#C9A46A]/80 shadow-[0_2px_8px_rgba(74,2,7,0.22)] hover:shadow-[0_4px_14px_rgba(74,2,7,0.35)] hover:border-[#F4E3B7] hover:scale-[1.03] active:scale-95 transition-all"
         aria-label="Call 88254 99595"
       >
         <Phone className="w-4 h-4 text-[#F4E3B7] group-hover:rotate-12 transition-transform shrink-0" />
         <span
-          style={{ color: "#FFFDF8", WebkitTextFillColor: "#FFFDF8" }}
+          style={{ color: "#FFFDF8", WebkitTextFillColor: "#FFFDF8", isolation: "isolate", forcedColorAdjust: "none" }}
           className="font-tamil font-bold text-base sm:text-[17px] tracking-wider text-[#FFFDF8]"
         >
           88254 99595
@@ -227,12 +228,13 @@ const ContactSection: React.FC = () => (
           visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: [0.34, 1.4, 0.64, 1] as const } },
         }}
         href="tel:9786804303"
+        style={{ isolation: "isolate" }}
         className="group inline-flex items-center justify-center gap-2.5 py-2 px-6 min-w-[210px] sm:min-w-[230px] rounded-full bg-gradient-to-r from-[#4A0207] via-[#5C0913] to-[#4A0207] text-[#FFFDF8] border border-[#C9A46A]/80 shadow-[0_2px_8px_rgba(74,2,7,0.22)] hover:shadow-[0_4px_14px_rgba(74,2,7,0.35)] hover:border-[#F4E3B7] hover:scale-[1.03] active:scale-95 transition-all"
         aria-label="Call 97868 04303"
       >
         <Phone className="w-4 h-4 text-[#F4E3B7] group-hover:rotate-12 transition-transform shrink-0" />
         <span
-          style={{ color: "#FFFDF8", WebkitTextFillColor: "#FFFDF8" }}
+          style={{ color: "#FFFDF8", WebkitTextFillColor: "#FFFDF8", isolation: "isolate", forcedColorAdjust: "none" }}
           className="font-tamil font-bold text-base sm:text-[17px] tracking-wider text-[#FFFDF8]"
         >
           97868 04303

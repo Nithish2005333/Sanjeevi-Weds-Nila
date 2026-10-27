@@ -177,8 +177,8 @@
 }
 
 :root {
-  color-scheme: light !important;
-  supported-color-schemes: light !important;
+  color-scheme: light dark !important;
+  supported-color-schemes: light dark !important;
   forced-color-adjust: none !important;
   --color-parchment: #FAF6F0;
   --color-parchment-light: #FDFBF7;
@@ -190,14 +190,14 @@
 }
 
 html {
-  color-scheme: light !important;
-  supported-color-schemes: light !important;
+  color-scheme: light dark !important;
+  supported-color-schemes: light dark !important;
   forced-color-adjust: none !important;
 }
 
 body {
-  color-scheme: light !important;
-  supported-color-schemes: light !important;
+  color-scheme: light dark !important;
+  supported-color-schemes: light dark !important;
   forced-color-adjust: none !important;
   background-color: #FAF6F0 !important;
   color: #1A100B;
@@ -208,15 +208,17 @@ body {
 }
 
 *, *::before, *::after {
-  forced-color-adjust: none;
+  forced-color-adjust: none !important;
 }
 
 /* Samsung Internet & Browser Forced Dark Mode Defense:
-   Signals the browser that the page handles color schemes, preventing algorithmic text inversion */
+   Declaring 'light dark' signals the browser that the website natively handles its dark theme,
+   which turns OFF Samsung Internet's algorithmic color-inversion (Night Mode).
+   Under prefers-color-scheme: dark, we keep the exact golden, ivory & maroon wedding design. */
 @media (prefers-color-scheme: dark) {
   :root, html, body {
-    color-scheme: light !important;
-    supported-color-schemes: light !important;
+    color-scheme: light dark !important;
+    supported-color-schemes: light dark !important;
     forced-color-adjust: none !important;
     background-color: #FAF6F0 !important;
     color: #1A100B !important;
