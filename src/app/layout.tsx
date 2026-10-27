@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sanjeeviwedsnila.vercel.app"),
-  title: "Sanjeevi & Nila — Royal Wedding Invitation (திருமண வரவேற்பு அழைப்பிதழ்)",
+  title: "Sanjeevi & Nila — Wedding Invitation (திருமண வரவேற்பு அழைப்பிதழ்)",
   description:
     "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
   icons: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://sanjeeviwedsnila.vercel.app",
     siteName: "Sanjeevi & Nila Wedding",
-    title: "Sanjeevi & Nila — Royal Wedding Invitation",
+    title: "Sanjeevi & Nila — Wedding Invitation",
     description:
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
     images: [
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
         secureUrl: "https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png",
         width: 300,
         height: 300,
-        alt: "Sanjeevi & Nila Royal Wedding Monogram",
+        alt: "Sanjeevi & Nila Wedding Monogram",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "Sanjeevi & Nila — Royal Wedding Invitation",
+    title: "Sanjeevi & Nila — Wedding Invitation",
     description:
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
     images: ["https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png"],

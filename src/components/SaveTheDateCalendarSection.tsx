@@ -25,23 +25,23 @@ const reveal = (delay = 0, y = 12) => ({
 export const GOOGLE_CALENDAR_URL =
   "https://calendar.google.com/calendar/render?action=TEMPLATE" +
   "&text=" +
-  encodeURIComponent("💍 Sanjeevi & Nila — Royal Wedding & Reception") +
+  encodeURIComponent("💍 Sanjeevi & Nila — Wedding & Reception") +
   "&dates=20261120/20261123" +
   "&ctz=Asia/Kolkata" +
   "&details=" +
   encodeURIComponent(
     "With divine grace and families' blessings, we joyfully invite you to celebrate the sacred Wedding Ceremony & Reception of Sanjeevi & Nila.\n\n" +
-      "💍 WEDDING CEREMONY (திருமணம்):\n" +
-      "• Date: Friday, 20 November 2026\n" +
-      "• Auspicious Muhurtham: 9:15 AM IST\n" +
-      "• Venue: Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur\n\n" +
-      "🎉 WEDDING RECEPTION (திருமண வரவேற்பு):\n" +
-      "• Date: Sunday, 22 November 2026\n" +
-      "• Time: 11:30 AM to 3:00 PM IST\n" +
-      "• Venue: Malaiamman Marriage Hall, Thalavapalayam, Karur\n\n" +
-      "📍 Venues:\n" +
-      "1. Wedding: Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur\n" +
-      "2. Reception: Malaiamman Marriage Hall, Pugalur Main Road, Thalavapalayam, Karur"
+    "💍 WEDDING CEREMONY (திருமணம்):\n" +
+    "• Date: Friday, 20 November 2026\n" +
+    "• Auspicious Muhurtham: 9:15 AM IST\n" +
+    "• Venue: Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur\n\n" +
+    "🎉 WEDDING RECEPTION (திருமண வரவேற்பு):\n" +
+    "• Date: Sunday, 22 November 2026\n" +
+    "• Time: 11:30 AM to 3:00 PM IST\n" +
+    "• Venue: Malaiamman Marriage Hall, Thalavapalayam, Karur\n\n" +
+    "📍 Venues:\n" +
+    "1. Wedding: Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur\n" +
+    "2. Reception: Malaiamman Marriage Hall, Pugalur Main Road, Thalavapalayam, Karur"
   ) +
   "&location=" +
   encodeURIComponent(
@@ -58,10 +58,10 @@ export const GOOGLE_WEDDING_CALENDAR_URL =
   "&details=" +
   encodeURIComponent(
     "With divine grace and families' blessings, we joyfully invite you to celebrate the sacred Wedding Ceremony of Sanjeevi & Nila.\n\n" +
-      "💍 Wedding Ceremony: Friday, 20 November 2026\n" +
-      "⏰ Auspicious Muhurtham: 9:15 AM IST\n" +
-      "📍 Venue: Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur\n\n" +
-      "🎉 Reception: Sunday, 22 November 2026 at Malaiamman Marriage Hall, Karur."
+    "💍 Wedding Ceremony: Friday, 20 November 2026\n" +
+    "⏰ Auspicious Muhurtham: 9:15 AM IST\n" +
+    "📍 Venue: Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur\n\n" +
+    "🎉 Reception: Sunday, 22 November 2026 at Malaiamman Marriage Hall, Karur."
   ) +
   "&location=" +
   encodeURIComponent(
@@ -78,10 +78,10 @@ export const GOOGLE_RECEPTION_CALENDAR_URL =
   "&details=" +
   encodeURIComponent(
     "With joy and celebration, you are cordially invited to celebrate the Wedding Reception of Sanjeevi & Nila.\n\n" +
-      "🎉 Reception: Sunday, 22 November 2026\n" +
-      "⏰ Time: 11:30 AM to 3:00 PM IST\n" +
-      "📍 Venue: Malaiamman Marriage Hall, Thalavapalayam, Karur.\n\n" +
-      "💍 Wedding Ceremony: Friday, 20 November 2026, 9:15 AM at Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur."
+    "🎉 Reception: Sunday, 22 November 2026\n" +
+    "⏰ Time: 11:30 AM to 3:00 PM IST\n" +
+    "📍 Venue: Malaiamman Marriage Hall, Thalavapalayam, Karur.\n\n" +
+    "💍 Wedding Ceremony: Friday, 20 November 2026, 9:15 AM at Arulmigu Sri Varadharaja Perumal Temple, Sengal Malai, Karur."
   ) +
   "&location=" +
   encodeURIComponent(
