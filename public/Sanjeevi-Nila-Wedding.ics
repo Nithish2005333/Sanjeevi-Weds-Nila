@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sanjeevi & Nila Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Sanjeevi & Nila Wedding Ceremony
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VEVENT
+UID:wedding-sanjeevi-nila-20261120@sanjeeviwedsnila.com
+DTSTAMP:20261026T000000Z
+DTSTART:20261120T034500Z
+DTEND:20261120T070000Z
+SUMMARY:💍 Sanjeevi & Nila — Wedding Ceremony (திருமணம்)
+DESCRIPTION:With divine grace and families' blessings\, you are cordially invited to the sacred Wedding Ceremony of Sanjeevi & Nila.\n\nDate: Friday\, 20 November 2026\nAuspicious Muhurtham: 9:15 AM IST\nVenue: Arulmigu Sri Varadharaja Perumal Temple\, Sengal Malai\, Karur.\n\nReception: Sunday\, 22 November 2026 at Malaiamman Marriage Hall\, Karur.
+LOCATION:Arulmigu Sri Varadharaja Perumal Temple\, Sengal Malai\, Karur\, Tamil Nadu 639113
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
+

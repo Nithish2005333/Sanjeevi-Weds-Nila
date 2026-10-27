@@ -177,6 +177,9 @@
 }
 
 :root {
+  color-scheme: light !important;
+  supported-color-schemes: light !important;
+  forced-color-adjust: none !important;
   --color-parchment: #FAF6F0;
   --color-parchment-light: #FDFBF7;
   --color-text-primary: #1A100B;
@@ -186,12 +189,106 @@
   --color-maroon-dark: #3D0609;
 }
 
+html {
+  color-scheme: light !important;
+  supported-color-schemes: light !important;
+  forced-color-adjust: none !important;
+}
+
 body {
-  background-color: #FAF6F0;
+  color-scheme: light !important;
+  supported-color-schemes: light !important;
+  forced-color-adjust: none !important;
+  background-color: #FAF6F0 !important;
   color: #1A100B;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  forced-color-adjust: none;
+}
+
+/* Samsung Internet & Browser Forced Dark Mode Defense:
+   Signals the browser that the page handles color schemes, preventing algorithmic text inversion */
+@media (prefers-color-scheme: dark) {
+  :root, html, body {
+    color-scheme: light !important;
+    supported-color-schemes: light !important;
+    forced-color-adjust: none !important;
+    background-color: #FAF6F0 !important;
+    color: #1A100B !important;
+  }
+}
+
+/* Protect royal palette text colors from mobile browser dark mode color inversion */
+.text-\[\#570713\], [class*="text-[#570713]"] {
+  color: #570713 !important;
+  -webkit-text-fill-color: #570713 !important;
+}
+.text-\[\#570713\] * {
+  -webkit-text-fill-color: inherit;
+}
+
+.text-\[\#3D0609\], [class*="text-[#3D0609]"] {
+  color: #3D0609 !important;
+  -webkit-text-fill-color: #3D0609 !important;
+}
+.text-\[\#3D0609\] * {
+  -webkit-text-fill-color: inherit;
+}
+
+.text-\[\#4A0710\], [class*="text-[#4A0710]"] {
+  color: #4A0710 !important;
+  -webkit-text-fill-color: #4A0710 !important;
+}
+.text-\[\#4A0710\] * {
+  -webkit-text-fill-color: inherit;
+}
+
+.text-\[\#7A4515\], [class*="text-[#7A4515]"] {
+  color: #7A4515 !important;
+  -webkit-text-fill-color: #7A4515 !important;
+}
+.text-\[\#7A4515\] * {
+  -webkit-text-fill-color: inherit;
+}
+
+.text-\[\#710D18\], [class*="text-[#710D18]"] {
+  color: #710D18 !important;
+  -webkit-text-fill-color: #710D18 !important;
+}
+
+.text-\[\#6E0E18\], [class*="text-[#6E0E18]"] {
+  color: #6E0E18 !important;
+  -webkit-text-fill-color: #6E0E18 !important;
+}
+
+.text-\[\#B85038\], [class*="text-[#B85038]"] {
+  color: #B85038 !important;
+  -webkit-text-fill-color: #B85038 !important;
+}
+
+.text-\[\#4B6647\], [class*="text-[#4B6647]"] {
+  color: #4B6647 !important;
+  -webkit-text-fill-color: #4B6647 !important;
+}
+
+.text-\[\#2B120B\], [class*="text-[#2B120B]"] {
+  color: #2B120B !important;
+  -webkit-text-fill-color: #2B120B !important;
+}
+
+.text-\[\#1A100B\], [class*="text-[#1A100B]"] {
+  color: #1A100B !important;
+  -webkit-text-fill-color: #1A100B !important;
+}
+
+.text-\[\#553B29\], [class*="text-[#553B29]"] {
+  color: #553B29 !important;
+  -webkit-text-fill-color: #553B29 !important;
 }
 
 /* Custom Typography Utilities */

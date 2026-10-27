@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sanjeevi & Nila Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Sanjeevi & Nila Wedding Reception
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VEVENT
+UID:reception-sanjeevi-nila-20261122@sanjeeviwedsnila.com
+DTSTAMP:20261026T000000Z
+DTSTART:20261122T060000Z
+DTEND:20261122T093000Z
+SUMMARY:🎉 Sanjeevi & Nila — Wedding Reception (திருமண வரவேற்பு)
+DESCRIPTION:With joy and celebration\, you are cordially invited to the Wedding Reception of Sanjeevi & Nila.\n\nDate: Sunday\, 22 November 2026\nTime: 11:30 AM to 3:00 PM IST\nVenue: Malaiamman Marriage Hall\, Thalavapalayam\, Karur.\n\nWedding Ceremony: Friday\, 20 November 2026\, 9:15 AM at Arulmigu Sri Varadharaja Perumal Temple\, Sengal Malai\, Karur.
+LOCATION:Malaiamman Marriage Hall\, Pugalur Main Road\, Punjai Thottakurichi\, Thalavapalayam\, Karur\, Tamil Nadu 639113
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
+

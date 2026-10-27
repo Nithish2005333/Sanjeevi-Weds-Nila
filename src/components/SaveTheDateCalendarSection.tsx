@@ -89,9 +89,12 @@ export const GOOGLE_RECEPTION_CALENDAR_URL =
   );
 
 const APPLE_CALENDAR_URL = "/Sanjeevi-Nila-Dates.ics";
+const WEDDING_ICS_URL = "/Sanjeevi-Nila-Wedding.ics";
+const RECEPTION_ICS_URL = "/Sanjeevi-Nila-Reception.ics";
 
 export const SaveTheDateCalendarSection: React.FC = () => {
   const [mounted, setMounted] = useState(false);
+  const [deviceType, setDeviceType] = useState<"apple" | "samsung" | "other">("other");
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -101,6 +104,20 @@ export const SaveTheDateCalendarSection: React.FC = () => {
 
   useEffect(() => {
     setMounted(true);
+    const ua = typeof navigator !== "undefined" ? navigator.userAgent : "";
+    const isIOS =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (typeof navigator !== "undefined" && navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSamsung = /SamsungBrowser|SM-|SAMSUNG/i.test(ua);
+
+    if (isIOS) {
+      setDeviceType("apple");
+    } else if (isSamsung) {
+      setDeviceType("samsung");
+    } else {
+      setDeviceType("other");
+    }
+
     const calculateTime = () => {
       const now = Date.now();
       const difference = WEDDING_TARGET_TIME - now;
@@ -127,18 +144,13 @@ export const SaveTheDateCalendarSection: React.FC = () => {
 
   const formatNumber = (num: number) => String(num).padStart(2, "0");
 
-  const handleCalendarClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const isDirectDeviceCalendar = deviceType === "apple" || deviceType === "samsung";
+
+  const handleCalendarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (typeof window === "undefined") return;
-
-    const isIOS =
-      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-
-    if (isIOS) {
+    if (isDirectDeviceCalendar) {
+      e.preventDefault();
       window.location.href = APPLE_CALENDAR_URL;
-    } else {
-      window.open(GOOGLE_CALENDAR_URL, "_blank");
     }
   };
 
@@ -177,7 +189,10 @@ export const SaveTheDateCalendarSection: React.FC = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as const }}
         >
-          <h2 className="font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-extrabold tracking-[inherit] text-[#570713] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.85)]">
+          <h2
+            style={{ color: "#570713", WebkitTextFillColor: "#570713" }}
+            className="font-['Cinzel',Georgia,serif] text-[22px] sm:text-[27px] font-extrabold tracking-[inherit] text-[#570713] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.85)]"
+          >
             SAVE THE DATE
           </h2>
         </motion.div>
@@ -185,17 +200,21 @@ export const SaveTheDateCalendarSection: React.FC = () => {
         {/* 3A. Above the Horizontal Gold Lines: Date Numerals & Month (Auspicious Seal Pop & Scale) */}
         <div className="absolute inset-x-[8%] top-[62.0%] h-[12.2%] z-20 grid grid-cols-2">
           {/* Left Date: 20 NOV 2026 (Wedding) */}
-          <motion.button
-            type="button"
-            onClick={() => window.open(GOOGLE_WEDDING_CALENDAR_URL, "_blank")}
-            title="Click to add Wedding (20 Nov · 9:15 AM) to Google Calendar"
+          <motion.a
+            href={isDirectDeviceCalendar ? WEDDING_ICS_URL : GOOGLE_WEDDING_CALENDAR_URL}
+            target={isDirectDeviceCalendar ? "_self" : "_blank"}
+            rel="noopener noreferrer"
+            title="Click to add Wedding (20 Nov · 9:15 AM) to Calendar"
             className="flex flex-col items-center justify-center text-center pr-3 sm:pr-4 select-none cursor-pointer group hover:scale-[1.04] transition-transform"
             initial={{ opacity: 0, scale: 0.45, rotate: -8, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.34, 1.56, 0.64, 1] as const }}
           >
-            <span className="font-['Playfair_Display',Georgia,serif] text-[44px] sm:text-[52px] font-bold text-[#B85038] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.85)] group-hover:brightness-110">
+            <span
+              style={{ color: "#B85038", WebkitTextFillColor: "#B85038" }}
+              className="font-['Playfair_Display',Georgia,serif] text-[44px] sm:text-[52px] font-bold text-[#B85038] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.85)] group-hover:brightness-110"
+            >
               20
             </span>
             <motion.span
@@ -203,24 +222,29 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+              style={{ color: "#B85038", WebkitTextFillColor: "#B85038" }}
               className="font-['Cinzel',Georgia,serif] text-[11px] sm:text-[12.5px] font-bold text-[#B85038] uppercase mt-1 [text-shadow:0_1px_0_rgba(255,255,255,0.8)]"
             >
               NOV <span className="font-serif-numbers font-bold">2026</span>
             </motion.span>
-          </motion.button>
+          </motion.a>
 
           {/* Right Date: 22 NOV 2026 (Reception) */}
-          <motion.button
-            type="button"
-            onClick={() => window.open(GOOGLE_RECEPTION_CALENDAR_URL, "_blank")}
-            title="Click to add Reception (22 Nov · 11:30 AM) to Google Calendar"
+          <motion.a
+            href={isDirectDeviceCalendar ? RECEPTION_ICS_URL : GOOGLE_RECEPTION_CALENDAR_URL}
+            target={isDirectDeviceCalendar ? "_self" : "_blank"}
+            rel="noopener noreferrer"
+            title="Click to add Reception (22 Nov · 11:30 AM) to Calendar"
             className="flex flex-col items-center justify-center text-center pl-3 sm:pl-4 select-none cursor-pointer group hover:scale-[1.04] transition-transform"
             initial={{ opacity: 0, scale: 0.45, rotate: 8, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.22, ease: [0.34, 1.56, 0.64, 1] as const }}
           >
-            <span className="font-['Playfair_Display',Georgia,serif] text-[44px] sm:text-[52px] font-bold text-[#4B6647] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.85)] group-hover:brightness-110">
+            <span
+              style={{ color: "#4B6647", WebkitTextFillColor: "#4B6647" }}
+              className="font-['Playfair_Display',Georgia,serif] text-[44px] sm:text-[52px] font-bold text-[#4B6647] leading-none [text-shadow:0_1px_0_rgba(255,255,255,0.85)] group-hover:brightness-110"
+            >
               22
             </span>
             <motion.span
@@ -228,46 +252,55 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
+              style={{ color: "#4B6647", WebkitTextFillColor: "#4B6647" }}
               className="font-['Cinzel',Georgia,serif] text-[11px] sm:text-[12.5px] font-bold text-[#4B6647] uppercase mt-1 [text-shadow:0_1px_0_rgba(255,255,255,0.8)]"
             >
               NOV <span className="font-serif-numbers font-bold">2026</span>
             </motion.span>
-          </motion.button>
+          </motion.a>
         </div>
 
         {/* 3B. Beneath the Horizontal Gold Lines: Event Labels */}
         <div className="absolute inset-x-[8%] top-[74.9%] h-[4.8%] z-20 grid grid-cols-2">
           {/* Left Event: WEDDING */}
-          <motion.button
-            type="button"
-            onClick={() => window.open(GOOGLE_WEDDING_CALENDAR_URL, "_blank")}
-            title="Click to add Wedding (20 Nov · 9:15 AM) to Google Calendar"
+          <motion.a
+            href={isDirectDeviceCalendar ? WEDDING_ICS_URL : GOOGLE_WEDDING_CALENDAR_URL}
+            target={isDirectDeviceCalendar ? "_self" : "_blank"}
+            rel="noopener noreferrer"
+            title="Click to add Wedding (20 Nov · 9:15 AM) to Calendar"
             className="flex items-center justify-center text-center pr-3 sm:pr-4 select-none cursor-pointer group"
             initial={{ opacity: 0, y: 10, clipPath: "inset(100% 0 0 0)" }}
             whileInView={{ opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65, delay: 0.28, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <span className="font-['Cinzel',Georgia,serif] text-[12.5px] sm:text-[14.5px] font-bold tracking-[0.24em] text-[#B85038] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.8)] group-hover:underline underline-offset-2">
+            <span
+              style={{ color: "#B85038", WebkitTextFillColor: "#B85038" }}
+              className="font-['Cinzel',Georgia,serif] text-[12.5px] sm:text-[14.5px] font-bold tracking-[0.24em] text-[#B85038] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.8)] group-hover:underline underline-offset-2"
+            >
               WEDDING
             </span>
-          </motion.button>
+          </motion.a>
 
           {/* Right Event: RECEPTION */}
-          <motion.button
-            type="button"
-            onClick={() => window.open(GOOGLE_RECEPTION_CALENDAR_URL, "_blank")}
-            title="Click to add Reception (22 Nov · 11:30 AM) to Google Calendar"
+          <motion.a
+            href={isDirectDeviceCalendar ? RECEPTION_ICS_URL : GOOGLE_RECEPTION_CALENDAR_URL}
+            target={isDirectDeviceCalendar ? "_self" : "_blank"}
+            rel="noopener noreferrer"
+            title="Click to add Reception (22 Nov · 11:30 AM) to Calendar"
             className="flex items-center justify-center text-center pl-3 sm:pl-4 select-none cursor-pointer group"
             initial={{ opacity: 0, y: 10, clipPath: "inset(100% 0 0 0)" }}
             whileInView={{ opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65, delay: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <span className="font-['Cinzel',Georgia,serif] text-[12.5px] sm:text-[14.5px] font-bold tracking-[0.24em] text-[#4B6647] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.8)] group-hover:underline underline-offset-2">
+            <span
+              style={{ color: "#4B6647", WebkitTextFillColor: "#4B6647" }}
+              className="font-['Cinzel',Georgia,serif] text-[12.5px] sm:text-[14.5px] font-bold tracking-[0.24em] text-[#4B6647] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.8)] group-hover:underline underline-offset-2"
+            >
               RECEPTION
             </span>
-          </motion.button>
+          </motion.a>
         </div>
 
         {/* 4. Inside the Blank Button: “ADD DATES TO CALENDAR” (Opens direct date selection modal) */}
@@ -278,8 +311,10 @@ export const SaveTheDateCalendarSection: React.FC = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.75, delay: 0.4, ease: [0.34, 1.4, 0.64, 1] as const }}
         >
-          <button
-            type="button"
+          <a
+            href={isDirectDeviceCalendar ? APPLE_CALENDAR_URL : GOOGLE_CALENDAR_URL}
+            target={isDirectDeviceCalendar ? "_self" : "_blank"}
+            rel="noopener noreferrer"
             onClick={handleCalendarClick}
             aria-label="Add Wedding and Reception Dates directly to Calendar"
             className="w-full h-full flex items-center justify-center rounded-full text-[#FFF8F0] font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.14em] uppercase transition-all duration-300 hover:brightness-110 active:scale-[0.98] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#FFF8F0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#B85038] cursor-pointer select-none"
@@ -288,7 +323,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FFF8F0] shrink-0" />
               <span className="pt-0.5">Add Dates to Calendar</span>
             </span>
-          </button>
+          </a>
         </motion.div>
 
         {/* 5. Beneath the Button: Interactive direct calendar selector */}
@@ -299,27 +334,28 @@ export const SaveTheDateCalendarSection: React.FC = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
         >
-          <button
-            type="button"
-            onClick={() => window.open(GOOGLE_CALENDAR_URL, "_blank")}
+          <a
+            href={GOOGLE_CALENDAR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#7A4515", WebkitTextFillColor: "#7A4515" }}
             className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
           >
             Google Calendar
-          </button>
-          <span className="text-[#C9A46A] text-[9px] select-none" aria-hidden="true">·</span>
-          <button
-            type="button"
-            onClick={() => {
-              window.location.href = APPLE_CALENDAR_URL;
-            }}
-            className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
-          >
-            Apple Calendar
-          </button>
+          </a>
           <span className="text-[#C9A46A] text-[9px] select-none" aria-hidden="true">·</span>
           <a
-            href="/Sanjeevi-Nila-Dates.ics"
+            href={APPLE_CALENDAR_URL}
+            style={{ color: "#7A4515", WebkitTextFillColor: "#7A4515" }}
+            className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+          >
+            {deviceType === "samsung" ? "Samsung Calendar" : "Apple Calendar"}
+          </a>
+          <span className="text-[#C9A46A] text-[9px] select-none" aria-hidden="true">·</span>
+          <a
+            href={APPLE_CALENDAR_URL}
             download="Sanjeevi-Nila-Dates.ics"
+            style={{ color: "#7A4515", WebkitTextFillColor: "#7A4515" }}
             className="font-['Cinzel',Georgia,serif] text-[8.5px] sm:text-[10px] font-bold tracking-[0.08em] text-[#7A4515] hover:text-[#570713] transition-colors cursor-pointer select-none underline underline-offset-2 [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
             title="Download .ICS for Outlook & other calendar apps"
           >
@@ -359,7 +395,10 @@ export const SaveTheDateCalendarSection: React.FC = () => {
             className="w-5 sm:w-8 h-[1px] bg-gradient-to-r from-transparent to-[#C9A46A]"
             aria-hidden="true"
           />
-          <span className="font-['Cinzel',Georgia,serif] text-[10.5px] sm:text-[12px] font-bold tracking-[0.26em] text-[#570713]/90 uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+          <span
+            style={{ color: "#570713", WebkitTextFillColor: "#570713" }}
+            className="font-['Cinzel',Georgia,serif] text-[10.5px] sm:text-[12px] font-bold tracking-[0.26em] text-[#570713]/90 uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
+          >
             Countdown to Celebration
           </span>
           <motion.span
@@ -382,7 +421,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformStyle: "preserve-3d" }}
+              style={{ transformStyle: "preserve-3d", color: "#570713", WebkitTextFillColor: "#570713" }}
               className="inline-block font-['Cinzel',Georgia,serif] text-[28px] sm:text-[35px] font-black text-[#570713] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)]"
             >
               {mounted ? formatNumber(timeLeft.days) : "--"}
@@ -392,6 +431,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.24, ease: "easeOut" }}
+              style={{ color: "#7A4515", WebkitTextFillColor: "#7A4515" }}
               className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.18em] text-[#7A4515] uppercase mt-1.5"
             >
               Days
@@ -416,7 +456,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformStyle: "preserve-3d" }}
+              style={{ transformStyle: "preserve-3d", color: "#570713", WebkitTextFillColor: "#570713" }}
               className="inline-block font-['Cinzel',Georgia,serif] text-[28px] sm:text-[35px] font-black text-[#570713] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)]"
             >
               {mounted ? formatNumber(timeLeft.hours) : "--"}
@@ -426,6 +466,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.32, ease: "easeOut" }}
+              style={{ color: "#7A4515", WebkitTextFillColor: "#7A4515" }}
               className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.18em] text-[#7A4515] uppercase mt-1.5"
             >
               Hours
@@ -450,7 +491,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformStyle: "preserve-3d" }}
+              style={{ transformStyle: "preserve-3d", color: "#570713", WebkitTextFillColor: "#570713" }}
               className="inline-block font-['Cinzel',Georgia,serif] text-[28px] sm:text-[35px] font-black text-[#570713] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)]"
             >
               {mounted ? formatNumber(timeLeft.minutes) : "--"}
@@ -460,6 +501,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.42, ease: "easeOut" }}
+              style={{ color: "#7A4515", WebkitTextFillColor: "#7A4515" }}
               className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.18em] text-[#7A4515] uppercase mt-1.5"
             >
               Minutes
@@ -484,7 +526,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformStyle: "preserve-3d" }}
+              style={{ transformStyle: "preserve-3d", color: "#B85038", WebkitTextFillColor: "#B85038" }}
               className="inline-block font-['Cinzel',Georgia,serif] text-[28px] sm:text-[35px] font-black text-[#B85038] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)]"
             >
               <motion.span
@@ -492,6 +534,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
                 initial={{ scale: 1.1, opacity: 0.8 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.28, ease: "easeOut" }}
+                style={{ color: "#B85038", WebkitTextFillColor: "#B85038" }}
                 className="inline-block"
               >
                 {mounted ? formatNumber(timeLeft.seconds) : "--"}
@@ -502,6 +545,7 @@ export const SaveTheDateCalendarSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0, letterSpacing: "0.18em" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.5, ease: "easeOut" }}
+              style={{ color: "#7A4515", WebkitTextFillColor: "#7A4515" }}
               className="font-['Cinzel',Georgia,serif] text-[9.5px] sm:text-[11px] font-bold tracking-[0.18em] text-[#7A4515] uppercase mt-1.5"
             >
               Seconds

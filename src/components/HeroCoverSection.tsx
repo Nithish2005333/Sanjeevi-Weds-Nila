@@ -276,7 +276,10 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
           }
           transition={{ duration: 0.75, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="font-['Tangerine',cursive] text-[48px] sm:text-[58px] font-bold text-[#966116] leading-[0.95] [text-shadow:0_1px_0_rgba(255,255,255,0.9)] px-3">
+          <span
+            style={{ color: "#966116", WebkitTextFillColor: "#966116" }}
+            className="font-['Tangerine',cursive] text-[48px] sm:text-[58px] font-bold text-[#966116] leading-[0.95] [text-shadow:0_1px_0_rgba(255,255,255,0.9)] px-3"
+          >
             You&apos;re Invited
           </span>
           <div className="relative overflow-hidden h-6 sm:h-7 w-full flex items-center justify-center mt-2.5 sm:mt-3 [perspective:500px]">
@@ -287,7 +290,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                 animate={{ y: 0, rotateX: 0, opacity: 1, filter: "blur(0px)" }}
                 exit={{ y: -20, rotateX: -55, opacity: 0, filter: "blur(3px)" }}
                 transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-                style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#7A4515", WebkitTextFillColor: "#7A4515" }}
                 className="w-full text-center font-['Cinzel',Georgia,serif] text-[10.5px] sm:text-[12px] font-bold tracking-[0.28em] text-[#7A4515] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
               >
                 {isReception ? "FOR THE RECEPTION OF" : "FOR THE WEDDING OF"}
@@ -314,7 +317,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                 },
               }}
               className="text-[32px] sm:text-[40px] font-bold text-[#570713] tracking-[0.06em] leading-none inline-flex items-center justify-center select-none"
-              style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800 }}
+              style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800, color: "#570713", WebkitTextFillColor: "#570713" }}
             >
               {"Sanjeevi".split("").map((char, index) => (
                 <motion.span
@@ -342,6 +345,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                   className="inline-block"
                   style={{
                     transformOrigin: "bottom center",
+                    color: "#570713",
+                    WebkitTextFillColor: "#570713",
                     textShadow:
                       "0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(87, 7, 19, 0.2), 0 4px 14px rgba(87, 7, 19, 0.12)",
                   }}
@@ -362,6 +367,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                   : { opacity: 0, scale: 0.5, rotate: -25, filter: "blur(4px)" }
               }
               transition={{ duration: 0.65, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
+              style={{ color: "#A8742A", WebkitTextFillColor: "#A8742A" }}
               className="font-['BabyLovely',cursive] text-3xl sm:text-4xl text-[#A8742A] font-normal leading-none select-none px-2 italic [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
             >
               &amp;
@@ -384,7 +390,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                 },
               }}
               className="text-[32px] sm:text-[40px] font-bold text-[#570713] tracking-[0.06em] leading-none inline-flex items-center justify-center select-none"
-              style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800 }}
+              style={{ fontFamily: "'SilianRail', Georgia, serif", perspective: 800, color: "#570713", WebkitTextFillColor: "#570713" }}
             >
               {"Nila".split("").map((char, index) => (
                 <motion.span
@@ -412,6 +418,8 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                   className="inline-block"
                   style={{
                     transformOrigin: "bottom center",
+                    color: "#570713",
+                    WebkitTextFillColor: "#570713",
                     textShadow:
                       "0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(87, 7, 19, 0.2), 0 4px 14px rgba(87, 7, 19, 0.12)",
                   }}
@@ -459,7 +467,10 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
             }
             transition={{ duration: 0.65, delay: 1.38, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="font-['Cinzel',Georgia,serif] text-[13.5px] sm:text-[15px] font-extrabold text-[#4A0710] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+            <p
+              style={{ color: "#4A0710", WebkitTextFillColor: "#4A0710" }}
+              className="font-['Cinzel',Georgia,serif] text-[13.5px] sm:text-[15px] font-extrabold text-[#4A0710] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
+            >
               NOVEMBER
             </p>
           </motion.div>
@@ -508,7 +519,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                     animate={{ y: 0, rotateX: 0, opacity: 1, filter: "blur(0px)" }}
                     exit={{ y: -20, rotateX: -55, opacity: 0, filter: "blur(3px)" }}
                     transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#3D0609", WebkitTextFillColor: "#3D0609" }}
                     className="w-full text-center font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.18em] text-[#3D0609] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
                   >
                     {isReception ? "SUNDAY" : "FRIDAY"}
@@ -554,7 +565,7 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                     animate={{ y: 0, rotateX: 0, opacity: 1, scale: 1, filter: "blur(0px)" }}
                     exit={{ y: -30, rotateX: -55, opacity: 0, scale: 0.9, filter: "blur(3px)" }}
                     transition={{ duration: 0.65, ease: [0.19, 1, 0.22, 1] }}
-                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#3D0609", WebkitTextFillColor: "#3D0609" }}
                     className="w-full text-center font-['Cinzel',Georgia,serif] text-[46px] sm:text-[54px] font-black text-[#3D0609] leading-none [text-shadow:0_1.5px_0_rgba(255,255,255,0.95)] whitespace-nowrap px-1"
                   >
                     {isReception ? "22" : "20"}
@@ -605,10 +616,10 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                     animate={{ y: 0, rotateX: 0, opacity: 1, filter: "blur(0px)" }}
                     exit={{ y: -20, rotateX: -55, opacity: 0, filter: "blur(3px)" }}
                     transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden", color: "#3D0609", WebkitTextFillColor: "#3D0609" }}
                     className="w-full text-center font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.14em] text-[#3D0609] uppercase whitespace-nowrap [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
                   >
-                    AT <span className="font-['Cinzel',Georgia,serif] font-black">{isReception ? "11:30" : "9:15"}</span> AM
+                    AT <span className="font-['Cinzel',Georgia,serif] font-black" style={{ color: "#3D0609", WebkitTextFillColor: "#3D0609" }}>{isReception ? "11:30" : "9:15"}</span> AM
                   </motion.span>
                 </AnimatePresence>
               </div>
@@ -633,7 +644,10 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
             }
             transition={{ duration: 0.65, delay: 1.95, ease: "easeOut" }}
           >
-            <p className="font-['Cinzel',Georgia,serif] text-[14px] sm:text-[17px] font-extrabold text-[#4A0710] tracking-[0.45em] [text-shadow:0_1px_0_rgba(255,255,255,0.9)]">
+            <p
+              style={{ color: "#4A0710", WebkitTextFillColor: "#4A0710" }}
+              className="font-['Cinzel',Georgia,serif] text-[14px] sm:text-[17px] font-extrabold text-[#4A0710] tracking-[0.45em] [text-shadow:0_1px_0_rgba(255,255,255,0.9)]"
+            >
               2 0 2 6
             </p>
           </motion.div>
@@ -659,7 +673,10 @@ export const HeroCoverSection: React.FC<HeroCoverSectionProps> = ({
                 className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 cursor-pointer select-none group pointer-events-auto transition-transform hover:scale-105 active:scale-95"
               >
                 <ScrollHandLottie className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center drop-shadow-[0_1.5px_3px_rgba(255,255,255,0.95)]" />
-                <span className="font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13px] font-extrabold tracking-[0.22em] uppercase text-[#4A0710] drop-shadow-[0_1px_3px_rgba(255,255,255,0.95)] transition-colors group-hover:text-[#6E0E18]">
+                <span
+                  style={{ color: "#4A0710", WebkitTextFillColor: "#4A0710" }}
+                  className="font-['Cinzel',Georgia,serif] text-[12px] sm:text-[13px] font-extrabold tracking-[0.22em] uppercase text-[#4A0710] drop-shadow-[0_1px_3px_rgba(255,255,255,0.95)] transition-colors group-hover:text-[#6E0E18]"
+                >
                   Scroll
                 </span>
               </motion.div>

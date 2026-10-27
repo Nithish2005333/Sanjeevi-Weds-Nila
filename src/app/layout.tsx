@@ -42,6 +42,11 @@ export const metadata: Metadata = {
       "With divine grace and families' blessings, we joyfully invite you to celebrate the wedding ceremony of Sanjeevi & Nila on 22nd November 2026 at Malaiamman Marriage Hall, Karur.",
     images: ["https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png"],
   },
+  other: {
+    "color-scheme": "light only",
+    "supported-color-schemes": "light",
+    "darkreader-lock": "true",
+  },
 };
 
 export default function RootLayout({
@@ -50,8 +55,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" prefix="og: http://ogp.me/ns#" suppressHydrationWarning>
+    <html
+      lang="en"
+      prefix="og: http://ogp.me/ns#"
+      style={{ colorScheme: "light" }}
+      data-theme="light"
+      suppressHydrationWarning
+    >
       <head>
+        <meta name="color-scheme" content="light" />
+        <meta name="supported-color-schemes" content="light" />
+        <meta name="darkreader-lock" content="true" />
         <link rel="icon" type="image/png" href="https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png" />
         <link rel="shortcut icon" href="https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png" />
         <link rel="apple-touch-icon" href="https://res.cloudinary.com/di2c9rec3/image/upload/v1793014586/favicon-new_n50800.png" />
@@ -71,6 +85,7 @@ export default function RootLayout({
         />
       </head>
       <body
+        style={{ colorScheme: "light" }}
         className="bg-[#FAF6F0] text-[#1A100B] min-h-screen antialiased selection:bg-[#C9A46A]/30 selection:text-[#1A100B]"
         suppressHydrationWarning
       >
